@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Content.module.scss'
 
 interface Props {
    // children: React.ReactElement // 원시타입 비허용
@@ -7,9 +8,12 @@ interface Props {
 
 const Content = ({ children }: Props) => {
    return (
-      <div>
-         {children}
-      </div>
+      <>
+         <div className={styles.zzz}>zzz</div>
+         <div className={styles.content}>
+            {children}
+         </div>
+      </>
    )
 }
 
