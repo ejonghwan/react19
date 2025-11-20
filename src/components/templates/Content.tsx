@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './Content.module.scss'
+import { useOnlineStatus } from '../../hooks/useOnlineStatus'
+import { useToggle } from '../../hooks/useToggle'
 
 interface Props {
    // children: React.ReactElement // 원시타입 비허용
@@ -7,8 +9,19 @@ interface Props {
 }
 
 const Content = ({ children }: Props) => {
+
+
+   const isOnline = useOnlineStatus()
+   const [toggle, handleToggle] = useToggle()
+
    return (
       <>
+
+
+         <button type='button' onClick={handleToggle}>toggle ? {toggle ? 'true' : 'false'}</button>
+
+         <div>{isOnline ? 'online' : 'notOnline'}</div>
+
          <div className={styles.zzz}>zzz</div>
 
          <div className={styles.box1}>asd</div>
