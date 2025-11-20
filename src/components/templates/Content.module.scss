@@ -5,3 +5,24 @@
       background-color: blue;
    }
 }
+
+
+
+@mixin dash-line($width, $color) {
+   border: $width dashed $color;
+}
+
+.box1 {
+   @include dash-line(1px, red);
+}
+
+.box2 {
+   @include dash-line(4px, blue);
+}
+
+
+@for $i from 1 to 100 {
+   .icon_#{$i} {
+      margin-bottom: ($i * 10px);
+   }
+}
