@@ -3,6 +3,11 @@ import React from 'react'
 const Git = () => {
    return (
       <div>
+
+         test4
+         test5
+         test6
+
          <div>
             머지할떄 커밋하나 : git merge --squash
             <ul>
