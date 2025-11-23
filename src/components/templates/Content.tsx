@@ -24,6 +24,18 @@ const Content = ({ children }: Props) => {
       console.log(time)
    }, [time])
 
+
+   const [count, setCount] = useState(0); // 클릭시 올라감 
+   const [renderCount, setRenderCount] = useState(0);
+
+   // 무한반복됨 왜냐 ?. setCount이게 업데이트되면 useEffect가 실행됨. 
+   // 그 안에 setRenderCount이게 업데이트되면 또 실행됨 무한반복
+   // 이럴떄 useRef 사용
+
+   useEffect(() => {
+      setRenderCount(prev => prev + 1)
+   })
+
    return (
       <>
 
