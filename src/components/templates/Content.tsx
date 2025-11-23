@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styles from './Content.module.scss'
 import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 import { useToggle } from '../../hooks/useToggle'
@@ -14,8 +14,25 @@ const Content = ({ children }: Props) => {
    const isOnline = useOnlineStatus()
    const [toggle, handleToggle] = useToggle()
 
+   const [time, setTime] = useState(0)
+
+   const handleTime = useCallback(() => {
+      setTime(prev => prev + 1)
+   }, [])
+
+   useEffect(() => {
+      console.log(time)
+   }, [time])
+
    return (
       <>
+
+
+
+         <div>itme : {time}</div>
+         <button onClick={handleTime}>++</button>
+
+
 
 
          <button type='button' onClick={handleToggle}>toggle ? {toggle ? 'true' : 'false'}</button>
