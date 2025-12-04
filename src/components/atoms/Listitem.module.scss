@@ -1,0 +1,17 @@
+.list {
+    border-top: 1px solid rgb(199, 199, 199);
+
+    &--item {
+        border-bottom: 1px solid #a8befb;
+    }
+}
+
+
+@for $i from 0 to 4 {
+    .imglist-#{$i} {
+        background: url('/img#{$i}.png') no-repeat center/100%;
+        border: #{$i}px solid #ddd;
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import styles from './Content.module.scss'
 import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 import { useToggle } from '../../hooks/useToggle'
+import ListItem from '../atoms/ListItem'
 
 interface Props {
    // children: React.ReactElement // 원시타입 비허용
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const Content = ({ children }: Props) => {
+
 
 
    const isOnline = useOnlineStatus()
@@ -32,12 +34,19 @@ const Content = ({ children }: Props) => {
    // 그 안에 setRenderCount이게 업데이트되면 또 실행됨 무한반복
    // 이럴떄 useRef 사용
 
-   useEffect(() => {
-      setRenderCount(prev => prev + 1)
-   })
+   // useEffect(() => {
+   //    setRenderCount(prev => prev + 1)
+   // })
+
+
+
 
    return (
       <>
+
+
+         {[1, 2, 3, 4].map((item, idx) => <ListItem key={idx} item={item} idx={idx} />)}
+
 
 
 
