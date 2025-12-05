@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styles from './Content.module.scss'
+import styles2 from '../../components/atoms/Listitem.module.scss'
 import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 import { useToggle } from '../../hooks/useToggle'
 import ListItem from '../atoms/ListItem'
+import ListWrap from '../atoms/ListWrap'
 
 interface Props {
    // children: React.ReactElement // 원시타입 비허용
@@ -45,7 +47,8 @@ const Content = ({ children }: Props) => {
       <>
 
 
-         {[1, 2, 3, 4].map((item, idx) => <ListItem key={idx} item={item} idx={idx} />)}
+         <ListWrap />
+
 
 
 

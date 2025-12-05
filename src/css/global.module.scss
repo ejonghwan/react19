@@ -1,0 +1,17 @@
+$color1: #ddd;
+$color2: #8f8f8f;
+$color3: #6d6d6d;
+
+
+body {
+    padding: 20px;
+    border: 1px solid blue;
+}
+
+.app {
+    border: 1px solid red;
+}
+
+@mixin border($px, $color) {
+    border: $px solid $color
+}

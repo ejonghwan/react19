@@ -1,8 +1,32 @@
+// @use '../../css/global.module.scss' as c;
+@use '../../css/module.module.scss' as c;
+
+
+
 .list {
+
+
+
+    // &:nth-child(0) {
+    //     background-color: red;
+    // }
+
+
     border-top: 1px solid rgb(199, 199, 199);
 
     &--item {
         border-bottom: 1px solid #a8befb;
+
+        @include c.border(30px, c.$color1);
+
+        &:nth-child(1) {
+            @include c.border(30px, c.$color4);
+        }
+
+        &:nth-child(2) {
+            @include c.border(30px, c.$color5);
+
+        }
     }
 }
 

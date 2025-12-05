@@ -11,13 +11,13 @@ const ListItem = ({ item, idx }: { item: number; idx: number; }) => {
 
 
     return (
-        <div onClick={(e) => handleClick(e)} className={styles.list} data-n={idx}>
-            <div className={styles["list--item"]}>
+        <>
+            <div className={styles["list--item"]} onClick={(e) => handleClick(e)} data-n={idx}>
                 ListItem: {item}<br />
                 {t ? 't' : 'f'}
                 <div className={styles[`imglist-${idx}`]}>a</div>
             </div>
-        </div >
+        </>
     )
 }
 

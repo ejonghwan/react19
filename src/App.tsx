@@ -6,13 +6,14 @@ import { Link, Route, Routes } from 'react-router-dom'
 import Home from './pages/home'
 import About from './pages/about'
 import Test from './pages/test'
+import styles from './css/global.module.scss'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
+      <div className={styles.app}>
         <nav>
           <Link to="/">홈</Link> | <Link to="/about">소개</Link>
         </nav>
