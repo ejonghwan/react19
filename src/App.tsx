@@ -7,6 +7,7 @@ import Home from './pages/home'
 import About from './pages/about'
 import Test from './pages/test'
 import styles from './css/global.module.scss'
+import InterTest from './pages/interTest'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/intertest" element={<InterTest />} />
         </Routes>
       </div>
     </>

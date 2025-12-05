@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 const useScroll = ({ el }) => {
 
-    const handler = e => {
+    const handler = (e: React.MouseEvent<React.ReactNode>) => {
 
     }
 
