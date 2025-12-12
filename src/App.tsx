@@ -8,6 +8,7 @@ import About from './pages/about'
 import Test from './pages/test'
 import styles from './css/global.module.scss'
 import InterTest from './pages/interTest'
+import Compo from './pages/compo'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/test" element={<Test />} />
           <Route path="/intertest" element={<InterTest />} />
+          <Route path="/compo" element={<Compo />} />
         </Routes>
       </div>
     </>
