@@ -22,8 +22,15 @@ import clsx from 'clsx';
 
 const DEFAULT_BUTTON = "Button";
 
+type ButtonTestProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+   test: "test1" | "test2"
+}
+export { type ButtonTestProps }
+
+
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
    variant?: "primary" | "secondary";
+   // type: "submit" | "reset" | "button";
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -32,6 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
          variant = "primary",
          className = "",
          children,
+         type,
          ...rest
       } = props;
 
@@ -43,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       const classes = `${variants[variant]} ${className}`;
 
       return (
-         <button ref={ref} className={classes} {...rest}>
+         <button ref={ref} className={classes} {...rest} type={type}>
             {children}
          </button>
       );
@@ -52,3 +60,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 // Headless UI 패턴: 디버깅/DevTools용 이름
 Button.displayName = DEFAULT_BUTTON;
+
+
+

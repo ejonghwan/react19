@@ -9,15 +9,24 @@ import Test from './pages/test'
 import styles from './css/global.module.scss'
 import InterTest from './pages/interTest'
 import Compo from './pages/compo'
+import { useContext } from 'react'
+import { TestCon } from './context/TestContext'
 
 function App() {
   // const [count, setCount] = useState(0)
+
+  const ctx = useContext(TestCon)
+  if (!ctx) { throw new Error('asdasd') }
+  const { testC } = ctx;
+
 
   return (
     <>
       <div className={styles.app}>
         <nav>
+          {testC ? '컨텍스트 티' : '컨텍스트 팔'}
           <Link to="/">홈</Link> | <Link to="/about">소개</Link>
+
         </nav>
 
         <Routes>
