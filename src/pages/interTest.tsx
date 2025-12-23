@@ -4,7 +4,7 @@ import useIntersectionObserver from '../hooks/useIntersection'
 const InterTest = () => {
 
     const [observe, unobserve, isInter] = useIntersectionObserver(() => {
-        console.log('inter')
+        // console.log('inter')
     })
 
     const target1 = useRef(null)
@@ -13,10 +13,10 @@ const InterTest = () => {
     const target4 = useRef(null)
 
     useEffect(() => {
-        observe(target1.current)
+        // observe(target1.current)
         observe(target2.current)
-        observe(target3.current)
-        observe(target4.current)
+        // observe(target3.current)
+        // observe(target4.current)
     }, [])
 
     useEffect(() => {
