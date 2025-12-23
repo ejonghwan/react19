@@ -19,6 +19,7 @@ const Ani = () => {
 
     return (
         <div>
+
             <Swiper
                 pagination={{
                     type: 'fraction',
@@ -31,33 +32,28 @@ const Ani = () => {
                 onSwiper={(swiper) => console.log(swiper)}
                 className={style["swiper__wrap"]}
             >
-                <SwiperSlide className={style["swiper__item"]}>
-                    <div className='ani__wrap'>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
+                <SwiperSlide className={style["swiper__wrap--item"]}>
+                    <div className={style["ani__wrap"]}>
+                        <div className={style["ani__wrap--item"]}>1</div>
+                        <div className={style["ani__wrap--item"]}>2</div>
+                        <div className={style["ani__wrap--item"]}>3</div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className={style["swiper__item"]}>
-                    <div className='ani__wrap'>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                    </div></SwiperSlide>
-                <SwiperSlide className={style["swiper__item"]}>
-                    <div className='ani__wrap'>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
+                <SwiperSlide className={style["swiper__wrap--item"]}>
+                    <div className={style["ani__wrap"]}>
+                        <div className={style["ani__wrap--item"]}>1</div>
+                        <div className={style["ani__wrap--item"]}>2</div>
+                        <div className={style["ani__wrap--item"]}>3</div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className={style["swiper__item"]}>
-                    <div className='ani__wrap'>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
+                <SwiperSlide className={style["swiper__wrap--item"]}>
+                    <div className={style["ani__wrap"]}>
+                        <div className={style["ani__wrap--item"]}>1</div>
+                        <div className={style["ani__wrap--item"]}>2</div>
+                        <div className={style["ani__wrap--item"]}>3</div>
                     </div>
                 </SwiperSlide>
+
             </Swiper>
         </div>
     )
