@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css';
 import style from './ani.module.scss'
 import { Pagination, Navigation } from 'swiper/modules';
+import clsx from 'clsx';
 
 
 
@@ -16,6 +17,7 @@ const Ani = () => {
     const handleSwiperChange = (swiper) => {
         console.log('slide change', swiper)
     }
+
 
     return (
         <div>
@@ -34,9 +36,21 @@ const Ani = () => {
             >
                 <SwiperSlide className={style["swiper__wrap--item"]}>
                     <div className={style["ani__wrap"]}>
-                        <div className={style["ani__wrap--item"]}>1</div>
-                        <div className={style["ani__wrap--item"]}>2</div>
-                        <div className={style["ani__wrap--item"]}>3</div>
+                        <div className={clsx(style["ani__wrap--item"], style["step1"])}>
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["step2"])}>
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["step3"])}>
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={style["swiper__wrap--item"]}>

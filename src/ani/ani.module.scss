@@ -33,28 +33,108 @@ html {
             height: 50rem;
             // name | duration | timing-function | delay | iteration-count | direction | fill-mode;
 
-            &:nth-child(1) {
-                background-color: rgb(165, 227, 255);
-                animation: ani_1 2s ease-in-out forwards;
-                opacity: 0;
 
+            &.step1 {
+                animation: ani_step1 5s ease-in-out forwards;
+                div:nth-child(1) {
+                    background-color: rgb(165, 227, 255);
+                    animation: ani_1 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid red;
+                }
+    
+                div:nth-child(2) {
+                    background-color: rgb(117, 188, 220);
+                    animation: ani_2 2s 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid blue;
+    
+                }
+    
+                div:nth-child(3) {
+                    background-color: rgb(70, 146, 182);
+                    animation: ani_3 2s 4s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid purple;
+    
+                }
             }
 
-            &:nth-child(2) {
-                background-color: rgb(117, 188, 220);
-                animation: ani_2 2s ease-in-out forwards;
-                opacity: 0;
-
+            &.step2 {
+                animation: ani_step1 5s 5s ease-in-out forwards;
+                div:nth-child(1) {
+                    background-color: rgb(165, 227, 255);
+                    animation: ani_1 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid red;
+                }
+    
+                div:nth-child(2) {
+                    background-color: rgb(117, 188, 220);
+                    animation: ani_2 2s 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid blue;
+    
+                }
+    
+                div:nth-child(3) {
+                    background-color: rgb(70, 146, 182);
+                    animation: ani_3 2s 4s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid purple;
+    
+                }
             }
 
-            &:nth-child(3) {
-                background-color: rgb(70, 146, 182);
-                animation: ani_3 2s ease-in-out forwards;
-                opacity: 0;
-
+            &.step3{
+                animation: ani_step1 5s 10s ease-in-out forwards;
+                div:nth-child(1) {
+                    background-color: rgb(165, 227, 255);
+                    animation: ani_1 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid red;
+                }
+    
+                div:nth-child(2) {
+                    background-color: rgb(117, 188, 220);
+                    animation: ani_2 2s 2s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid blue;
+    
+                }
+    
+                div:nth-child(3) {
+                    background-color: rgb(70, 146, 182);
+                    animation: ani_3 2s 4s ease-in-out forwards;
+                    opacity: 0;
+                    border: 1px solid purple;
+    
+                }
             }
+
+
+           
         }
     }
+}
+
+
+@keyframes ani_step1 {
+    0% { opacity: 0%; display: none; }
+    10% { display: block; }
+    100% { opacity: 100%; display: block; }
+}
+
+@keyframes ani_step2 {
+    0% { opacity: 0%; display: none; }
+    10% { display: block; }
+    100% { opacity: 100%; display: block; }
+}
+
+@keyframes ani_step3 {
+    0% { opacity: 0%; display: none; }
+    10% { display: block; }
+    100% { opacity: 100%; display: block; }
 }
 
 @keyframes ani_1 {
