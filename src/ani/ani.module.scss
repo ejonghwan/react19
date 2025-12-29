@@ -17,173 +17,371 @@ html {
 
 .swiper__wrap {
     width: 100%;
+    height: 100%;
     border: 1px solid red;
 
     &--item {
         border: 1px solid blue;
-        height: 300rem;
-    }
+        height: 500rem;
+        overflow: hidden;
 
-    .ani__wrap {
+        &:global(.swiper-slide-active) {
 
-
-        &--item {
-            font-size: 16rem;
-            width: 50rem;
-            height: 50rem;
-            // name | duration | timing-function | delay | iteration-count | direction | fill-mode;
+            // class 붙을 시 애니메이션 
+            .ani__wrap {
+                height: 100%;
 
 
-            &.step1 {
-                animation: ani_step1 5s ease-in-out forwards;
-                div:nth-child(1) {
-                    background-color: rgb(165, 227, 255);
-                    animation: ani_1 2s ease-in-out forwards;
-                    opacity: 0;
+
+                &--item {
+                    width: 100%;
+                    height: 500rem;
+                }
+
+                // ani 1
+                &.ani_1 {
+
+                    // name | duration | timing-function | delay | iteration-count | direction | fill-mode;
+                    position: relative;
                     border: 1px solid red;
-                }
-    
-                div:nth-child(2) {
-                    background-color: rgb(117, 188, 220);
-                    animation: ani_2 2s 2s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid blue;
-    
-                }
-    
-                div:nth-child(3) {
-                    background-color: rgb(70, 146, 182);
-                    animation: ani_3 2s 4s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid purple;
-    
+                    height: 100%;
+
+
+                    .ani_1_1 {
+                        animation: ani_1_1 2s ease-in-out forwards;
+                        opacity: 1;
+                        background-color: rgb(255, 19, 26);
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        z-index: 1;
+                    }
+
+                    .ani_1_2 {
+                        animation: ani_1_2 1.5s 1s ease-in-out forwards;
+                        background-color: rgb(9, 255, 0);
+                        opacity: 0;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        z-index: 2;
+                    }
+
+                    .ani_1_3 {
+                        animation: ani_1_3 1s 2s ease-in-out forwards;
+                        background-color: rgb(52, 157, 255);
+                        opacity: 0;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        z-index: 3;
+                    }
+
+                    .ani_1_5 {
+                        animation: ani_1_5 5s 3s ease-in-out forwards;
+                        opacity: 1;
+                        border: 1px solid black;
+                        width: 300rem;
+                        height: 50rem;
+                        position: absolute;
+                        bottom: -200rem;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        z-index: 4;
+                        font-size: 16rem;
+                        white-space: nowrap;
+                        // overflow: hidden;
+
+                        // 위 작은 박스
+                        .ani_1_5_1 {
+                            animation: ani_1_5_1 .5s 3s ease-in-out forwards;
+                            opacity: 1;
+                            border: 1px solid black;
+                            width: 200rem;
+                            height: 50rem;
+                            position: absolute;
+                            top: -210rem;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            z-index: 4;
+                        }
+
+                        // 나중에 생기는 위 작은 박스
+                        .ani_1_5_2 {
+                            animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                            opacity: 0;
+                            border: 1px solid black;
+                            width: 200rem;
+                            height: 50rem;
+                            position: absolute;
+                            top: -60rem;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            z-index: 4;
+                        }
+
+                    }
+
+                    .ani_1_6 {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid red;
+                        width: 200rem;
+                        height: 150rem;
+                        opacity: 1;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        z-index: 4;
+                        background-color: white;
+
+
+                        &>div {
+                            width: 33.3333333333%;
+                            height: 50%;
+                            position: relative;
+                        }
+
+                        // 안에 작은 박스 3개 공통
+                        [class*="ani_1_6_"] {
+                            border: 1px solid blue;
+
+                            &>div {
+                                width: 32rem;
+                                height: 32rem;
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                margin: auto;
+                            }
+
+                            div:nth-child(1) {
+                                background-color: red;
+                                // animation: ani_1_6_fade_1 1s 0s ease-in-out forwards;
+                                z-index: 0;
+                            }
+
+                            div:nth-child(2) {
+                                background-color: blue;
+                                opacity: 0;
+                                animation: ani_1_6_fade_2 1s 1.2s ease-in-out forwards;
+                                z-index: 1;
+                            }
+
+                            div:nth-child(3) {
+                                background-color: green;
+                                opacity: 0;
+                                animation: ani_1_6_fade_2 1s 3.5s ease-in-out forwards;
+                                z-index: 2;
+                            }
+                        }
+
+                        .ani_1_6_1 {
+                            animation: ani_1_6_1 6s 0s ease-in-out forwards;
+                        }
+
+                        // .ani_1_6_2 {
+                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                        // }
+
+                        // .ani_1_6_3 {
+                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                        // }
+
+                        // .ani_1_6_4 {
+                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                        // }
+
+                        // .ani_1_6_5 {
+                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                        // }
+
+                        // .ani_1_6_6 {
+                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
+                        // }
+                    }
+
+
                 }
             }
-
-            &.step2 {
-                animation: ani_step1 5s 5s ease-in-out forwards;
-                div:nth-child(1) {
-                    background-color: rgb(165, 227, 255);
-                    animation: ani_1 2s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid red;
-                }
-    
-                div:nth-child(2) {
-                    background-color: rgb(117, 188, 220);
-                    animation: ani_2 2s 2s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid blue;
-    
-                }
-    
-                div:nth-child(3) {
-                    background-color: rgb(70, 146, 182);
-                    animation: ani_3 2s 4s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid purple;
-    
-                }
-            }
-
-            &.step3{
-                animation: ani_step1 5s 10s ease-in-out forwards;
-                div:nth-child(1) {
-                    background-color: rgb(165, 227, 255);
-                    animation: ani_1 2s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid red;
-                }
-    
-                div:nth-child(2) {
-                    background-color: rgb(117, 188, 220);
-                    animation: ani_2 2s 2s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid blue;
-    
-                }
-    
-                div:nth-child(3) {
-                    background-color: rgb(70, 146, 182);
-                    animation: ani_3 2s 4s ease-in-out forwards;
-                    opacity: 0;
-                    border: 1px solid purple;
-    
-                }
-            }
-
-
-           
         }
     }
 }
 
 
-@keyframes ani_step1 {
-    0% { opacity: 0%; display: none; }
-    10% { display: block; }
-    100% { opacity: 100%; display: block; }
-}
 
-@keyframes ani_step2 {
-    0% { opacity: 0%; display: none; }
-    10% { display: block; }
-    100% { opacity: 100%; display: block; }
-}
-
-@keyframes ani_step3 {
-    0% { opacity: 0%; display: none; }
-    10% { display: block; }
-    100% { opacity: 100%; display: block; }
-}
-
-@keyframes ani_1 {
+@keyframes ani_1_1 {
     0% {
         opacity: 0;
-        transform: translate(0, 0);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes ani_1_2 {
+    0% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ani_1_3 {
+    0% {
+        opacity: 0;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+    // 첫번째 섹션 같이 없어져야됨
+}
+
+
+// 아래 큰박스 
+@keyframes ani_1_5 {
+    0% {
+        opacity: 1;
+    }
+
+    5% {
+        opacity: 1;
+        transform: translate(0, 20rem);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translate(0, -350rem) scale(1.7);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(0, -350rem) scale(1.5);
+    }
+
+
+    30% {
+        opacity: 1;
+        transform: translate(0, -350rem) scale(1.5);
     }
 
     80% {
-        opacity: .5;
-        transform: translate(200px, 0);
+        opacity: 1;
+        transform: translate(-800rem, -350rem) scale(1.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-800rem, -350rem) scale(1.5);
+    }
+}
+
+
+// 위 작은 박스
+@keyframes ani_1_5_1 {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+// 위 작은 박스
+@keyframes ani_1_5_2 {
+    0% {
+        opacity: 0;
     }
 
     100% {
         opacity: 1;
-        transform: translate(200px, 100px);
     }
 }
 
-@keyframes ani_2 {
+
+// 아래서 위로 올라오는 
+@keyframes ani_1_6 {
+    0% {}
+
+    50% {}
+
+    100% {}
+}
+
+
+@keyframes ani_1_6_fade_2 {
     0% {
         opacity: 0;
-        transform: translate(0, 0);
-    }
-
-    80% {
-        opacity: .5;
-        transform: translate(200px, 0);
     }
 
     100% {
         opacity: 1;
-        transform: translate(200px, 100px);
     }
 }
 
-@keyframes ani_3 {
+
+
+@keyframes ani_1_6_1 {
     0% {
-        opacity: 0;
-        transform: translate(0, 0);
+        transform: translate(0rem, 0rem);
     }
 
-    80% {
-        opacity: .5;
-        transform: translate(200px, 0);
+    5% {
+        transform: translate(-10rem, -10rem);
+    }
+
+    20% {
+        transform: translate(66rem, 74rem);
+    }
+
+    45% {
+        transform: translate(66rem, 74rem);
+    }
+
+    50% {
+        transform: translate(55rem, 74rem);
+    }
+
+    65% {
+        transform: translate(132rem, 74rem);
     }
 
     100% {
-        opacity: 1;
-        transform: translate(200px, 100px);
+        transform: translate(132rem, 74rem);
     }
 }
