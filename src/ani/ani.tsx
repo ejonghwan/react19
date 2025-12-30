@@ -9,7 +9,7 @@ import 'swiper/css';
 import style from './ani.module.scss'
 import { Pagination, Navigation } from 'swiper/modules';
 import clsx from 'clsx';
-import test1 from '../../public/test1.png';
+// import test1 from '../../public/test1.png';
 import img_01 from '../../public/img01/img_01.png';
 import img_02 from '../../public/img01/img_02.png';
 import img_03 from '../../public/img01/img_03.png';
@@ -74,7 +74,7 @@ const Ani = () => {
                                 <img src={img_06} alt="" />
                             </div>
                         </div>
-                        {/* <div className={clsx(style["ani__wrap--item"], style["ani_1_6"])}>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_6"])}>
                             <div className={clsx(style["ani__wrap--item"], style["ani_1_6_1"])}>
                                 <div>icon1_1</div>
                                 <div>icon1_2</div>
@@ -105,7 +105,7 @@ const Ani = () => {
                                 <div>icon6_2</div>
                                 <div>icon6_3</div>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >

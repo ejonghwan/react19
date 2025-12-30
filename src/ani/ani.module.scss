@@ -100,9 +100,10 @@ img {
                     }
 
                     .ani_1_5 {
-                        animation: ani_1_5 5s 3s ease-in-out forwards;
+                        animation: ani_1_5 5s 3s cubic-bezier(0, 0.36, 0.34, 0.97) forwards;
                         opacity: 1;
-                        width: 265rem;
+                        // width: 265rem;
+                        width: 393rem;
                         height: 50rem;
                         position: absolute;
                         // bottom: 0rem;
@@ -114,34 +115,34 @@ img {
                         font-size: 16rem;
                         white-space: nowrap;
                         // overflow: hidden;
-                        transform-origin: top left;
-                        transform: translateX(-13px) scale(0.6); // 위 작은 박스
+                        transform-origin: center center;
+                        transform: translateX(-30px) scale(0.6); // 위 작은 박스
 
 
                         .ani_1_5_1 {
-                            animation: ani_1_5_1 .5s 3s ease-in-out forwards;
+                            animation: ani_1_5_1 0.4s 3s ease-in-out forwards;
                             opacity: 1;
                             width: 225rem;
                             height: 46rem;
                             position: absolute;
-                            top: -5rem;
+                            top: 0rem;
                             left: 0;
                             right: 0;
                             margin: auto;
                             z-index: 4;
-                            transform: translateX(110px) scale(1.7);
+                            transform: translateX(47px) scale(1.7);
                         }
 
                         // 나중에 생기는 위 작은 박스
                         .ani_1_5_2 {
-                            animation: ani_1_5_2 .5s 3.8s ease-in-out forwards;
+                            animation: ani_1_5_2 .5s 3.7s ease-in-out forwards;
                             opacity: 0;
                             transform: scale(0.7);
                             // border: 1px solid black;
                             width: 169rem;
                             height: 36rem;
                             position: absolute;
-                            top: -45rem;
+                            top: 15rem;
                             left: 0;
                             right: 0;
                             margin: auto;
@@ -149,6 +150,7 @@ img {
                         }
 
                         &::after {
+                            animation: ani_1_5_1 .5s 3s ease-in-out forwards;
                             content: '';
                             position: absolute;
                             bottom: -52rem;
@@ -156,11 +158,10 @@ img {
                             right: 0;
                             margin: auto;
                             display: block;
-                            background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
-
                             width: 500%;
                             height: 70rem;
                             z-index: 5;
+                            background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
                         }
 
                     }
@@ -212,14 +213,14 @@ img {
                             div:nth-child(2) {
                                 background-color: blue;
                                 opacity: 0;
-                                animation: ani_1_6_fade_2 1s 1.2s ease-in-out forwards;
+                                animation: ani_1_6_fade_2 1s .3s ease-in-out forwards;
                                 z-index: 1;
                             }
 
                             div:nth-child(3) {
                                 background-color: green;
                                 opacity: 0;
-                                animation: ani_1_6_fade_2 1s 3.5s ease-in-out forwards;
+                                animation: ani_1_6_fade_2 1s 2.8s ease-in-out forwards;
                                 z-index: 2;
                             }
                         }
@@ -228,9 +229,9 @@ img {
                             animation: ani_1_6_1 6s 0s ease-in-out forwards;
                         }
 
-                        // .ani_1_6_2 {
-                        //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
-                        // }
+                        .ani_1_6_2 {
+                            animation: ani_1_6_2 6s 0s ease-in-out forwards;
+                        }
 
                         // .ani_1_6_3 {
                         //     animation: ani_1_5_2 1s 4s ease-in-out forwards;
@@ -346,46 +347,45 @@ img {
 @keyframes ani_1_5 {
     0% {
         opacity: 1;
-        transform: translateX(-13px) scale(0.6);
+        transform: translateX(-30px) scale(0.6);
         left: 0;
+        width: 393rem;
     }
 
     5% {
         opacity: 1;
-        transform: translate(0px, 20rem) scale(0.6);
-        left: 0;
+        // transform: translate(0px, 20rem) scale(0.6);
+        transform: translate(-30px, 0rem) scale(0.6);
+
     }
 
-    15% {
+    12% {
         opacity: 1;
-        transform: translate(0, -260rem) scale(1.1);
-        left: 0;
+        transform: translate(0, -280rem) scale(1.1);
     }
 
     20% {
         opacity: 1;
         transform: translate(0px, -260rem) scale(1);
-        left: 0;
     }
 
 
     30% {
         opacity: 1;
         transform: translate(0px, -260rem) scale(1);
-        left: 0;
     }
 
-    80% {
+    90% {
         opacity: 1;
         // transform: translate(-800rem, -260rem) scale(1);
-        transform: translate(0rem, -260rem) scale(1);
-        left: 0;
+        transform: translate(-600rem, -260rem) scale(1);
     }
 
     100% {
-        opacity: 1;
-        transform: translate(0rem, -260rem) scale(1);
+        opacity: 0;
+        transform: translate(-600rem, -260rem) scale(1);
         left: 0;
+        width: 393rem;
     }
 }
 
@@ -400,7 +400,6 @@ img {
         opacity: 0;
     }
 }
-
 
 // 위 작은 박스
 @keyframes ani_1_5_2 {
@@ -442,7 +441,7 @@ img {
     }
 
     5% {
-        transform: translate(-10rem, -10rem);
+        transform: translate(-10rem, -10rem); // 튕김효과
     }
 
     20% {
@@ -454,7 +453,7 @@ img {
     }
 
     50% {
-        transform: translate(55rem, 74rem);
+        transform: translate(55rem, 74rem); // 튕김효과
     }
 
     65% {
@@ -463,5 +462,36 @@ img {
 
     100% {
         transform: translate(132rem, 74rem);
+    }
+}
+
+
+@keyframes ani_1_6_2 {
+    0% {
+        transform: translate(0rem, 0rem);
+    }
+
+    5% {
+        transform: translate(10rem, -10rem); // 튕김효과
+    }
+
+    20% {
+        transform: translate(-66rem, 74rem);
+    }
+
+    45% {
+        transform: translate(-66rem, 74rem);
+    }
+
+    50% {
+        transform: translate(-74rem, 80rem); // 튕김효과
+    }
+
+    65% {
+        transform: translate(66rem, 0rem);
+    }
+
+    100% {
+        transform: translate(66rem, 0rem);
     }
 }
