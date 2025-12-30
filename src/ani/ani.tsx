@@ -10,6 +10,12 @@ import style from './ani.module.scss'
 import { Pagination, Navigation } from 'swiper/modules';
 import clsx from 'clsx';
 import test1 from '../../public/test1.png';
+import img_01 from '../../public/img01/img_01.png';
+import img_02 from '../../public/img01/img_02.png';
+import img_03 from '../../public/img01/img_03.png';
+import img_04 from '../../public/img01/img_04.png';
+import img_05 from '../../public/img01/img_05.png';
+import img_06 from '../../public/img01/img_06.png';
 
 
 
@@ -50,15 +56,25 @@ const Ani = () => {
             >
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
                     <div className={clsx(style["ani__wrap"], style["ani_1"])}>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_1_1"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_1_2"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_1_3"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_1_5"])}>
-                            <img src={test1} alt="" />
-                            <div className={clsx(style["ani__wrap--item"], style["ani_1_5_1"])}></div>
-                            <div className={clsx(style["ani__wrap--item"], style["ani_1_5_2"])}></div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_1"])}>
+                            <img src={img_03} alt="" className={style["img_03"]} />
                         </div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_1_6"])}>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_2"])}>
+                            <img src={img_04} alt="" className={style["img_04"]} />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_3"])}>
+                            <img src={img_05} alt="" className={style["img_05"]} />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_5"])}>
+                            <img src={img_02} alt="" className={style["img_02"]} />
+                            <div className={clsx(style["ani__wrap--item"], style["ani_1_5_1"])}>
+                                <img src={img_01} alt="" />
+                            </div>
+                            <div className={clsx(style["ani__wrap--item"], style["ani_1_5_2"])}>
+                                <img src={img_06} alt="" />
+                            </div>
+                        </div>
+                        {/* <div className={clsx(style["ani__wrap--item"], style["ani_1_6"])}>
                             <div className={clsx(style["ani__wrap--item"], style["ani_1_6_1"])}>
                                 <div>icon1_1</div>
                                 <div>icon1_2</div>
@@ -89,7 +105,7 @@ const Ani = () => {
                                 <div>icon6_2</div>
                                 <div>icon6_3</div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
