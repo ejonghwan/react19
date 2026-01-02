@@ -17,3 +17,13 @@ createRoot(document.getElementById('root')!).render(
   //   <App />
   // </StrictMode>,
 )
+
+
+const log = console.log;
+
+log(
+  '???',
+  document.querySelector('[data-aa="bb"]')?.closest('[data-aa="aa"]')
+)
+
+

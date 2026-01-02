@@ -174,6 +174,8 @@ img {
                         left: 0;
                         right: 0;
                         margin: auto;
+                        opacity: 0;
+                        animation: ani_1_6_tit 5s 7.5s ease-in-out forwards;
                     }
 
                     .ani_1_6 {
@@ -464,9 +466,19 @@ img {
         opacity: 1;
     }
 
-    100% {
-        transform: translateY(50rem);
+    53% {
+        transform: translateY(-10rem);
         opacity: 1;
+    }
+
+    56% {
+        transform: translateY(150rem) scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(150rem);
+        opacity: 0;
     }
 }
 
@@ -516,8 +528,27 @@ img {
     }
 }
 
+@keyframes ani_1_6_tit {
+    0% {
+        opacity: 0;
+    }
 
-// 아이콘박스1
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+// 아이콘박스
 @keyframes ani_1_6_1 {
     0% {
         transform: translate(0rem, 0rem);
