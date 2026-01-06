@@ -18,6 +18,7 @@ import img_05 from '../../public/img01/img_05.png';
 import img_06 from '../../public/img01/img_06.png';
 import img_07 from '../../public/img01/img_07.png';
 import img_08 from '../../public/img01/img_08.png';
+
 import img_icon1_1 from '../../public/img01/icon_1/1.png';
 import img_icon1_2 from '../../public/img01/icon_1/2.png';
 import img_icon1_3 from '../../public/img01/icon_1/3.png';
@@ -39,6 +40,7 @@ import img_icon3_4 from '../../public/img01/icon_3/4.png';
 import img_icon3_5 from '../../public/img01/icon_3/5.png';
 import img_icon3_6 from '../../public/img01/icon_3/6.png';
 
+import img_09 from '../../public/img01/img_09.png';
 
 
 
@@ -169,6 +171,12 @@ const Ani = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_7"])}>
+                            <img src={img_03} alt="" className={style["img_03"]} />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_1_8"])}>
+                            <img src={img_09} alt="" className={style["img_09"]} />
                         </div>
                     </div>
                 </SwiperSlide>
