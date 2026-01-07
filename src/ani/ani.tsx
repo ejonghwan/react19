@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 // Import Swiper styles
 import 'swiper/css';
 import style from './ani.module.scss'
-import { Pagination, Navigation } from 'swiper/modules';
+// import { Pagination, Navigation } from 'swiper/modules';
 import clsx from 'clsx';
 // import test1 from '../../public/test1.png';
 import img_01 from '../../public/img01/img_01.png';
@@ -41,6 +41,7 @@ import img_icon3_5 from '../../public/img01/icon_3/5.png';
 import img_icon3_6 from '../../public/img01/icon_3/6.png';
 
 import img_09 from '../../public/img01/img_09.png';
+import { useEffect, useRef, useState } from 'react';
 
 
 
@@ -50,8 +51,12 @@ const Ani = () => {
 
     // const [active, setActive] = useState<number | null>(null)
 
+    const [swiperIdx, setSwiperIdx] = useState<number>(0)
+    const swiperRef = useRef<HTMLDivElement | null>(null)
+    const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
     const handleSwiperChange = (swi: SwiperType) => {
         console.log('slide change', swi)
+        setSwiperIdx(swi.activeIndex)
     }
 
     const handleSwiperClick = (swi: SwiperType) => {
@@ -59,7 +64,44 @@ const Ani = () => {
         // swi.slides[swi.clickedIndex].classList.add('hohohoho')
         // setActive(swi.clickedIndex)
 
+
     }
+
+    useEffect(() => {
+
+        if (timerRef.current) {
+            clearInterval(timerRef.current)
+        }
+        if (!swiperRef.current) return;
+
+        // console.log('swiperIdx?', swiperIdx)
+
+
+
+        if (swiperIdx === 0) {
+            const activeSlide = swiperRef.current?.querySelector('.swiper-slide-active')
+            timerRef.current = setInterval(() => {
+                // console.log('timeout inner', activeSlide)
+                activeSlide?.classList.remove('swiper-slide-active')
+                setTimeout(() => {
+                    activeSlide?.classList.add('swiper-slide-active')
+                }, 100)
+
+                console.log('ani time out')
+            }, 15500)
+        }
+
+
+        // console.log('swiperRef??', swiperRef.current)
+
+
+        return () => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current)
+            }
+        }
+
+    }, [swiperIdx])
 
 
     return (
@@ -70,14 +112,16 @@ const Ani = () => {
                     type: 'fraction',
                 }}
                 navigation={true}
-                modules={[Pagination, Navigation]}
+                // modules={[Pagination, Navigation]}
                 // spaceBetween={50}
                 slidesPerView={1}
                 onSlideChange={(swiper) => handleSwiperChange(swiper)}
                 onSwiper={(swiper) => console.log(swiper)}
                 className={style["swiper__wrap"]}
                 onClick={swiper => handleSwiperClick(swiper)}
+                ref={swiperRef}
             >
+                {/* slide 1 */}
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
                     <div className={clsx(style["ani__wrap"], style["ani_1"])}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_1_1"])}>
@@ -175,11 +219,18 @@ const Ani = () => {
                         <div className={clsx(style["ani__wrap--item"], style["ani_1_7"])}>
                             <img src={img_03} alt="" className={style["img_03"]} />
                         </div>
+
+
+                        {/* 마지막 */}
                         <div className={clsx(style["ani__wrap--item"], style["ani_1_8"])}>
                             <img src={img_09} alt="" className={style["img_09"]} />
                         </div>
+
                     </div>
                 </SwiperSlide>
+
+
+                {/* slide 2 */}
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
                     <div className={clsx(style["ani__wrap"], style["ani_2"])}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_1"])}></div>
@@ -189,6 +240,9 @@ const Ani = () => {
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_5"])}></div>
                     </div>
                 </SwiperSlide>
+
+
+                {/* slide 3 */}
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
                     <div className={clsx(style["ani__wrap"], style["ani_3"])}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_3_1"])}></div>
