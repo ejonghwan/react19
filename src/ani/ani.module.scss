@@ -36,7 +36,6 @@ img {
     height: 100%;
 
     &--item {
-        // border: 1rem solid blue;
         height: 416rem;
         overflow: hidden;
 
@@ -63,7 +62,6 @@ img {
                     position: relative;
                     height: 100%;
                     background-color: rgba(241, 242, 244, 1);
-                    // border: 1px solid red;
 
                     &::after {
                         // animation: ani_1_5_1 .5s 3s ease-in-out forwards;
