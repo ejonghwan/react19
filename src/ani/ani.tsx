@@ -98,30 +98,31 @@ const Ani = () => {
 
 
     interface ResetAniType {
-        elRef: any;
-        timerRef: any;
-        cancelRef: any;
+        el: HTMLDivElement;
+        timer: ReturnType<typeof setTimeout>[];
+        isCancel: boolean;
     }
 
     interface StartAniType {
         section: number;
-        elRef: any;
-        timerRef: any;
-        cancelRef: any;
+        el: React.ReactNode;
+        timer: any;
+        cancel: any;
     }
 
-    const resetAni = ({ elRef, timerRef, cancelRef }: ResetAniType) => {
-        cancelRef = true;
-        timerRef?.forEach(clearTimeout);
-        timerRef = [];
+    const resetAni = ({ el, timer, isCancel }: ResetAniType) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        isCancel = true;
+        timer?.forEach(clearTimeout);
+        timer = [];
         // 클래스 제거
-        if (!elRef.current) return;
-        [...elRef.current.classList].forEach(c => c.includes("step") && elRef.current!.classList.remove(c));
+        if (!el) return;
+        [...el.classList].forEach(c => c.includes("step") && el!.classList.remove(c));
     }
 
-    const startAni = ({ section, elRef, timerRef, cancelRef }: StartAniType) => {
+    // const startAni = ({ section, elRef, timerRef, cancelRef }: StartAniType) => {
 
-    }
+    // }
 
     // swiper change 
     useEffect(() => {
@@ -193,7 +194,7 @@ const Ani = () => {
 
 
         } else {
-            resetAni({ elRef: ani2ElRef.current, timerRef: ani2TimersRef.current, cancelRef: ani2CancelRef.current })
+            resetAni({ el: ani2ElRef.current, timer: ani2TimersRef.current, cancel: ani2CancelRef.current })
             // ani2CancelRef.current = true;
             // ani2TimersRef.current.forEach(clearTimeout);
             // ani2TimersRef.current = [];
