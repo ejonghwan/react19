@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 // import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -45,7 +45,6 @@ import img_09 from '../../public/img01/img_09.png';
 
 // 두번째 섹션
 import img_2_1_1 from '../../public/img02/img_2_1_1.png';
-// import img_2_1_2 from '../../public/img02/img_2_1_2.png';
 import img_2_2_1 from '../../public/img02/img_2_2_1.png';
 import img_2_2_2 from '../../public/img02/img_2_2_2.png';
 import img_2_2_3 from '../../public/img02/img_2_2_3.png';
@@ -53,6 +52,39 @@ import img_2_2_4 from '../../public/img02/img_2_2_4.png';
 import img_2_2_5 from '../../public/img02/img_2_2_5.png';
 import img_2_2_6 from '../../public/img02/img_2_2_6.png';
 
+// 세번째 섹션
+import img_3_1 from '../../public/img03/img_3_1.png';
+import img_3_2 from '../../public/img03/img_3_2.png';
+import img_3_3 from '../../public/img03/img_3_3.png';
+import img_3_4 from '../../public/img03/img_3_4.png';
+import img_3_5 from '../../public/img03/img_3_5.png';
+
+
+
+
+
+
+
+interface ResetAniType {
+    el: HTMLDivElement | null;
+    timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
+    cancelRef: React.RefObject<boolean>;
+}
+
+interface StartAniType {
+    section: { section: number; delayTime: number[] };
+    el: HTMLDivElement | null;
+    timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
+    cancelRef: React.RefObject<boolean>;
+}
+
+interface LoopAniType {
+    section: { section: number; delayTime: number[] };
+    el: HTMLDivElement | null;
+    timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
+    cancelRef: React.RefObject<boolean>;
+    totalTime: number;
+}
 
 
 const Ani = () => {
@@ -63,9 +95,15 @@ const Ani = () => {
     const swiperRef = useRef<HTMLDivElement | null>(null)
     const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
 
+    // 두번째 섹션
     const ani2ElRef = useRef<HTMLDivElement | null>(null)
     const ani2CancelRef = useRef(false);
     const ani2TimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+    // 세번쨰 섹션
+    const ani3ElRef = useRef<HTMLDivElement | null>(null)
+    const ani3CancelRef = useRef(false);
+    const ani3TimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
 
     const handleSwiperChange = (swi: SwiperType) => {
@@ -96,46 +134,61 @@ const Ani = () => {
 
 
 
-
-    interface ResetAniType {
-        el: HTMLDivElement;
-        timer: ReturnType<typeof setTimeout>[];
-        isCancel: boolean;
-    }
-
-    interface StartAniType {
-        section: number;
-        el: React.ReactNode;
-        timer: any;
-        cancel: any;
-    }
-
-    const resetAni = ({ el, timer, isCancel }: ResetAniType) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        isCancel = true;
-        timer?.forEach(clearTimeout);
-        timer = [];
-        // 클래스 제거
-        if (!el) return;
+    const resetAni = useCallback(({ el, timersRef, cancelRef }: ResetAniType) => {
+        cancelRef.current = true;
+        timersRef.current?.forEach(clearTimeout);
+        timersRef.current = [];
+        if (!el) return; // 클래스 제거
         [...el.classList].forEach(c => c.includes("step") && el!.classList.remove(c));
-    }
+    }, [])
 
-    // const startAni = ({ section, elRef, timerRef, cancelRef }: StartAniType) => {
 
-    // }
+
+    const startAni = useCallback(({ section, el, timersRef, cancelRef }: StartAniType) => {
+
+        // const totalDelayTime = section2.delayTime.reduce((cur, acc) => cur + acc, 0)
+        let accumulatedTime = 0;
+
+        // 이전 타이머 완전 초기화
+        cancelRef.current = false;
+        timersRef.current.forEach(clearTimeout);
+        timersRef.current = [];
+
+        section.delayTime.forEach((delay, idx) => {
+            accumulatedTime += delay;
+            const timerId = setTimeout(() => {
+                if (cancelRef.current) return;
+                el?.classList.add(`step${idx}`);
+            }, accumulatedTime);
+
+            timersRef.current.push(timerId); // 전부 저장
+        });
+    }, [])
+
+
+    const loopAni = useCallback(({ section, el, cancelRef, timersRef, totalTime }: LoopAniType) => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current)
+        }
+        startAni({ section, el, timersRef, cancelRef })
+
+        timerRef.current = setInterval(() => {
+            resetAni({ el, timersRef, cancelRef })
+            setTimeout(() => startAni({ section, el, timersRef, cancelRef }), 500)
+        }, totalTime)
+    }, [])
+
 
     // swiper change 
     useEffect(() => {
 
+        if (!swiperRef.current) return;
         if (timerRef.current) {
             clearInterval(timerRef.current)
         }
-        if (!swiperRef.current) return;
-
-        // console.log('swiperIdx?', swiperIdx)
 
 
-        // 첫번째 슬라이드
+        // 첫번째 슬라이드 : 이것만 css delay로 처리함. 
         if (swiperIdx === 0) {
             const activeSlide = swiperRef.current?.querySelector('.swiper-slide-active')
             timerRef.current = setInterval(() => {
@@ -150,60 +203,21 @@ const Ani = () => {
         }
 
 
-
         // 두번째 슬라이드
         if (swiperIdx === 1) {
-            const section2 = aniTime[0]
-            // const totalDelayTime = section2.delayTime.reduce((cur, acc) => cur + acc, 0)
-            let accumulatedTime = 0;
-
-            // 이전 타이머 완전 초기화
-            ani2CancelRef.current = false;
-            ani2TimersRef.current.forEach(clearTimeout);
-            ani2TimersRef.current = [];
-
-            section2.delayTime.forEach((delay, idx) => {
-                accumulatedTime += delay;
-                const timerId = setTimeout(() => {
-                    if (ani2CancelRef.current) return;
-                    ani2ElRef.current?.classList.add(`step${idx}`);
-                }, accumulatedTime);
-
-                ani2TimersRef.current.push(timerId); // 전부 저장
-            });
-
-
-            // const activeSlide = swiperRef.current?.querySelector('.swiper-slide-active')
-            timerRef.current = setInterval(() => {
-                // console.log('timeout inner', activeSlide)
-                // activeSlide?.classList.remove('swiper-slide-active')
-                // setTimeout(() => {
-                //     activeSlide?.classList.add('swiper-slide-active')
-                // }, 100)
-
-                console.log('ani time out')
-
-                ani2CancelRef.current = true;
-                ani2TimersRef.current.forEach(clearTimeout);
-                ani2TimersRef.current = [];
-                // 클래스 제거
-                if (!ani2ElRef.current) return;
-                [...ani2ElRef.current.classList].forEach(c => c.includes("step") && ani2ElRef.current!.classList.remove(c));
-
-            }, 13000)
-
-
+            loopAni({ section: aniTime[0], el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef, totalTime: 13000 })
         } else {
-            resetAni({ el: ani2ElRef.current, timer: ani2TimersRef.current, cancel: ani2CancelRef.current })
-            // ani2CancelRef.current = true;
-            // ani2TimersRef.current.forEach(clearTimeout);
-            // ani2TimersRef.current = [];
-            // // 클래스 제거
-            // if (!ani2ElRef.current) return;
-            // [...ani2ElRef.current.classList].forEach(c => c.includes("step") && ani2ElRef.current!.classList.remove(c));
-
+            // 슬라이드 벗어날 때 
+            resetAni({ el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef })
         }
 
+        // 세번째 슬라이드
+        if (swiperIdx === 2) {
+            loopAni({ section: aniTime[1], el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef, totalTime: 13000 })
+        } else {
+            // 슬라이드 벗어날 때 
+            resetAni({ el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef })
+        }
 
 
 
@@ -234,7 +248,7 @@ const Ani = () => {
                 ref={swiperRef}
             >
                 {/* slide 1 */}
-                <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
+                <SwiperSlide className={clsx(style["swiper__wrap--item"])}>
                     <div className={clsx(style["ani__wrap"], style["ani_1"])}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_1_1"])}>
                             <img src={img_03} alt="" className={style["img_03"]} />
@@ -343,7 +357,7 @@ const Ani = () => {
 
 
                 {/* slide 2 */}
-                <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
+                <SwiperSlide className={clsx(style["swiper__wrap--item"])}>
                     <div className={clsx(style["ani__wrap"], style["ani_2"])} ref={ani2ElRef}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_1"])}>
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_1_1"])}>
@@ -382,13 +396,23 @@ const Ani = () => {
 
 
                 {/* slide 3 */}
-                <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
-                    <div className={clsx(style["ani__wrap"], style["ani_3"])}>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_1"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_2"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_3"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_4"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_5"])}></div>
+                <SwiperSlide className={clsx(style["swiper__wrap--item"])}>
+                    <div className={clsx(style["ani__wrap"], style["ani_3"])} ref={ani3ElRef}>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_3_1"])}>
+                            <img src={img_3_1} alt="" />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_3_2"])}>
+                            <img src={img_3_2} alt="" />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_3_3"])}>
+                            <img src={img_3_3} alt="" />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_3_4"])}>
+                            <img src={img_3_4} alt="" />
+                        </div>
+                        <div className={clsx(style["ani__wrap--item"], style["ani_3_5"])}>
+                            <img src={img_3_5} alt="" />
+                        </div>
                     </div>
                 </SwiperSlide>
 

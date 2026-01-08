@@ -360,9 +360,13 @@ img {
 
                 // 아이콘박스
                 .ani_2_2_3 {
-                    width: 314rem;
-                    height: 245.5rem;
+                    // width: 314rem;
+                    width: 300rem;
+                    // height: 245.5rem;
+                    height: 232rem;
                     transform: translate(0, -120rem);
+                    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.12);
+                    border-radius: 16rem;
                 }
 
                 // 4월
