@@ -45,7 +45,7 @@ import img_09 from '../../public/img01/img_09.png';
 
 // 두번째 섹션
 import img_2_1_1 from '../../public/img02/img_2_1_1.png';
-import img_2_1_2 from '../../public/img02/img_2_1_2.png';
+// import img_2_1_2 from '../../public/img02/img_2_1_2.png';
 import img_2_2_1 from '../../public/img02/img_2_2_1.png';
 import img_2_2_2 from '../../public/img02/img_2_2_2.png';
 import img_2_2_3 from '../../public/img02/img_2_2_3.png';
@@ -62,7 +62,12 @@ const Ani = () => {
     const [swiperIdx, setSwiperIdx] = useState<number>(0)
     const swiperRef = useRef<HTMLDivElement | null>(null)
     const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
-    const stepTimerRef = useRef<ReturnType<typeof setTimeout>>(null)
+
+    const ani2ElRef = useRef<HTMLDivElement | null>(null)
+    const ani2CancelRef = useRef(false);
+    const ani2TimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+
     const handleSwiperChange = (swi: SwiperType) => {
         console.log('slide change', swi)
         setSwiperIdx(swi.activeIndex)
@@ -73,25 +78,50 @@ const Ani = () => {
     }
 
 
-    // ani 2 ~ 마지막까지는 클래스 추가
+    // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
     const aniTime = [
         {
-            key: 2,
-            time: [0, 4000, 4000]
+            section: 2,
+            delayTime: [500, 1000, 2000, 2000, 2000, 2000] //step 5
         },
         {
-            key: 3,
-            time: [2000, 3000, 4000]
+            section: 3,
+            delayTime: [2000, 3000, 4000]
         },
         {
-            key: 4,
-            time: [2000, 3000, 4000]
+            section: 4,
+            delayTime: [2000, 3000, 4000]
         }
     ]
-    const ani_2_ref = useRef<HTMLDivElement | null>(null)
 
 
 
+
+    interface ResetAniType {
+        elRef: any;
+        timerRef: any;
+        cancelRef: any;
+    }
+
+    interface StartAniType {
+        section: number;
+        elRef: any;
+        timerRef: any;
+        cancelRef: any;
+    }
+
+    const resetAni = ({ elRef, timerRef, cancelRef }: ResetAniType) => {
+        cancelRef = true;
+        timerRef?.forEach(clearTimeout);
+        timerRef = [];
+        // 클래스 제거
+        if (!elRef.current) return;
+        [...elRef.current.classList].forEach(c => c.includes("step") && elRef.current!.classList.remove(c));
+    }
+
+    const startAni = ({ section, elRef, timerRef, cancelRef }: StartAniType) => {
+
+    }
 
     // swiper change 
     useEffect(() => {
@@ -118,25 +148,62 @@ const Ani = () => {
             }, 15500)
         }
 
+
+
         // 두번째 슬라이드
         if (swiperIdx === 1) {
-
-            const times = aniTime[0].time;
+            const section2 = aniTime[0]
+            // const totalDelayTime = section2.delayTime.reduce((cur, acc) => cur + acc, 0)
             let accumulatedTime = 0;
 
-            times.forEach((delay, idx) => {
-                accumulatedTime += delay;
+            // 이전 타이머 완전 초기화
+            ani2CancelRef.current = false;
+            ani2TimersRef.current.forEach(clearTimeout);
+            ani2TimersRef.current = [];
 
-                setTimeout(() => {
-                    ani_2_ref.current?.classList.add(`step${idx}`);
+            section2.delayTime.forEach((delay, idx) => {
+                accumulatedTime += delay;
+                const timerId = setTimeout(() => {
+                    if (ani2CancelRef.current) return;
+                    ani2ElRef.current?.classList.add(`step${idx}`);
                 }, accumulatedTime);
+
+                ani2TimersRef.current.push(timerId); // 전부 저장
             });
 
+
+            // const activeSlide = swiperRef.current?.querySelector('.swiper-slide-active')
+            timerRef.current = setInterval(() => {
+                // console.log('timeout inner', activeSlide)
+                // activeSlide?.classList.remove('swiper-slide-active')
+                // setTimeout(() => {
+                //     activeSlide?.classList.add('swiper-slide-active')
+                // }, 100)
+
+                console.log('ani time out')
+
+                ani2CancelRef.current = true;
+                ani2TimersRef.current.forEach(clearTimeout);
+                ani2TimersRef.current = [];
+                // 클래스 제거
+                if (!ani2ElRef.current) return;
+                [...ani2ElRef.current.classList].forEach(c => c.includes("step") && ani2ElRef.current!.classList.remove(c));
+
+            }, 13000)
+
+
+        } else {
+            resetAni({ elRef: ani2ElRef.current, timerRef: ani2TimersRef.current, cancelRef: ani2CancelRef.current })
+            // ani2CancelRef.current = true;
+            // ani2TimersRef.current.forEach(clearTimeout);
+            // ani2TimersRef.current = [];
+            // // 클래스 제거
+            // if (!ani2ElRef.current) return;
+            // [...ani2ElRef.current.classList].forEach(c => c.includes("step") && ani2ElRef.current!.classList.remove(c));
 
         }
 
 
-        // console.log('swiperRef??', swiperRef.current)
 
 
         return () => {
@@ -276,13 +343,10 @@ const Ani = () => {
 
                 {/* slide 2 */}
                 <SwiperSlide className={clsx(style["swiper__wrap--item"])} >
-                    <div className={clsx(style["ani__wrap"], style["ani_2"])} ref={ani_2_ref}>
+                    <div className={clsx(style["ani__wrap"], style["ani_2"])} ref={ani2ElRef}>
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_1"])}>
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_1_1"])}>
                                 <img src={img_2_1_1} alt="" />
-                            </div>
-                            <div className={clsx(style["ani__wrap--item"], style["ani_2_1_2"])}>
-                                <img src={img_2_1_2} alt="" />
                             </div>
                         </div>
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_2"])}>
@@ -292,15 +356,19 @@ const Ani = () => {
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_2_2"])}>
                                 <img src={img_2_2_2} alt="" />
                             </div>
-                            <div className={clsx(style["ani__wrap--item"], style["ani_2_2_3"])}>
-                                <img src={img_2_2_3} alt="" />
-                            </div>
+                            {/* 4월지출 */}
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_2_4"])}>
                                 <img src={img_2_2_4} alt="" />
                             </div>
+                            {/* 아이콘 박스 */}
+                            <div className={clsx(style["ani__wrap--item"], style["ani_2_2_3"])}>
+                                <img src={img_2_2_3} alt="" />
+                            </div>
+                            {/* 내자산 */}
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_2_5"])}>
                                 <img src={img_2_2_5} alt="" />
                             </div>
+                            {/* 다계좌이체 */}
                             <div className={clsx(style["ani__wrap--item"], style["ani_2_2_6"])}>
                                 <img src={img_2_2_6} alt="" />
                             </div>
