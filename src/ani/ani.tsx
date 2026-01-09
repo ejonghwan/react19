@@ -54,10 +54,12 @@ import img_2_2_6 from '../../public/img02/img_2_2_6.png';
 
 // 세번째 섹션
 import img_3_1 from '../../public/img03/img_3_1.png';
-import img_3_2 from '../../public/img03/img_3_2.png';
-import img_3_3 from '../../public/img03/img_3_3.png';
-import img_3_4 from '../../public/img03/img_3_4.png';
-import img_3_5 from '../../public/img03/img_3_5.png';
+import img_3_2_1 from '../../public/img03/img_3_2_1.png';
+import img_3_2_2 from '../../public/img03/img_3_2_2.png';
+import img_3_2_3_1 from '../../public/img03/img_3_2_3_1.png';
+import img_3_2_3_2 from '../../public/img03/img_3_2_3_2.png';
+import img_3_2_3_3 from '../../public/img03/img_3_2_3_3.png';
+import img_3_2_4 from '../../public/img03/img_3_2_4.png';
 
 
 
@@ -205,7 +207,8 @@ const Ani = () => {
 
         // 두번째 슬라이드
         if (swiperIdx === 1) {
-            loopAni({ section: aniTime[0], el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef, totalTime: 13000 })
+            loopAni({ section: aniTime[0], el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef, totalTime: 11000 })
+            // startAni({ section: aniTime[0], el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef })
         } else {
             // 슬라이드 벗어날 때 
             resetAni({ el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef })
@@ -213,7 +216,8 @@ const Ani = () => {
 
         // 세번째 슬라이드
         if (swiperIdx === 2) {
-            loopAni({ section: aniTime[1], el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef, totalTime: 13000 })
+            // loopAni({ section: aniTime[1], el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef, totalTime: 13000 })
+            startAni({ section: aniTime[0], el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef })
         } else {
             // 슬라이드 벗어날 때 
             resetAni({ el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef })
@@ -402,17 +406,22 @@ const Ani = () => {
                             <img src={img_3_1} alt="" />
                         </div>
                         <div className={clsx(style["ani__wrap--item"], style["ani_3_2"])}>
-                            <img src={img_3_2} alt="" />
+                            <div className={style["ani_3_2_1"]}>
+                                <img src={img_3_2_1} alt="" />
+                            </div>
+                            <div className={clsx(style["ani__wrap--item"], style["ani_3_2_2"])}>
+                                <img src={img_3_2_2} alt="" />
+                            </div>
+                            <div className={clsx(style["ani__wrap--item"], style["ani_3_2_3"])}>
+                                <div className={style["ani_3_2_3_1"]}><img src={img_3_2_3_1} alt="" /></div>
+                                <div className={style["ani_3_2_3_2"]}><img src={img_3_2_3_2} alt="" /></div>
+                                <div className={style["ani_3_2_3_3"]}><img src={img_3_2_3_3} alt="" /></div>
+                            </div>
+                            <div className={clsx(style["ani__wrap--item"], style["ani_3_2_4"])}>
+                                <img src={img_3_2_4} alt="" />
+                            </div>
                         </div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_3"])}>
-                            <img src={img_3_3} alt="" />
-                        </div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_4"])}>
-                            <img src={img_3_4} alt="" />
-                        </div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_3_5"])}>
-                            <img src={img_3_5} alt="" />
-                        </div>
+
                     </div>
                 </SwiperSlide>
 

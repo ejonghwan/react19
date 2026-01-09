@@ -51,7 +51,7 @@ img {
                 height: 416rem;
             }
 
-            // ani 1
+            // ani 1 기본스타일
             &.ani_1 {
                 // name | duration | timing-function | delay | iteration-count | direction | fill-mode;
                 position: relative;
@@ -270,6 +270,7 @@ img {
 
             }
 
+            // ani 2 기본스타일
             &.ani_2 {
 
                 position: relative;
@@ -313,22 +314,23 @@ img {
                     z-index: 1;
                     width: 300rem;
                     height: 416rem;
-                    transform: translate(-4rem, 294rem) scale(0.7);
+                    // transform: translate(0rem, 294rem) scale(0.7);
+                    transform: translate(0rem, 272rem) scale(0.7);
 
                     &::after {
                         // border: 1px solid red;
                         // animation: ani_1_5_1 .5s 3s ease-in-out forwards;
                         content: '';
                         position: absolute;
-                        top: 151px;
+                        top: 166rem;
                         left: -250%;
                         right: 0;
                         margin: auto;
                         display: block;
                         width: 500%;
-                        height: 35rem;
+                        height: 42rem;
                         z-index: 5;
-                        background: linear-gradient(180deg, rgb(241, 242, 244, 1), rgb(255, 255, 255, 0.2) 90%);
+                        background: linear-gradient(180deg, rgb(241, 242, 244, 1), rgb(255, 255, 255, 0.1) 90%);
                     }
 
                     &::before {
@@ -336,26 +338,38 @@ img {
                         // animation: ani_1_5_1 .5s 3s ease-in-out forwards;
                         content: '';
                         position: absolute;
-                        bottom: -151rem;
+                        bottom: -173rem;
                         left: -250%;
                         right: 0;
                         margin: auto;
                         display: block;
                         width: 500%;
-                        height: 100rem;
+                        height: 76rem;
                         z-index: 5;
                         background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
                     }
                 }
 
+                .ani_2_2_1,
+                .ani_2_2_2,
+                .ani_2_2_3,
+                .ani_2_2_4,
+                .ani_2_2_5,
+                .ani_2_2_6 {
+                    box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+                    border-radius: 16rem;
+                    margin-top: 14rem;
+                }
+
                 .ani_2_2_1 {
-                    width: 314rem;
-                    height: 64rem;
+                    width: 300rem;
+                    height: 50.33333rem;
                 }
 
                 .ani_2_2_2 {
-                    width: 314rem;
-                    height: 126rem;
+                    width: 326rem;
+                    height: 122rem;
+                    box-shadow: none;
                 }
 
                 // 아이콘박스
@@ -363,31 +377,159 @@ img {
                     // width: 314rem;
                     width: 300rem;
                     // height: 245.5rem;
-                    height: 232rem;
+                    height: 231.62rem;
                     transform: translate(0, -120rem);
-                    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.12);
-                    border-radius: 16rem;
                 }
 
                 // 4월
                 .ani_2_2_4 {
-                    width: 314rem;
-                    height: 119rem;
+                    width: 300rem;
+                    height: 104.94rem;
                     opacity: 0;
                     transform: scale(.6);
                 }
 
                 .ani_2_2_5 {
-                    width: 314rem;
-                    height: 189.5rem;
+                    width: 300rem;
+                    height: 175.78rem;
                     transform: translate(0, -120rem);
                 }
 
                 .ani_2_2_6 {
-                    width: 313rem;
-                    height: 274rem;
+                    width: 300rem;
+                    height: 260.44rem;
                     transform: translate(0, -120rem);
                 }
+
+            }
+
+            // ani 3 기본스타일
+            &.ani_3 {
+
+                position: relative;
+                height: 100%;
+                background-color: rgba(241, 242, 244, 1);
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -20rem;
+                    left: -250%;
+                    right: 0;
+                    margin: auto;
+                    display: block;
+                    width: 500%;
+                    height: 70rem;
+                    z-index: 5;
+                    background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+                }
+
+                .ani_3_1 {
+                    opacity: 1;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    z-index: 1;
+                    width: 296rem;
+                    height: 416rem;
+                }
+
+                .ani_3_2 {
+                    border: 1px solid red;
+                    opacity: 1;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    z-index: 1;
+                    width: 300rem;
+                    height: 416rem;
+                    transform: translate(0rem, 282rem) scale(0.7);
+
+                    &::after {
+                        border: 1px solid red;
+                        content: '';
+                        position: absolute;
+                        top: 166rem;
+                        left: -250%;
+                        right: 0;
+                        margin: auto;
+                        display: block;
+                        width: 500%;
+                        height: 42rem;
+                        z-index: 5;
+                        background: linear-gradient(180deg, rgb(241, 242, 244, 1), rgb(255, 255, 255, 0.1) 90%);
+                    }
+
+                    &::before {
+                        border: 1px solid blue;
+                        content: '';
+                        position: absolute;
+                        bottom: -173rem;
+                        left: -250%;
+                        right: 0;
+                        margin: auto;
+                        display: block;
+                        width: 500%;
+                        height: 76rem;
+                        z-index: 5;
+                        background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+                    }
+                }
+
+                // .ani_2_2_1,
+                // .ani_2_2_2,
+                // .ani_2_2_3,
+                // .ani_2_2_4,
+                // .ani_2_2_5,
+                // .ani_2_2_6 {
+                //     box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+                //     border-radius: 16rem;
+                //     margin-top: 14rem;
+                // }
+
+                // .ani_2_2_1 {
+                //     width: 300rem;
+                //     height: 50.33333rem;
+                // }
+
+                // .ani_2_2_2 {
+                //     width: 326rem;
+                //     height: 122rem;
+                //     box-shadow: none;
+                // }
+
+                // // 아이콘박스
+                // .ani_2_2_3 {
+                //     // width: 314rem;
+                //     width: 300rem;
+                //     // height: 245.5rem;
+                //     height: 231.62rem;
+                //     transform: translate(0, -120rem);
+                // }
+
+                // // 4월
+                // .ani_2_2_4 {
+                //     width: 300rem;
+                //     height: 104.94rem;
+                //     opacity: 0;
+                //     transform: scale(.6);
+                // }
+
+                // .ani_2_2_5 {
+                //     width: 300rem;
+                //     height: 175.78rem;
+                //     transform: translate(0, -120rem);
+                // }
+
+                // .ani_2_2_6 {
+                //     width: 300rem;
+                //     height: 260.44rem;
+                //     transform: translate(0, -120rem);
+                // }
 
             }
 
@@ -515,8 +657,6 @@ img {
 
                 // ani 2
                 &.ani_2 {
-
-                    // 테스트 
                     &:global(.step0) {
                         .ani_2_1_1 {
                             animation: ani_2_1_1 2s ease-in-out forwards;
@@ -583,6 +723,18 @@ img {
                         }
                     }
 
+                }
+
+                &.ani_3 {
+                    &:global(.step0) {
+                        .ani_3_1 {
+                            // animation: ani_3_1 2s ease-in-out forwards;
+                        }
+
+                        .ani_3_2 {
+                            animation: ani_3_2 2s ease-in-out forwards;
+                        }
+                    }
                 }
             }
         }
@@ -1121,27 +1273,27 @@ img {
 @keyframes ani_2_2 {
     0% {
         opacity: 1;
-        transform: translate(-4rem, 294rem) scale(0.7);
+        transform: translate(0rem, 272rem) scale(0.7);
     }
 
     30% {
         opacity: 1;
-        transform: translate(-4rem, 340rem) scale(0.7);
+        transform: translate(0rem, 340rem) scale(0.7);
     }
 
     50% {
         opacity: 1;
-        transform: translate(-4rem, -200rem) scale(1.05);
+        transform: translate(0rem, -200rem) scale(1.05);
     }
 
     80% {
         opacity: 1;
-        transform: translate(-4rem, -150rem) scale(1);
+        transform: translate(0rem, -167rem) scale(1);
     }
 
     100% {
         opacity: 1;
-        transform: translate(-4rem, -150rem) scale(1);
+        transform: translate(0rem, -167rem) scale(1);
     }
 }
 
@@ -1302,23 +1454,24 @@ img {
 
 @keyframes ani_2_2_default {
     0% {
-        transform: translate(-4rem, -150rem) scale(1);
+        // transform: translate(0rem, -150rem) scale(1);
+        transform: translate(0rem, -167rem) scale(1);
     }
 
     10% {
-        transform: translate(-4rem, -180rem) scale(1);
+        transform: translate(0rem, -180rem) scale(1);
     }
 
     30% {
-        transform: translate(-4rem, 460rem) scale(0.7);
+        transform: translate(0rem, 460rem) scale(0.7);
     }
 
     40% {
-        transform: translate(-4rem, 363rem) scale(0.7);
+        transform: translate(0rem, 342rem) scale(0.7);
     }
 
     100% {
-        transform: translate(-4rem, 363rem) scale(0.7);
+        transform: translate(0rem, 342rem) scale(0.7);
     }
 }
 
@@ -1337,5 +1490,57 @@ img {
 
     100% {
         opacity: 1;
+    }
+}
+
+
+// ani 3
+@keyframes ani_3_1 {
+    0% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ani_3_2 {
+    0% {
+        opacity: 1;
+        transform: translate(0rem, 282rem) scale(0.7);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translate(0rem, 282rem) scale(0.7);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(0rem, 310rem) scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(0rem, 30rem) scale(1.05);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(0rem, 60rem) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0rem, 60rem) scale(1);
     }
 }
