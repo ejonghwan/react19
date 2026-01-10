@@ -1,17 +1,16 @@
-import { useEffect } from "react"
+// import { useEffect } from "react"
 
-const useScroll = ({ el }) => {
+// const useScroll = ({ el }) => {
 
-    const handler = (e: React.MouseEvent<React.ReactNode>) => {
+//     const handler = (e: React.MouseEvent<React.ReactNode>) => {
 
-    }
+//     }
 
-    useEffect(() => {
+//     useEffect(() => {
 
-    }, [])
+//     }, [])
 
+//     return { el, handler }
+// }
 
-    return { el, handler }
-}
-
-export default useScroll
+// export default useScroll
