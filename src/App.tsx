@@ -2,7 +2,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/home';
 import About from './pages/about';
 import Test from './pages/test';
@@ -28,6 +28,8 @@ function App() {
         {/* <nav>
           <Link to="/">홈</Link> | <Link to="/about">소개</Link>
         </nav> */}
+
+        <Link to="/ani">애니메이션</Link>
 
         <Routes>
           <Route path="/" element={<Home />} />
