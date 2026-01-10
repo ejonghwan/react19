@@ -6,7 +6,7 @@ import type { Swiper as SwiperType } from 'swiper';
 // import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
 // Import Swiper styles
-// import 'swiper/css';
+import 'swiper/css';
 import style from './ani.module.scss';
 // import { Pagination, Navigation } from 'swiper/modules';
 import clsx from 'clsx';
