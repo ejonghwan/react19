@@ -61,26 +61,7 @@ import img_3_2_3_2 from '../../public/img03/img_3_2_3_2.png';
 import img_3_2_3_3 from '../../public/img03/img_3_2_3_3.png';
 import img_3_2_4 from '../../public/img03/img_3_2_4.png';
 
-interface ResetAniType {
-  el: HTMLDivElement | null;
-  timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
-  cancelRef: React.RefObject<boolean>;
-}
 
-interface StartAniType {
-  section: { section: number; delayTime: number[] };
-  el: HTMLDivElement | null;
-  timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
-  cancelRef: React.RefObject<boolean>;
-}
-
-interface LoopAniType {
-  section: { section: number; delayTime: number[] };
-  el: HTMLDivElement | null;
-  timersRef: React.RefObject<ReturnType<typeof setTimeout>[]>;
-  cancelRef: React.RefObject<boolean>;
-  totalTime: number;
-}
 
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
 const aniTime = [
@@ -105,168 +86,115 @@ const aniTime = [
 
 
 const Ani = () => {
-
-  // const [active, setActive] = useState<number | null>(null)
-
   const [swiperIdx, setSwiperIdx] = useState<number>(0);
   const swiperRef = useRef<SwiperType | null>(null);
-  //   const swiperRef = useRef<HTMLDivElement | null>(null);
-  const slide1IntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const loopTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 두번째 섹션
+
+  // 모든 타이머(Timeout, Interval)를 관리할 Ref 배열
+  const allTimers = useRef<NodeJS.Timeout[]>([]);
+
+
+  // 섹션별 DOM Ref
   const ani2ElRef = useRef<HTMLDivElement | null>(null);
-  const ani2CancelRef = useRef(false);
-  const ani2TimersRef = useRef<NodeJS.Timeout[]>([]);
-
-  // 세번쨰 섹션
   const ani3ElRef = useRef<HTMLDivElement | null>(null);
-  const ani3CancelRef = useRef(false);
-  const ani3TimersRef = useRef<NodeJS.Timeout[]>([]);
 
-  const handleSwiperChange = (swi: SwiperType) => {
-    console.log('slide change', swi);
-    setSwiperIdx(swi.activeIndex);
-  };
 
-  const handleSwiperClick = (swi: SwiperType) => {
-    console.log('slide click', swi, swi.slides[swi.clickedIndex]);
-  };
+  // 모든 애니메이션 초기화 (타이머 정리 + 클래스 제거)
+  const killAllAnimations = useCallback(() => {
+    allTimers.current.forEach(t => {
+      clearTimeout(t);
+      clearInterval(t);
+    });
+    allTimers.current = [];
 
-  const resetAni = useCallback(({ el, timersRef, cancelRef }: ResetAniType) => {
-    cancelRef.current = true;
-    timersRef.current?.forEach(clearTimeout);
-    timersRef.current = [];
-    if (!el) return; // 클래스 제거
-    // [...el.classList].forEach(c => c.includes('step') && el!.classList.remove(c));
-    el.className = el.className.replace(/\bstep\d+\b/g, '');
-  }, []);
-
-  const startAni = useCallback(({ section, el, timersRef, cancelRef }: StartAniType) => {
-    // const totalDelayTime = section2.delayTime.reduce((cur, acc) => cur + acc, 0)
-    let accumulatedTime = 0;
-
-    // 이전 타이머 완전 초기화
-    cancelRef.current = false;
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-
-    section.delayTime.forEach((delay, idx) => {
-      accumulatedTime += delay;
-      const timerId = setTimeout(() => {
-        if (cancelRef.current) return;
-        el?.classList.add(`step${idx}`);
-      }, accumulatedTime);
-
-      timersRef.current.push(timerId); // 전부 저장
+    [ani2ElRef.current, ani3ElRef.current].forEach(el => {
+      if (el) {
+        el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
+      }
     });
   }, []);
 
-  const loopAni = useCallback(
-    ({ section, el, cancelRef, timersRef, totalTime }: LoopAniType) => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
 
-      if (loopTimeoutRef.current) {
-        clearTimeout(loopTimeoutRef.current);
-        loopTimeoutRef.current = null;
-      }
 
-      startAni({ section, el, timersRef, cancelRef });
+  // 순차 애니메이션 실행 로직
+  const startSequence = useCallback((el: HTMLDivElement | null, delays: number[]) => {
+    if (!el) return;
+    let accumulated = 0;
+    delays.forEach((delay, idx) => {
+      accumulated += delay;
+      const timer = setTimeout(() => {
+        el.classList.add(`step${idx}`);
+      }, accumulated);
+      allTimers.current.push(timer);
+    });
+  }, []);
 
-      intervalRef.current = setInterval(() => {
-        resetAni({ el, timersRef, cancelRef });
-        loopTimeoutRef.current = setTimeout(
-          () => startAni({ section, el, timersRef, cancelRef }),
-          500
-        );
-      }, totalTime);
-    },
-    [startAni, resetAni]
-  );
 
-  // swiper change
+  // 메인 이펙트: 슬라이드가 바뀔 때마다 실행
   useEffect(() => {
-    if (!swiperRef.current) return;
-    // if (intervalRef.current) clearInterval(intervalRef.current);
-    // if (loopTimeoutRef.current) clearTimeout(loopTimeoutRef.current);
-    if (slide1IntervalRef.current) clearInterval(slide1IntervalRef.current);
+    // 슬라이드가 바뀌면 이전 애니메이션 즉시 중단
+    killAllAnimations();
 
-    // 첫번째 슬라이드 : 이것만 css delay로 처리함.
+    // 슬라이드 1 : 15.5초마다 리셋
     if (swiperIdx === 0) {
-      slide1IntervalRef.current = setInterval(() => {
+      const interval = setInterval(() => {
         const activeSlide = swiperRef.current?.el?.querySelector('.swiper-slide-active');
-        // console.log('timeout inner', activeSlide)
         activeSlide?.classList.remove('swiper-slide-active');
-        setTimeout(() => {
-          activeSlide?.classList.add('swiper-slide-active');
-        }, 100);
-
-        console.log('ani time out');
+        setTimeout(() => activeSlide?.classList.add('swiper-slide-active'), 100);
       }, 15500);
+      allTimers.current.push(interval);
     }
 
-    // 두번째 슬라이드
+    // 슬라이드 2 : 11초 루프 애니메이션
     if (swiperIdx === 1) {
-      loopAni({
-        section: aniTime[0],
-        el: ani2ElRef.current,
-        timersRef: ani2TimersRef,
-        cancelRef: ani2CancelRef,
-        totalTime: 11000,
-      });
-      // startAni({ section: aniTime[0], el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef })
-    } else {
-      // 슬라이드 벗어날 때
-      resetAni({ el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef });
+      const runLoop = () => {
+        // 내부 초기화
+        if (ani2ElRef.current) {
+          ani2ElRef.current.className = ani2ElRef.current.className.replace(/\bstep\d+\b/g, '').trim();
+        }
+        // 이 슬라이드에서 생성된 타임아웃만 제거 (interval은 유지)
+        allTimers.current = allTimers.current.filter(t => {
+          // if (typeof t === 'number' || (t && t._idleTimeout)) { // 브라우저/Node 환경 대응
+          if (typeof t === 'number') { // 브라우저/Node 환경 대응
+            clearTimeout(t);
+            return false;
+          }
+          return true;
+        });
+
+        // 50ms 후 재생 (DOM 리셋 인지 시간)
+        const wait = setTimeout(() => startSequence(ani2ElRef.current, aniTime[0].delayTime), 50);
+        allTimers.current.push(wait);
+      };
+
+      runLoop();
+      const loop = setInterval(runLoop, 11000);
+      allTimers.current.push(loop);
     }
 
-    // 세번째 슬라이드
+    // 슬라이드 3 : 1회성 애니메이션
     if (swiperIdx === 2) {
-      // loopAni({ section: aniTime[1], el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef, totalTime: 13000 })
-      startAni({
-        section: aniTime[1],
-        el: ani3ElRef.current,
-        timersRef: ani3TimersRef,
-        cancelRef: ani3CancelRef,
-      });
-    } else {
-      // 슬라이드 벗어날 때
-      resetAni({ el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef });
+      startSequence(ani3ElRef.current, aniTime[1].delayTime);
     }
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (slide1IntervalRef.current) clearInterval(slide1IntervalRef.current);
-      if (loopTimeoutRef.current) clearTimeout(loopTimeoutRef.current);
-      resetAni({ el: ani2ElRef.current, timersRef: ani2TimersRef, cancelRef: ani2CancelRef });
-      resetAni({ el: ani3ElRef.current, timersRef: ani3TimersRef, cancelRef: ani3CancelRef });
-    };
-  }, [swiperIdx]);
+    return () => killAllAnimations();
+
+  }, [swiperIdx, killAllAnimations, startSequence]);
+
+
 
   return (
     <>
       <Swiper
-        pagination={{
-          type: 'fraction',
-        }}
+        pagination={{ type: 'fraction' }}
         navigation={true}
-        // modules={[Pagination, Navigation]}
-        // spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={swiper => handleSwiperChange(swiper)}
-        onSwiper={swiper => {
-          swiperRef.current = swiper;
-        }}
+        onSlideChange={swi => setSwiperIdx(swi.activeIndex)}
+        onSwiper={swi => { swiperRef.current = swi; }}
         className={style['swiper__wrap']}
-        onClick={swiper => handleSwiperClick(swiper)}
-      //   ref={swiperRef}
       >
-        {/* slide 1 */}
-        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
+        {/* Slide 1 */}
+        <SwiperSlide className={style['swiper__wrap--item']}>
           <div className={clsx(style['ani__wrap'], style['ani_1'])}>
             <div className={clsx(style['ani__wrap--item'], style['ani_1_1'])}>
               <img src={img_03} alt="" className={style['img_03']} />
@@ -371,8 +299,18 @@ const Ani = () => {
           </div>
         </SwiperSlide>
 
-        {/* slide 2 */}
-        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
+        {/* Slide 2 */}
+        <SwiperSlide className={style['swiper__wrap--item']}>
+          {/* <div className={clsx(style['ani__wrap'], style['ani_2'])} ref={ani2ElRef}>
+            <div className={clsx(style['ani__wrap--item'], style['ani_2_1'])}>
+              <div className={clsx(style['ani__wrap--item'], style['ani_2_1_1'])}><img src={img_2_1_1} alt="" /></div>
+            </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_2_2'])}>
+              {[img_2_2_1, img_2_2_2, img_2_2_4, img_2_2_3, img_2_2_5, img_2_2_6].map((img, i) => (
+                <div key={i} className={clsx(style['ani__wrap--item'], style[`ani_2_2_${i + 1}`])}><img src={img} alt="" /></div>
+              ))}
+            </div>
+          </div> */}
           <div className={clsx(style['ani__wrap'], style['ani_2'])} ref={ani2ElRef}>
             <div className={clsx(style['ani__wrap--item'], style['ani_2_1'])}>
               <div className={clsx(style['ani__wrap--item'], style['ani_2_1_1'])}>
@@ -405,37 +343,24 @@ const Ani = () => {
             </div>
             {/* <div className={clsx(style["ani__wrap--item"], style["ani_2_3"])}></div>
                         <div className={clsx(style["ani__wrap--item"], style["ani_2_4"])}></div>
-                        <div className={clsx(style["ani__wrap--item"], style["ani_2_5"])}></div> */}
+                        <div className={clsx(style["ani__wrap--item"], style["ani_2_5"])}></div> 
+                        */}
           </div>
         </SwiperSlide>
 
-        {/* slide 3 */}
-        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
+        {/* Slide 3 */}
+        <SwiperSlide className={style['swiper__wrap--item']}>
           <div className={clsx(style['ani__wrap'], style['ani_3'])} ref={ani3ElRef}>
-            <div className={clsx(style['ani__wrap--item'], style['ani_3_1'])}>
-              <img src={img_3_1} alt="" />
-            </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_3_1'])}><img src={img_3_1} alt="" /></div>
             <div className={clsx(style['ani__wrap--item'], style['ani_3_2'])}>
-              <div className={style['ani_3_2_1']}>
-                <img src={img_3_2_1} alt="" />
-              </div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_2'])}>
-                <img src={img_3_2_2} alt="" />
-              </div>
+              <div className={style['ani_3_2_1']}><img src={img_3_2_1} alt="" /></div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_2'])}><img src={img_3_2_2} alt="" /></div>
               <div className={clsx(style['ani__wrap--item'], style['ani_3_2_3'])}>
-                <div className={style['ani_3_2_3_1']}>
-                  <img src={img_3_2_3_1} alt="" />
-                </div>
-                <div className={style['ani_3_2_3_2']}>
-                  <img src={img_3_2_3_2} alt="" />
-                </div>
-                <div className={style['ani_3_2_3_3']}>
-                  <img src={img_3_2_3_3} alt="" />
-                </div>
+                <div className={style['ani_3_2_3_1']}><img src={img_3_2_3_1} alt="" /></div>
+                <div className={style['ani_3_2_3_2']}><img src={img_3_2_3_2} alt="" /></div>
+                <div className={style['ani_3_2_3_3']}><img src={img_3_2_3_3} alt="" /></div>
               </div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_4'])}>
-                <img src={img_3_2_4} alt="" />
-              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_4'])}><img src={img_3_2_4} alt="" /></div>
             </div>
           </div>
         </SwiperSlide>
