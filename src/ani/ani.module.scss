@@ -183,7 +183,7 @@ img {
           [class*='ani_1_6_'] {
             // border: 1rem solid blue;
 
-            & > div {
+            &>div {
               width: 84rem;
               height: 73rem;
               position: absolute;
@@ -431,6 +431,7 @@ img {
           z-index: 1;
           width: 300rem;
           height: 416rem;
+          text-align: center;
           transform: translate(0rem, 282rem) scale(0.7);
 
           &::after {
@@ -468,56 +469,57 @@ img {
           }
         }
 
-        // .ani_3_2_1,
+        .ani_3_2_1,
         .ani_3_2_2,
-        .ani_3_2_3_1,
-        .ani_3_2_3_2,
-        .ani_3_2_3_3,
+        .ani_3_2_3,
         .ani_3_2_4 {
           box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
           border-radius: 16rem;
-          margin-top: 14rem;
+          margin: 14rem auto 0;
         }
 
-        // .ani_2_2_1 {
-        //     width: 300rem;
-        //     height: 50.33333rem;
-        // }
+        .ani_3_2_1 {
+          width: 250rem;
+          height: 210.52rem;
+          margin-top: 0;
+          transform-origin: top;
+          transform: scale(1.2) translate(0, 0);
+        }
 
-        // .ani_2_2_2 {
-        //     width: 326rem;
-        //     height: 122rem;
-        //     box-shadow: none;
-        // }
+        .ani_3_2_2 {
+          width: 250rem;
+          height: 45.33rem;
+          // box-shadow: none;
+          transform-origin: top;
+          transform: translate(0, 42rem) scale(1);
+        }
 
-        // // 아이콘박스
-        // .ani_2_2_3 {
-        //     // width: 314rem;
-        //     width: 300rem;
-        //     // height: 245.5rem;
-        //     height: 231.62rem;
-        //     transform: translate(0, -120rem);
-        // }
+        .ani_3_2_3 {
+          width: 250rem;
+          height: 93.9rem;
+          box-shadow: none;
+          display: flex;
+          justify-content: space-between;
+          transform-origin: top;
+          transform: translate(0, 42rem) scale(1);
 
-        // // 4월
-        // .ani_2_2_4 {
-        //     width: 300rem;
-        //     height: 104.94rem;
-        //     opacity: 0;
-        //     transform: scale(.6);
-        // }
+          .ani_3_2_3_1,
+          .ani_3_2_3_2,
+          .ani_3_2_3_3 {
+            width: 77.2rem;
+            height: 95.03rem;
+            box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+            border-radius: 16rem;
+          }
+        }
 
-        // .ani_2_2_5 {
-        //     width: 300rem;
-        //     height: 175.78rem;
-        //     transform: translate(0, -120rem);
-        // }
+        .ani_3_2_4 {
+          width: 250rem;
+          height: 331.3333333333333rem;
+          transform-origin: top;
+          transform: translate(0, 42rem) scale(1);
+        }
 
-        // .ani_2_2_6 {
-        //     width: 300rem;
-        //     height: 260.44rem;
-        //     transform: translate(0, -120rem);
-        // }
       }
     }
 
@@ -525,6 +527,7 @@ img {
     // ##########################################  애니메이션 모음
     // ##########################################
     &:global(.swiper-slide-active) {
+
       // &:global(.ani__start) {
       // class 붙을 시 애니메이션
       .ani__wrap {
@@ -702,7 +705,7 @@ img {
         &.ani_3 {
           &:global(.step0) {
             .ani_3_1 {
-              animation: ani_3_1 2s ease-in-out forwards;
+              animation: ani_3_1_hide 2s ease-in-out forwards;
             }
           }
 
@@ -715,6 +718,88 @@ img {
                 animation: ani_3_1_gra_show 3s ease-in-out forwards;
               }
             }
+          }
+
+          // 첫번쨰 변경
+          &:global(.step2) {
+            .ani_3_2_1 {
+              animation: ani_3_2_1_step2 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_2 {
+              animation: ani_3_2_2_step2 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_3 {
+              animation: ani_3_2_3_step2 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_4 {
+              animation: ani_3_2_4_step2 2s ease-in-out forwards;
+            }
+          }
+
+          // 두번쨰 변경
+          &:global(.step3) {
+            .ani_3_2_1 {
+              animation: ani_3_2_1_step3 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_2 {
+              animation: ani_3_2_2_step3 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_3 {
+              animation: ani_3_2_3_step3 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_4 {
+              animation: ani_3_2_4_step3 2s ease-in-out forwards;
+            }
+          }
+
+          // 세번쨰 변경
+          &:global(.step4) {
+            .ani_3_2_1 {
+              animation: ani_3_2_1_step4 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_2 {
+              animation: ani_3_2_2_step4 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_3 {
+              animation: ani_3_2_3_step4 2s ease-in-out forwards;
+            }
+
+            .ani_3_2_4 {
+              animation: ani_3_2_4_step4 2s ease-in-out forwards;
+            }
+          }
+
+          // 원복 
+          &:global(.step5) {
+            .ani_3_2_4 {
+              animation: ani_3_2_4_step5 2s ease-in-out forwards;
+            }
+
+            .ani_3_2 {
+              animation: ani_3_2_step5 2s ease-in-out forwards;
+
+              &::before,
+              &::after {
+                animation: ani_3_1_gra_hide 1s ease-in-out forwards;
+              }
+            }
+
+            .ani_3_1 {
+              animation: ani_3_1_show 1s ease-in-out forwards;
+            }
+
+            .ani_3_2_1 {
+              animation: ani_3_2_1_step5 1s ease-in-out forwards;
+            }
+
           }
         }
       }
@@ -764,7 +849,9 @@ img {
 // ##########################################  애니메이션 모음
 // ##########################################
 
-// ani 1
+// ############################  ani 1
+// ############################  ani 1
+// ############################  ani 1
 @keyframes ani_1_1 {
   0% {
     opacity: 1;
@@ -1220,7 +1307,9 @@ img {
   }
 }
 
-// ani 2
+// ############################  ani 2
+// ############################  ani 2
+// ############################  ani 2
 @keyframes ani_2_1_1 {
   0% {
     opacity: 1;
@@ -1462,20 +1551,38 @@ img {
   }
 }
 
-// ani 3
+// ############################  ani 3
+// ############################  ani 3
+// ############################  ani 3
 @keyframes ani_3_1_gra_show {
   0% {
     opacity: 0;
   }
+
   99% {
     opacity: 1;
   }
+
   100% {
     opacity: 1;
   }
 }
 
-@keyframes ani_3_1 {
+@keyframes ani_3_1_gra_hide {
+  0% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ani_3_1_hide {
   0% {
     opacity: 1;
   }
@@ -1490,6 +1597,24 @@ img {
 
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes ani_3_1_show {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -1522,5 +1647,324 @@ img {
   100% {
     opacity: 1;
     transform: translate(0rem, 60rem) scale(1);
+  }
+}
+
+// step 2
+@keyframes ani_3_2_1_step2 {
+  0% {
+    transform: scale(1.2);
+  }
+
+  30% {
+    transform: scale(1) translate(0, -120rem);
+  }
+
+  45% {
+    transform: scale(1) translate(0, -100rem);
+  }
+
+  100% {
+    transform: scale(1) translate(0, -100rem);
+  }
+}
+
+@keyframes ani_3_2_2_step2 {
+  0% {
+    transform: translate(0, 42rem) scale(1);
+  }
+
+  30% {
+    transform: translate(0, -120rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -100rem) scale(1);
+  }
+
+  50% {
+    transform: translate(0, -100rem) scale(1.2);
+  }
+
+  100% {
+    transform: translate(0, -100rem) scale(1.2);
+  }
+}
+
+@keyframes ani_3_2_3_step2 {
+  0% {
+    transform: translate(0, 42rem);
+  }
+
+  30% {
+    transform: translate(0, -120rem);
+  }
+
+  45% {
+    transform: translate(0, -100rem);
+  }
+
+  55% {
+    transform: translate(0px, -91rem);
+  }
+
+  100% {
+    transform: translate(0, -91rem);
+  }
+}
+
+@keyframes ani_3_2_4_step2 {
+  0% {
+    transform: translate(0, 42rem);
+  }
+
+  30% {
+    transform: translate(0, -120rem);
+  }
+
+  45% {
+    transform: translate(0, -100rem);
+  }
+
+  55% {
+    transform: translate(0px, -91rem);
+  }
+
+  100% {
+    transform: translate(0, -91rem);
+  }
+}
+
+// step 3
+@keyframes ani_3_2_1_step3 {
+  0% {
+    transform: scale(1) translate(0, -100rem);
+  }
+
+  30% {
+    transform: scale(1) translate(0, -225rem);
+  }
+
+  45% {
+    transform: scale(1) translate(0, -205rem);
+  }
+
+  100% {
+    transform: scale(1) translate(0, -205rem);
+  }
+}
+
+@keyframes ani_3_2_2_step3 {
+  0% {
+    transform: translate(0, -100rem) scale(1.2);
+  }
+
+  30% {
+    transform: translate(0, -225rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -205rem) scale(1);
+  }
+}
+
+@keyframes ani_3_2_3_step3 {
+  0% {
+    transform: translate(0, -91rem) scale(1);
+  }
+
+  30% {
+    transform: translate(0, -225rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  60% {
+    transform: translate(0, -205rem) scale(1.2);
+  }
+
+  100% {
+    transform: translate(0, -205rem) scale(1.2);
+  }
+}
+
+@keyframes ani_3_2_4_step3 {
+  0% {
+    transform: translate(0, -91rem) scale(1);
+  }
+
+  30% {
+    transform: translate(0, -225rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  60% {
+    transform: translate(0, -185rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -185rem) scale(1);
+  }
+}
+
+// step 4
+@keyframes ani_3_2_1_step4 {
+  0% {
+    transform: scale(1) translate(0, -205rem);
+  }
+
+  30% {
+    transform: scale(1) translate(0, -405rem);
+  }
+
+  45% {
+    transform: scale(1) translate(0, -385rem);
+  }
+
+  100% {
+    transform: scale(1) translate(0, -385rem);
+  }
+}
+
+@keyframes ani_3_2_2_step4 {
+  0% {
+    transform: translate(0, -205rem) scale(1);
+  }
+
+  30% {
+    transform: translate(0, -405rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -385rem) scale(1);
+  }
+}
+
+@keyframes ani_3_2_3_step4 {
+  0% {
+    transform: translate(0, -205rem) scale(1.2);
+  }
+
+  30% {
+    transform: translate(0, -405rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  60% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -385rem) scale(1);
+  }
+}
+
+@keyframes ani_3_2_4_step4 {
+  0% {
+    transform: translate(0, -185rem) scale(1);
+  }
+
+  30% {
+    transform: translate(0, -405rem) scale(1);
+  }
+
+  45% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  55% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  60% {
+    transform: translate(0, -385rem) scale(1.2);
+  }
+
+  100% {
+    transform: translate(0, -385rem) scale(1.2);
+  }
+}
+
+// step 5
+@keyframes ani_3_2_1_step5 {
+  0% {
+    transform: scale(1) translate(0, -385rem);
+  }
+
+  100% {
+    transform: scale(1.2) translate(0, -385rem);
+  }
+}
+
+@keyframes ani_3_2_step5 {
+  0% {
+    transform: translate(0rem, 60rem) scale(1);
+  }
+
+  15% {
+    transform: translate(0rem, 0rem) scale(1);
+  }
+
+  50% {
+    transform: translate(0rem, 640rem) scale(0.7);
+  }
+
+  60% {
+    transform: translate(0rem, 605px) scale(0.7);
+  }
+
+
+  100% {
+    transform: translate(0rem, 605px) scale(0.7);
+  }
+}
+
+@keyframes ani_3_2_4_step5 {
+  0% {
+    transform: translate(0, -385rem) scale(1.2);
+  }
+
+  30% {
+    transform: translate(0, -385rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -385rem) scale(1);
   }
 }

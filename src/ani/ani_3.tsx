@@ -79,8 +79,9 @@ const aniTime = [
   },
   {
     section: 3,
-    delayTime: [500, 2000, 4000],
+    delayTime: [500, 1000, 2000, 2000, 2000, 3000],
     loopInterval: 13000,
+    // loopInterval: 10000000,
     resetDelay: 50
   },
   {
@@ -91,11 +92,6 @@ const aniTime = [
   },
 ];
 
-// 슬라이드별 루프 설정
-// const LOOP_CONFIG = {
-//   1: { loopInterval: 11000, resetDelay: 50 },  // 슬라이드 2
-//   2: { loopInterval: 13000, resetDelay: 50 },  // 슬라이드 3
-// };
 
 
 const Ani = () => {
@@ -113,7 +109,7 @@ const Ani = () => {
 
 
   // 모든 애니메이션 초기화
-  const killAllAnimations = useCallback(() => {
+  const resetAllAnimations = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
     timeoutsRef.current = [];
@@ -129,7 +125,7 @@ const Ani = () => {
 
 
   // 순차 애니메이션 실행
-  const startSequence = useCallback((el: HTMLDivElement | null, delays: number[]) => {
+  const startAnimation = useCallback((el: HTMLDivElement | null, delays: number[]) => {
     if (!el) return;
     let accumulated = 0;
     delays.forEach((delay, idx) => {
@@ -166,7 +162,7 @@ const Ani = () => {
 
       // resetDelay ms 후 재시작
       const wait = setTimeout(() => {
-        startSequence(el, delays);
+        startAnimation(el, delays);
       }, resetDelay);
       timeoutsRef.current.push(wait);
     };
@@ -177,15 +173,15 @@ const Ani = () => {
     // 루프 설정
     const loop = setInterval(runLoop, loopInterval);
     intervalsRef.current.push(loop);
-  }, [startSequence]);
+  }, [startAnimation]);
 
 
 
   // 메인 이펙트
   useEffect(() => {
-    killAllAnimations();
+    resetAllAnimations();
 
-    // 슬라이드 1: 15.5초마다 리셋
+    // 슬라이드 1: css로  처리
     if (swiperIdx === 0) {
       const interval = setInterval(() => {
         const activeSlide = swiperRef.current?.el?.querySelector('.swiper-slide-active');
@@ -220,8 +216,8 @@ const Ani = () => {
       );
     }
 
-    return () => killAllAnimations();
-  }, [swiperIdx, killAllAnimations, createLoopAnimation]);
+    return () => resetAllAnimations();
+  }, [swiperIdx, resetAllAnimations, createLoopAnimation]);
 
 
   return (
@@ -390,18 +386,32 @@ const Ani = () => {
         </SwiperSlide>
 
         {/* Slide 3 */}
-        <SwiperSlide className={style['swiper__wrap--item']}>
+        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
           <div className={clsx(style['ani__wrap'], style['ani_3'])} ref={ani3ElRef}>
-            <div className={clsx(style['ani__wrap--item'], style['ani_3_1'])}><img src={img_3_1} alt="" /></div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_3_1'])}>
+              <img src={img_3_1} alt="" />
+            </div>
             <div className={clsx(style['ani__wrap--item'], style['ani_3_2'])}>
-              <div className={style['ani_3_2_1']}><img src={img_3_2_1} alt="" /></div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_2'])}><img src={img_3_2_2} alt="" /></div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_3'])}>
-                <div className={style['ani_3_2_3_1']}><img src={img_3_2_3_1} alt="" /></div>
-                <div className={style['ani_3_2_3_2']}><img src={img_3_2_3_2} alt="" /></div>
-                <div className={style['ani_3_2_3_3']}><img src={img_3_2_3_3} alt="" /></div>
+              <div className={style['ani_3_2_1']}>
+                <img src={img_3_2_1} alt="" />
               </div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_4'])}><img src={img_3_2_4} alt="" /></div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_2'])}>
+                <img src={img_3_2_2} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_3'])}>
+                <div className={style['ani_3_2_3_1']}>
+                  <img src={img_3_2_3_1} alt="" />
+                </div>
+                <div className={style['ani_3_2_3_2']}>
+                  <img src={img_3_2_3_2} alt="" />
+                </div>
+                <div className={style['ani_3_2_3_3']}>
+                  <img src={img_3_2_3_3} alt="" />
+                </div>
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_3_2_4'])}>
+                <img src={img_3_2_4} alt="" />
+              </div>
             </div>
           </div>
         </SwiperSlide>
