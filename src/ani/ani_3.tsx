@@ -61,6 +61,16 @@ import img_3_2_3_2 from '../../public/img03/img_3_2_3_2.png';
 import img_3_2_3_3 from '../../public/img03/img_3_2_3_3.png';
 import img_3_2_4 from '../../public/img03/img_3_2_4.png';
 
+// 네번째 섹션
+import img_4_1 from '../../public/img04/img_4_1.png';
+import img_4_2_1 from '../../public/img04/img_4_2_1.png';
+import img_4_2_2 from '../../public/img04/img_4_2_2.png';
+import img_4_2_3 from '../../public/img04/img_4_2_3.png';
+import img_4_2_4 from '../../public/img04/img_4_2_4.png';
+import img_4_2_5 from '../../public/img04/img_4_2_5.png';
+// import img_4_2_6 from '../../public/img04/img_4_2_6.png';
+
+
 
 
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
@@ -86,9 +96,10 @@ const aniTime = [
   },
   {
     section: 4,
-    delayTime: [0, 0, 0],
-    loopInterval: 0,
-    resetDelay: 0
+    delayTime: [500, 1000, 2000, 2000, 2000, 3000],
+    loopInterval: 13000,
+    // loopInterval: 10000000,
+    resetDelay: 50
   },
 ];
 
@@ -105,20 +116,21 @@ const Ani = () => {
   // 섹션별 DOM Ref
   const ani2ElRef = useRef<HTMLDivElement | null>(null);
   const ani3ElRef = useRef<HTMLDivElement | null>(null);
+  const ani4ElRef = useRef<HTMLDivElement | null>(null);
 
 
 
   // 모든 애니메이션 초기화
   const resetAllAnimations = useCallback(() => {
+
+    const aniArr = [ani2ElRef.current, ani3ElRef.current, ani4ElRef.current]
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
     timeoutsRef.current = [];
     intervalsRef.current = [];
 
-    [ani2ElRef.current, ani3ElRef.current].forEach(el => {
-      if (el) {
-        el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
-      }
+    aniArr.forEach(el => {
+      if (el) el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
     });
   }, []);
 
@@ -194,7 +206,7 @@ const Ani = () => {
       intervalsRef.current.push(interval);
     }
 
-    // 슬라이드 2: 루프 애니메이션
+    // 슬라이드 2
     if (swiperIdx === 1) {
       const config = aniTime[1]
       createLoopAnimation(
@@ -205,11 +217,22 @@ const Ani = () => {
       );
     }
 
-    // 슬라이드 3: 루프 애니메이션
+    // 슬라이드 3
     if (swiperIdx === 2) {
       const config = aniTime[2]
       createLoopAnimation(
         ani3ElRef.current,
+        config.delayTime,
+        config.loopInterval,
+        config.resetDelay
+      );
+    }
+
+    // 슬라이드 4
+    if (swiperIdx === 3) {
+      const config = aniTime[3]
+      createLoopAnimation(
+        ani4ElRef.current,
         config.delayTime,
         config.loopInterval,
         config.resetDelay
@@ -412,6 +435,33 @@ const Ani = () => {
               <div className={clsx(style['ani__wrap--item'], style['ani_3_2_4'])}>
                 <img src={img_3_2_4} alt="" />
               </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Slide 4 */}
+        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
+          <div className={clsx(style['ani__wrap'], style['ani_4'])} ref={ani4ElRef}>
+            <div className={clsx(style['ani__wrap--item'], style['ani_4_1'])}>
+              <img src={img_4_1} alt="" />
+            </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_4_2'])}>
+              <div className={style['ani_4_2_1']}>
+                <img src={img_4_2_1} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_4_2_2'])}>
+                <img src={img_4_2_2} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_4_2_3'])}>
+                <img src={img_4_2_3} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_4_2_4'])}>
+                <img src={img_4_2_4} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_4_2_5'])}>
+                <img src={img_4_2_5} alt="" />
+              </div>
+
             </div>
           </div>
         </SwiperSlide>
