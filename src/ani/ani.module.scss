@@ -1941,14 +1941,13 @@ img {
     transform: translate(0rem, 0rem) scale(1);
   }
 
-  50% {
+  40% {
     transform: translate(0rem, 640rem) scale(0.7);
   }
 
-  60% {
+  50% {
     transform: translate(0rem, 605px) scale(0.7);
   }
-
 
   100% {
     transform: translate(0rem, 605px) scale(0.7);
@@ -1961,7 +1960,7 @@ img {
   }
 
   30% {
-    transform: translate(0, -385rem) scale(1);
+    transform: translate(0, -385rem) scale(1.2);
   }
 
   100% {
