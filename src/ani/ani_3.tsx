@@ -68,8 +68,18 @@ import img_4_2_2 from '../../public/img04/img_4_2_2.png';
 import img_4_2_3 from '../../public/img04/img_4_2_3.png';
 import img_4_2_4 from '../../public/img04/img_4_2_4.png';
 import img_4_2_5 from '../../public/img04/img_4_2_5.png';
-// import img_4_2_6 from '../../public/img04/img_4_2_6.png';
 
+
+// 네번째 섹션
+import img_5_1 from '../../public/img05/img_5_1.png';
+import img_5_2_1_1 from '../../public/img05/img_5_2_1_1.png';
+import img_5_2_1_2 from '../../public/img05/img_5_2_1_2.png';
+import img_5_2_1_3 from '../../public/img05/img_5_2_1_3.png';
+import img_5_2_2 from '../../public/img05/img_5_2_2.png';
+import img_5_2_3 from '../../public/img05/img_5_2_3.png';
+import img_5_2_4 from '../../public/img05/img_5_2_4.png';
+import img_5_2_5 from '../../public/img05/img_5_2_5.png';
+import img_5_2_6 from '../../public/img05/img_5_2_6.png';
 
 
 
@@ -85,6 +95,7 @@ const aniTime = [
     section: 2,
     delayTime: [500, 1000, 2000, 2000, 2000, 2000], //step 5
     loopInterval: 11000,
+    // loopInterval: 10000000,
     resetDelay: 50
   },
   {
@@ -98,6 +109,13 @@ const aniTime = [
     section: 4,
     delayTime: [500, 1000, 2000, 2000, 2000, 3000],
     loopInterval: 13000,
+    // loopInterval: 10000000,
+    resetDelay: 50
+  },
+  {
+    section: 5,
+    delayTime: [500, 1000, 2000, 2000, 2000, 2000, 3000],
+    loopInterval: 15000,
     // loopInterval: 10000000,
     resetDelay: 50
   },
@@ -117,13 +135,14 @@ const Ani = () => {
   const ani2ElRef = useRef<HTMLDivElement | null>(null);
   const ani3ElRef = useRef<HTMLDivElement | null>(null);
   const ani4ElRef = useRef<HTMLDivElement | null>(null);
+  const ani5ElRef = useRef<HTMLDivElement | null>(null);
 
 
 
   // 모든 애니메이션 초기화
   const resetAllAnimations = useCallback(() => {
 
-    const aniArr = [ani2ElRef.current, ani3ElRef.current, ani4ElRef.current]
+    const aniArr = [ani2ElRef.current, ani3ElRef.current, ani4ElRef.current, ani5ElRef.current]
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
     timeoutsRef.current = [];
@@ -233,6 +252,16 @@ const Ani = () => {
       const config = aniTime[3]
       createLoopAnimation(
         ani4ElRef.current,
+        config.delayTime,
+        config.loopInterval,
+        config.resetDelay
+      );
+    }
+    // 슬라이드 5
+    if (swiperIdx === 4) {
+      const config = aniTime[4]
+      createLoopAnimation(
+        ani5ElRef.current,
         config.delayTime,
         config.loopInterval,
         config.resetDelay
@@ -462,6 +491,38 @@ const Ani = () => {
                 <img src={img_4_2_5} alt="" />
               </div>
 
+            </div>
+          </div>
+        </SwiperSlide>
+
+
+        {/* Slide 5 */}
+        <SwiperSlide className={clsx(style['swiper__wrap--item'])}>
+          <div className={clsx(style['ani__wrap'], style['ani_5'])} ref={ani5ElRef}>
+            <div className={clsx(style['ani__wrap--item'], style['ani_5_1'])}>
+              <img src={img_5_1} alt="" />
+            </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_5_2'])}>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_1'])}>
+                <div className={style['ani_5_2_1_1']}><img src={img_5_2_1_1} alt="" /></div>
+                <div className={style['ani_5_2_1_2']}><img src={img_5_2_1_2} alt="" /></div>
+                <div className={style['ani_5_2_1_3']}><img src={img_5_2_1_3} alt="" /></div>
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_2'])}>
+                <img src={img_5_2_2} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_3'])}>
+                <img src={img_5_2_3} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_4'])}>
+                <img src={img_5_2_4} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_5'])}>
+                <img src={img_5_2_5} alt="" />
+              </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_5_2_6'])}>
+                <img src={img_5_2_6} alt="" />
+              </div>
             </div>
           </div>
         </SwiperSlide>
