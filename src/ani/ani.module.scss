@@ -375,6 +375,7 @@ img {
           width: 326rem;
           height: 122rem;
           box-shadow: none;
+          opacity: 0.5;
         }
 
         // 아이콘박스
@@ -404,6 +405,7 @@ img {
           width: 300rem;
           height: 260.44rem;
           transform: translate(0, -120rem);
+          opacity: 0.5;
         }
       }
 
@@ -686,7 +688,6 @@ img {
           transform: translate(0, 16rem) scale(1);
           opacity: 0.5;
         }
-
       }
 
       // ani 5 기본스타일
