@@ -40,7 +40,8 @@ import clsx from 'clsx';
 // import img_icon3_4 from '../../public/img01/icon_3/4.png';
 // import img_icon3_5 from '../../public/img01/icon_3/5.png';
 // import img_icon3_6 from '../../public/img01/icon_3/6.png';
-import img_09 from '../../public/img01_back/img_09.png';
+// import img_09 from '../../public/img01_back/img_09.png';
+
 
 
 // 첫번쨰 섹션
@@ -49,14 +50,14 @@ import img_1_1_2 from '../../public/img01/img_1_1_2.png';
 import img_1_1_3 from '../../public/img01/img_1_1_3.png';
 
 import img_1_2 from '../../public/img01/img_1_2.png';
-import img_1_3_t from '../../public/img01/img_1_3_t.png';  //그림자 포함
+// import img_1_3_t from '../../public/img01/img_1_3_t.png';  //그림자 포함
 import img_1_3_tit from '../../public/img01/img_1_3_tit.png';
-// import img_1_3_1 from '../../public/img01/img_1_3_1.png';
-// import img_1_3_2 from '../../public/img01/img_1_3_2.png';
-// import img_1_3_3 from '../../public/img01/img_1_3_3.png';
-// import img_1_3_4 from '../../public/img01/img_1_3_4.png';
-// import img_1_3_5 from '../../public/img01/img_1_3_5.png';
-// import img_1_3_6 from '../../public/img01/img_1_3_6.png';
+import img_1_3_1 from '../../public/img01/img_1_3_1.png';
+import img_1_3_2 from '../../public/img01/img_1_3_2.png';
+import img_1_3_3 from '../../public/img01/img_1_3_3.png';
+import img_1_3_4 from '../../public/img01/img_1_3_4.png';
+import img_1_3_5 from '../../public/img01/img_1_3_5.png';
+import img_1_3_6 from '../../public/img01/img_1_3_6.png';
 
 import img_1_4_1 from '../../public/img01/img_1_4_1.png';
 import img_1_4_tit from '../../public/img01/img_1_4_tit.png';
@@ -80,7 +81,7 @@ import img_ico_1_4_3_3 from '../../public/img01/img_ico_1_4_3_3.png';
 import img_ico_1_4_3_4 from '../../public/img01/img_ico_1_4_3_4.png';
 import img_ico_1_4_3_5 from '../../public/img01/img_ico_1_4_3_5.png';
 import img_ico_1_4_3_6 from '../../public/img01/img_ico_1_4_3_6.png';
-
+import img_1_5 from '../../public/img01/img_1_5.png';
 
 // 두번째 섹션
 import img_2_1_1 from '../../public/img02/img_2_1_1.png';
@@ -125,10 +126,11 @@ import img_5_2_6 from '../../public/img05/img_5_2_6.png';
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
 const aniTime = [
   {
-    section: 1, // 사용 x
-    delayTime: [], // 사용 x
-    loopInterval: 15500,
-    resetDelay: 0 // 사용 x
+    section: 1,
+    delayTime: [500, 2000, 2000, 2000, 3000, 2000, 5000],
+    // loopInterval: 20500,
+    loopInterval: 10000000,
+    resetDelay: 50
   },
   {
     section: 2,
@@ -171,6 +173,7 @@ const Ani = () => {
   const intervalsRef = useRef<NodeJS.Timeout[]>([]);
 
   // 섹션별 DOM Ref
+  const ani1ElRef = useRef<HTMLDivElement | null>(null);
   const ani2ElRef = useRef<HTMLDivElement | null>(null);
   const ani3ElRef = useRef<HTMLDivElement | null>(null);
   const ani4ElRef = useRef<HTMLDivElement | null>(null);
@@ -181,7 +184,7 @@ const Ani = () => {
   // 모든 애니메이션 초기화
   const resetAllAnimations = useCallback(() => {
 
-    const aniArr = [ani2ElRef.current, ani3ElRef.current, ani4ElRef.current, ani5ElRef.current]
+    const aniArr = [ani1ElRef.current, ani2ElRef.current, ani3ElRef.current, ani4ElRef.current, ani5ElRef.current]
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
     timeoutsRef.current = [];
@@ -247,21 +250,19 @@ const Ani = () => {
 
 
 
-  // 메인 이펙트
+  // 슬라이드 체인지 시
   useEffect(() => {
     resetAllAnimations();
 
     // 슬라이드 1: css로  처리
     if (swiperIdx === 0) {
-      const interval = setInterval(() => {
-        const activeSlide = swiperRef.current?.el?.querySelector('.swiper-slide-active');
-        activeSlide?.classList.remove('swiper-slide-active');
-        const t = setTimeout(() => {
-          activeSlide?.classList.add('swiper-slide-active');
-        }, 100);
-        timeoutsRef.current.push(t);
-      }, aniTime[0].loopInterval);
-      intervalsRef.current.push(interval);
+      const config = aniTime[0]
+      createLoopAnimation(
+        ani1ElRef.current,
+        config.delayTime,
+        config.loopInterval,
+        config.resetDelay
+      );
     }
 
     // 슬라이드 2
@@ -323,32 +324,46 @@ const Ani = () => {
       >
         {/* Slide 1 */}
         <SwiperSlide className={style['swiper__wrap--item']}>
-          <div className={clsx(style['ani__wrap'], style['ani_1'])}>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_1'])}>
-              <img src={img_1_1_1} alt="" className={style['img_03']} />
+          <div className={clsx(style['ani__wrap'], style['ani_1'])} ref={ani1ElRef}>
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_1_1'])}>
+              <img src={img_1_1_1} alt="" />
             </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_1_2'])}>
+              <img src={img_1_1_2} alt="" />
+            </div>
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_1_3'])}>
+              <img src={img_1_1_3} alt="" />
+            </div>
+
+
             <div className={clsx(style['ani__wrap--item'], style['ani_1_2'])}>
-              <img src={img_1_1_2} alt="" className={style['img_04']} />
-            </div>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_3'])}>
-              <img src={img_1_1_3} alt="" className={style['img_05']} />
-            </div>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_5'])}>
-              <img src={img_1_3_t} alt="" className={style['img_02']} />
-              <div className={clsx(style['ani__wrap--item'], style['ani_1_5_1'])}>
-                <img src={img_1_2} alt="" />
-              </div>
-              <div className={clsx(style['ani__wrap--item'], style['ani_1_5_2'])}>
+              {/* <img src={img_1_3_t} alt="" className={style['img_02']} /> */}
+              <div className={clsx(style['ani__wrap--item'], style['ani_1_3_tit'])}>
                 <img src={img_1_3_tit} alt="" />
               </div>
+              <div className={clsx(style['ani__wrap--item'], style['ani_1_2_1'])}>
+                <img src={img_1_2} alt="" />
+              </div>
+
+              <div className={style['ani_1_3']}>
+                <img src={img_1_3_1} alt="" />
+                <img src={img_1_3_2} alt="" />
+                <img src={img_1_3_3} alt="" />
+                <img src={img_1_3_4} alt="" />
+                <img src={img_1_3_5} alt="" />
+                <img src={img_1_3_6} alt="" />
+              </div>
             </div>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_6_tit'])}>
-              <img src={img_1_4_tit} alt="" className={style['img_07']} />
+
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_4_tit'])}>
+              <img src={img_1_4_tit} alt="" />
             </div>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_6'])}>
+
+            {/* 아이콘박스 */}
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_4'])}>
               <img src={img_1_4_1} alt="" className={style['img_08']} />
               <div className={style['icon_wrap']}>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_1'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_1'])}>
                   <div>
                     <img src={img_ico_1_4_1_1} alt="" />
                   </div>
@@ -359,7 +374,7 @@ const Ani = () => {
                     <img src={img_ico_1_4_3_1} alt="" />
                   </div>
                 </div>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_2'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_2'])}>
                   <div>
                     <img src={img_ico_1_4_1_2} alt="" />
                   </div>
@@ -370,7 +385,7 @@ const Ani = () => {
                     <img src={img_ico_1_4_3_2} alt="" />
                   </div>
                 </div>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_3'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_3'])}>
                   <div>
                     <img src={img_ico_1_4_1_3} alt="" />
                   </div>
@@ -381,7 +396,7 @@ const Ani = () => {
                     <img src={img_ico_1_4_3_3} alt="" />
                   </div>
                 </div>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_4'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_4'])}>
                   <div>
                     <img src={img_ico_1_4_1_4} alt="" />
                   </div>
@@ -392,7 +407,7 @@ const Ani = () => {
                     <img src={img_ico_1_4_3_4} alt="" />
                   </div>
                 </div>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_5'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_5'])}>
                   <div>
                     <img src={img_ico_1_4_1_5} alt="" />
                   </div>
@@ -403,7 +418,7 @@ const Ani = () => {
                     <img src={img_ico_1_4_3_5} alt="" />
                   </div>
                 </div>
-                <div className={clsx(style['ani__wrap--item'], style['ani_1_6_6'])}>
+                <div className={clsx(style['ani__wrap--item'], style['ani_1_4_6'])}>
                   <div>
                     <img src={img_ico_1_4_1_6} alt="" />
                   </div>
@@ -416,13 +431,10 @@ const Ani = () => {
                 </div>
               </div>
             </div>
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_7'])}>
-              <img src={img_1_1_1} alt="" className={style['img_03']} />
-            </div>
 
             {/* 마지막 */}
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_8'])}>
-              <img src={img_09} alt="" className={style['img_09']} />
+            <div className={clsx(style['ani__wrap--item'], style['ani_1_7'])}>
+              <img src={img_1_5} alt="" className={style['img_1_5']} />
             </div>
           </div>
         </SwiperSlide>

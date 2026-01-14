@@ -88,7 +88,8 @@ img {
           background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
         }
 
-        .ani_1_1 {
+
+        .ani_1_1_1 {
           opacity: 1;
           position: absolute;
           bottom: 0;
@@ -97,9 +98,11 @@ img {
           margin: auto;
           z-index: 1;
           text-align: center;
+          width: 297rem;
+          height: 416rem;
         }
 
-        .ani_1_2 {
+        .ani_1_1_2 {
           opacity: 0;
           position: absolute;
           bottom: 0;
@@ -108,9 +111,11 @@ img {
           margin: auto;
           z-index: 2;
           text-align: center;
+          width: 297rem;
+          height: 416rem;
         }
 
-        .ani_1_3 {
+        .ani_1_1_3 {
           opacity: 0;
           position: absolute;
           bottom: 0;
@@ -119,56 +124,71 @@ img {
           margin: auto;
           z-index: 3;
           text-align: center;
+          width: 297rem;
+          height: 416rem;
         }
 
-        .ani_1_5 {
+        .ani_1_2 {
           opacity: 1;
-          // width: 265rem;
-          width: 393rem;
-          height: 50rem;
+          width: 300rem;
+          height: auto;
           position: absolute;
-          // bottom: 0rem;
-          bottom: 11rem;
+          bottom: 0rem;
           left: 0;
           right: 0;
           margin: auto;
           z-index: 4;
-          font-size: 16rem;
-          white-space: nowrap;
           // overflow: hidden;
-          transform-origin: center center;
-          transform: translateX(-30rem) scale(0.6); // 위 작은 박스
+          // transform-origin: center center;
+          transform: translate(0, 106rem) scale(0.7); // 위 작은 박스
 
-          .ani_1_5_1 {
+
+          // 전체계좌
+          .ani_1_2_1 {
             opacity: 1;
-            width: 225rem;
-            height: 46rem;
-            position: absolute;
-            top: 0rem;
-            left: 0;
-            right: 0;
-            margin: auto;
+            width: 300rem;
+            height: 50rem;
             z-index: 4;
-            transform: translateX(47rem) scale(1.7);
+            margin-bottom: 15rem;
+            box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+            border-radius: 16rem;
+          }
+
+          .ani_1_3 {
+            // 1_3은 애니메이션에 아래 코드들 다시 원복해야됨
+            width: 357rem;
+            // border: 1px solid red;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            gap: 14rem;
+            transform: scale(0.9);
+            transform-origin: left top;
+
+            >img {
+              width: 140rem;
+              height: 140rem;
+              box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+              border-radius: 16rem;
+            }
           }
 
           // 나중에 생기는 위 작은 박스
-          .ani_1_5_2 {
+          .ani_1_3_tit {
             opacity: 0;
-            transform: scale(0.7);
-            // border: 1rem solid black;
             width: 169rem;
             height: 36rem;
+            z-index: 4;
             position: absolute;
-            top: 15rem;
+            top: 4rem;
             left: 0;
             right: 0;
             margin: auto;
-            z-index: 4;
           }
         }
 
-        .ani_1_6_tit {
+
+        .ani_1_4_tit {
           width: 130rem;
           height: 36rem;
           position: absolute;
@@ -179,9 +199,9 @@ img {
           opacity: 0;
         }
 
-        .ani_1_6 {
-          width: 350rem;
-          height: 285rem;
+        .ani_1_4 {
+          width: 300rem;
+          height: 235rem;
           opacity: 0;
           position: absolute;
           top: 106rem;
@@ -190,6 +210,8 @@ img {
           margin: auto;
           z-index: 4;
           // background-color: white;
+          box-shadow: 0 15rem 25rem 0 rgba(0, 0, 0, 0.12);
+          border-radius: 16rem;
 
           // 아이콘 박스 3개 공통
           .ani__wrap--item {
@@ -199,7 +221,7 @@ img {
           }
 
           // 아이콘 안에 작은 박스 3개 공통
-          [class*='ani_1_6_'] {
+          [class*='ani_1_4_'] {
             // border: 1rem solid blue;
 
             &>div {
@@ -247,26 +269,14 @@ img {
           }
         }
 
-        // 마지막 폰모양
+        // 마지막
         .ani_1_7 {
-          opacity: 0;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-          z-index: 2;
-          text-align: center;
-        }
-
-        // 폰안에 움직이는 아이템
-        .ani_1_8 {
           width: 233rem;
           height: 129rem;
           opacity: 0;
           position: absolute;
-          top: 0;
-          left: 4rem;
+          bottom: 0;
+          left: 6rem;
           right: 0;
           margin: auto;
           z-index: 2;
@@ -874,107 +884,145 @@ img {
       // &:global(.ani__start) {
       // class 붙을 시 애니메이션
       .ani__wrap {
-        // border: 1px solid #fa5c5c;
 
         // ani 1
         &.ani_1 {
-          .ani_1_1 {
-            animation: ani_1_1 2s ease-in-out forwards;
+
+          // &:global(.step0) {
+          //   .ani_1_1 {
+          //     animation: ani_1_1 2s ease-in-out forwards;
+          //   }
+          // }
+
+          &:global(.step0) {
+            .ani_1_1_2 {
+              animation: ani_1_show 1.5s ease-in-out forwards;
+            }
           }
 
-          .ani_1_2 {
-            animation: ani_1_2 2s 1s ease-in-out forwards;
+          &:global(.step1) {
+            .ani_1_1_3 {
+              animation: ani_1_show 1.5s ease-in-out forwards;
+            }
           }
 
-          .ani_1_3 {
-            animation: ani_1_3 3s 2s ease-in-out forwards;
-          }
+          // 아래 박스 튀어나옴
+          &:global(.step2) {
 
-          .ani_1_5 {
-            animation: ani_1_5 5s 3s cubic-bezier(0, 0.36, 0.34, 0.97) forwards;
+            .ani_1_2 {
+              // animation: ani_1_2 5s cubic-bezier(0, 0.36, 0.34, 0.97) forwards;
+              animation: ani_1_2 2s ease-in-out forwards;
+            }
 
-            .ani_1_5_1 {
-              animation: ani_1_5_1 0.4s 3s ease-in-out forwards;
+            .ani_1_2_1 {
+              animation: ani_1_2_1 .3s ease-in-out forwards;
+            }
+
+            .ani_1_3 {
+              animation: ani_1_3 .5s ease-in-out forwards;
             }
 
             // 나중에 생기는 위 작은 박스
-            .ani_1_5_2 {
-              animation: ani_1_5_2 0.5s 3.7s ease-in-out forwards;
+            .ani_1_3_tit {
+              animation: ani_1_3_tit 1s .7s ease-in-out forwards;
             }
 
-            // &::after {
-            //     animation: ani_1_5_1 .5s 3s ease-in-out forwards;
-            //     content: '';
-            //     position: absolute;
-            //     bottom: -52rem;
-            //     left: -250%;
-            //     right: 0;
-            //     margin: auto;
-            //     display: block;
-            //     width: 500%;
-            //     height: 70rem;
-            //     z-index: 5;
-            //     background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
-            // }
+
+            .ani_1_1_1,
+            .ani_1_1_2,
+            .ani_1_1_3 {
+              animation: ani_1_hide .5s ease-in-out forwards;
+            }
+
           }
 
-          .ani_1_6_tit {
-            animation: ani_1_6_tit 5s 7.5s ease-in-out forwards;
+          // 아래 박스 우측으로 움직임
+          &:global(.step3) {
+            .ani_1_3 {
+              animation: ani_1_3_move 2s ease-in-out forwards;
+            }
           }
 
-          .ani_1_6 {
-            animation: ani_1_6 10s 7s ease-in-out forwards;
+          &:global(.step4) {
+
+            // 1_2 페이드아웃
+            .ani_1_2 {
+              animation: ani_1_2_hide 1s ease-in-out forwards;
+            }
+
+            .ani_1_4_tit {
+              animation: ani_1_4_tit 2s ease-in-out forwards;
+            }
+
+            .ani_1_4 {
+              animation: ani_1_4 2s ease-in-out forwards;
+            }
+          }
+
+          &:global(.step5) {
 
             // 아이콘 안에 작은 박스 3개 공통
-            [class*='ani_1_6_'] {
-              div:nth-child(1) {
-                animation: ani_1_6_fade_1 0.5s 8.6s ease-in-out forwards;
-              }
+            .icon_wrap {
+              [class*='ani_1_4_'] {
+                div:nth-child(1) {
+                  // border: 1px solid red;
+                  animation: ani_1_4_fade_1 1s ease-in-out forwards;
+                }
 
-              div:nth-child(2) {
-                animation: ani_1_6_fade_2 4s 8.5s ease-in-out forwards;
-              }
+                div:nth-child(2) {
+                  // border: 1px solid blue;
+                  animation: ani_1_4_fade_2 5s ease-in-out forwards;
+                }
 
-              div:nth-child(3) {
-                animation: ani_1_6_fade_3 1s 10.7s ease-in-out forwards;
+                div:nth-child(3) {
+                  // background-color: black;
+                  animation: ani_1_4_fade_3 1s 2.2s ease-in-out forwards;
+                }
               }
             }
+
 
             // 아이콘 상자
-            .ani_1_6_1 {
-              animation: ani_1_6_1 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_1 {
+              animation: ani_1_4_1 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
 
-            .ani_1_6_2 {
-              animation: ani_1_6_2 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_2 {
+              animation: ani_1_4_2 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
 
-            .ani_1_6_3 {
-              animation: ani_1_6_3 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_3 {
+              animation: ani_1_4_3 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
 
-            .ani_1_6_4 {
-              animation: ani_1_6_4 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_4 {
+              animation: ani_1_4_4 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
 
-            .ani_1_6_5 {
-              animation: ani_1_6_5 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_5 {
+              animation: ani_1_4_5 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
 
-            .ani_1_6_6 {
-              animation: ani_1_6_6 5s 8s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
+            .ani_1_4_6 {
+              animation: ani_1_4_6 5s cubic-bezier(1, 0.02, 0.99, 0.93) forwards;
             }
           }
 
-          // 마지막 폰모양
-          .ani_1_7 {
-            animation: ani_1_7 5s 12.2s ease-in-out forwards;
+          &:global(.step6) {
+            .ani_1_1_1 {
+              animation: ani_1_show 1.5s ease-in-out forwards;
+            }
+
+            .ani_1_7 {
+              animation: ani_1_7 1s ease-in-out forwards;
+            }
+
+            .ani_1_4 {
+              animation: ani_1_4_hide 1s ease-in-out forwards;
+            }
+
           }
 
-          // 폰안에 움직이는 아이템
-          .ani_1_8 {
-            animation: ani_1_8 5s 12.5s cubic-bezier(0.01, 0.94, 0.01, 0.96) forwards;
-          }
         }
 
         // ani 2
@@ -1448,32 +1496,6 @@ img {
     }
   }
 
-  // ##########################################
-  // ##########################################  이미지 사이즈 모음
-  // ##########################################
-
-  // section 1
-  .img_02 {
-    width: 1005rem;
-    height: 260rem;
-  }
-
-  .img_03,
-  .img_04,
-  .img_05 {
-    width: 296rem;
-    height: 416rem;
-  }
-
-  .img_06 {
-    width: 169rem;
-    height: 36rem;
-  }
-
-  .img_09 {
-    width: 233rem;
-    height: 129rem;
-  }
 
 }
 
@@ -1484,9 +1506,9 @@ img {
 // ############################  ani 1
 // ############################  ani 1
 // ############################  ani 1
-@keyframes ani_1_1 {
+@keyframes ani_1_show {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
 
   50% {
@@ -1498,20 +1520,48 @@ img {
   }
 
   100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani_1_hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
     opacity: 0;
   }
 }
 
+
+
+// 아래 큰박스
 @keyframes ani_1_2 {
   0% {
-    opacity: 0;
+    transform: translate(0, 106rem) scale(.7);
   }
 
-  50% {
-    opacity: 1;
+  10% {
+    transform: translate(0, 116rem) scale(.7);
   }
 
-  95% {
+  30% {
+    transform: translate(0, -105rem) scale(1.03);
+  }
+
+  40% {
+    transform: translate(0, -100rem) scale(1);
+  }
+
+  100% {
+    transform: translate(0, -100rem) scale(1);
+  }
+}
+
+// 위 작은 박스
+@keyframes ani_1_2_1 {
+  0% {
     opacity: 1;
   }
 
@@ -1522,85 +1572,57 @@ img {
 
 @keyframes ani_1_3 {
   0% {
-    opacity: 0;
-  }
-
-  40% {
-    opacity: 1;
-  }
-
-  45% {
-    opacity: 1;
-  }
-
-  55% {
-    opacity: 0;
+    width: 357rem;
+    overflow: hidden;
+    transform: scale(0.9);
   }
 
   100% {
-    opacity: 0;
-  }
-
-  // 첫번째 섹션 같이 없어져야됨
-}
-
-// 아래 큰박스
-@keyframes ani_1_5 {
-  0% {
-    opacity: 1;
-    transform: translateX(-30rem) scale(0.6);
-    left: 0;
-    width: 393rem;
-  }
-
-  5% {
-    opacity: 1;
-    // transform: translate(0rem, 20rem) scale(0.6);
-    transform: translate(-30rem, 0rem) scale(0.6);
-  }
-
-  12% {
-    opacity: 1;
-    transform: translate(0, -280rem) scale(1.1);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translate(0rem, -260rem) scale(1);
-  }
-
-  30% {
-    opacity: 1;
-    transform: translate(0rem, -260rem) scale(1);
-  }
-
-  90% {
-    opacity: 1;
-    // transform: translate(-800rem, -260rem) scale(1);
-    transform: translate(-600rem, -260rem) scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-600rem, -260rem) scale(1);
-    left: 0;
-    width: 393rem;
+    width: 100%;
+    overflow: initial;
+    transform: scale(1);
   }
 }
 
 // 위 작은 박스
-@keyframes ani_1_5_1 {
+@keyframes ani_1_3_tit {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani_1_3_move {
+  0% {
+    transform: translate(0rem, 0rem) scale(1);
+    width: 100%;
+    overflow: initial;
+  }
+
+  100% {
+    transform: translate(-590rem, 0rem) scale(1);
+    width: 100%;
+    overflow: initial;
+  }
+}
+
+@keyframes ani_1_2_hide {
   0% {
     opacity: 1;
+    transform: translate(0, -100rem) scale(1);
   }
 
   100% {
     opacity: 0;
+    transform: translate(0, -100rem) scale(1);
   }
 }
 
-// 위 작은 박스
-@keyframes ani_1_5_2 {
+
+@keyframes ani_1_4_tit {
   0% {
     opacity: 0;
   }
@@ -1611,86 +1633,22 @@ img {
 }
 
 // 아래서 위로 올라오는 아이콘 랩
-@keyframes ani_1_6 {
-  0% {
-    transform: translateY(20rem);
-    opacity: 0;
-  }
+@keyframes ani_1_4 {
 
-  10% {
-    transform: translateY(0rem);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translateY(0rem);
-    opacity: 1;
-  }
-
-  53% {
-    transform: translateY(-10rem);
-    opacity: 1;
-  }
-
-  56% {
-    transform: translateY(150rem) scale(0.9);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(150rem);
-    opacity: 0;
-  }
-}
-
-@keyframes ani_1_6_fade_1 {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes ani_1_6_fade_2 {
   0% {
     opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes ani_1_6_fade_3 {
-  0% {
-    opacity: 0;
+    transform: translate(0, 30rem);
   }
 
   100% {
     opacity: 1;
+    transform: translate(0, 0rem);
   }
+
 }
 
-@keyframes ani_1_6_tit {
+@keyframes ani_1_4_fade_1 {
   0% {
-    opacity: 0;
-  }
-
-  10% {
     opacity: 1;
   }
 
@@ -1703,8 +1661,72 @@ img {
   }
 }
 
+// 사라지는 타이밍은 %로 조절
+@keyframes ani_1_4_fade_2 {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  57% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ani_1_4_fade_3 {
+  0% {
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani_1_4_hide {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0rem) scale(1);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(0, -20rem) scale(1);
+  }
+
+  60% {
+    opacity: 0;
+    transform: translate(0, 200rem) scale(.9);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, 200rem) scale(.8);
+  }
+}
+
+
 // 아이콘박스
-@keyframes ani_1_6_1 {
+@keyframes ani_1_4_1 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1734,7 +1756,7 @@ img {
   }
 }
 
-@keyframes ani_1_6_2 {
+@keyframes ani_1_4_2 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1764,7 +1786,7 @@ img {
   }
 }
 
-@keyframes ani_1_6_3 {
+@keyframes ani_1_4_3 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1794,7 +1816,7 @@ img {
   }
 }
 
-@keyframes ani_1_6_4 {
+@keyframes ani_1_4_4 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1824,7 +1846,7 @@ img {
   }
 }
 
-@keyframes ani_1_6_5 {
+@keyframes ani_1_4_5 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1854,7 +1876,7 @@ img {
   }
 }
 
-@keyframes ani_1_6_6 {
+@keyframes ani_1_4_6 {
   0% {
     transform: translate(0rem, 0rem);
   }
@@ -1887,55 +1909,21 @@ img {
 @keyframes ani_1_7 {
   0% {
     opacity: 0;
+    transform: translateY(-500rem);
   }
 
-  10% {
-    opacity: 1;
+  40% {
+    opacity: 0;
   }
 
-  95% {
+  85% {
     opacity: 1;
+    transform: translateY(120rem);
   }
 
   100% {
-    opacity: 0;
-  }
-}
-
-@keyframes ani_1_8 {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-
-  5% {
     opacity: 1;
-    transform: translateY(420rem);
-  }
-
-  15% {
-    opacity: 1;
-    transform: translateY(358rem);
-  }
-
-  // 50% {
-  //     opacity: 1;
-  //     transform: translateY(358rem);
-  // }
-
-  // 90% {
-  //     opacity: 0;
-  //     transform: translateY(358rem);
-  // }
-
-  90% {
-    opacity: 1;
-    transform: translateY(358rem);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(358rem);
+    transform: translateY(55rem);
   }
 }
 
