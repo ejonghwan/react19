@@ -86,7 +86,7 @@ import img_5_2_5 from '../../public/tutorial/main_tuto_5_2_5.png';
 import img_5_2_6 from '../../public/tutorial/main_tuto_5_2_6.png';
 
 
-const testMode = false
+const testMode = true
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
 const aniTime = [
   {
