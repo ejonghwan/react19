@@ -86,42 +86,37 @@ import img_5_2_5 from '../../public/tutorial/main_tuto_5_2_5.png';
 import img_5_2_6 from '../../public/tutorial/main_tuto_5_2_6.png';
 
 
-
+const testMode = false
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
 const aniTime = [
   {
     section: 1,
-    delayTime: [500, 2000, 2000, 2000, 3000, 2000, 5000],
-    loopInterval: 20500,
-    // loopInterval: 10000000,
+    delayTime: [500, 2000, 2000, 1300, 2000, 2000, 4000],
+    loopInterval: testMode ? 10000000 : 19000,
     resetDelay: 50
   },
   {
     section: 2,
     delayTime: [500, 1000, 2000, 2000, 2000, 2000], //step 5
-    loopInterval: 11000,
-    // loopInterval: 10000000,
+    loopInterval: testMode ? 10000000 : 11000,
     resetDelay: 50
   },
   {
     section: 3,
     delayTime: [500, 1000, 2000, 2000, 2000, 3000],
-    loopInterval: 13000,
-    // loopInterval: 10000000,
+    loopInterval: testMode ? 10000000 : 13000,
     resetDelay: 50
   },
   {
     section: 4,
-    delayTime: [500, 1000, 2000, 2000, 2000, 3000],
-    loopInterval: 13000,
-    // loopInterval: 10000000,
+    delayTime: [500, 1000, 2000, 2500, 2500, 3500],
+    loopInterval: testMode ? 10000000 : 15000,
     resetDelay: 50
   },
   {
     section: 5,
     delayTime: [500, 1000, 2000, 2000, 2000, 2000, 3000],
-    loopInterval: 15000,
-    // loopInterval: 10000000,
+    loopInterval: testMode ? 10000000 : 15000,
     resetDelay: 50
   },
 ];
@@ -147,7 +142,6 @@ const Ani = () => {
 
   // 모든 애니메이션 초기화
   const resetAllAnimations = useCallback(() => {
-
     const aniArr = [ani1ElRef.current, ani2ElRef.current, ani3ElRef.current, ani4ElRef.current, ani5ElRef.current]
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
@@ -158,8 +152,6 @@ const Ani = () => {
       if (el) el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
     });
   }, []);
-
-
 
   // 순차 애니메이션 실행
   const startAnimation = useCallback((el: HTMLDivElement | null, delays: number[]) => {
@@ -173,8 +165,6 @@ const Ani = () => {
       timeoutsRef.current.push(timer);
     });
   }, []);
-
-
 
   // 공통 루프 애니메이션 함수
   const createLoopAnimation = useCallback((
@@ -213,7 +203,6 @@ const Ani = () => {
   }, [startAnimation]);
 
 
-
   // 슬라이드 체인지 시
   useEffect(() => {
     resetAllAnimations();
@@ -228,7 +217,6 @@ const Ani = () => {
         config.resetDelay
       );
     }
-
     // 슬라이드 2
     if (swiperIdx === 1) {
       const config = aniTime[1]
@@ -239,7 +227,6 @@ const Ani = () => {
         config.resetDelay
       );
     }
-
     // 슬라이드 3
     if (swiperIdx === 2) {
       const config = aniTime[2]
@@ -250,7 +237,6 @@ const Ani = () => {
         config.resetDelay
       );
     }
-
     // 슬라이드 4
     if (swiperIdx === 3) {
       const config = aniTime[3]

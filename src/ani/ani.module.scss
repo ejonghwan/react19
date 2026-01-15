@@ -83,9 +83,9 @@ img {
           margin: auto;
           display: block;
           width: 500%;
-          height: 70rem;
+          height: 80rem;
           z-index: 5;
-          background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+          background: linear-gradient(180deg, rgb(255, 255, 255, 0), rgb(241, 242, 244, 1) 87%);
         }
 
 
@@ -287,9 +287,9 @@ img {
           margin: auto;
           display: block;
           width: 500%;
-          height: 70rem;
+          height: 80rem;
           z-index: 5;
-          background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 50%);
+          background: linear-gradient(180deg, rgb(255, 255, 255, 0), rgb(241, 242, 244, 1) 87%);
         }
 
         .ani_2_1_1 {
@@ -317,7 +317,7 @@ img {
           height: 416rem;
           // transform: translate(0rem, 294rem) scale(0.7);
           // transform: translate(0rem, 272rem) scale(0.7);
-          transform: translate(0rem, 260rem) scale(0.7);
+          transform: translate(0rem, 276rem) scale(0.7);
 
           &::after {
             // border: 1px solid red;
@@ -421,9 +421,9 @@ img {
           margin: auto;
           display: block;
           width: 500%;
-          height: 70rem;
+          height: 80rem;
           z-index: 5;
-          background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+          background: linear-gradient(180deg, rgb(255, 255, 255, 0), rgb(241, 242, 244, 1) 87%);
         }
 
         .ani_3_1 {
@@ -558,9 +558,9 @@ img {
           margin: auto;
           display: block;
           width: 500%;
-          height: 70rem;
+          height: 80rem;
           z-index: 5;
-          background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+          background: linear-gradient(180deg, rgb(255, 255, 255, 0), rgb(241, 242, 244, 1) 87%);
         }
 
         .ani_4_1 {
@@ -702,9 +702,9 @@ img {
           margin: auto;
           display: block;
           width: 500%;
-          height: 70rem;
+          height: 80rem;
           z-index: 5;
-          background: linear-gradient(180deg, rgb(255, 255, 255, 0.1), rgb(241, 242, 244, 1) 80%);
+          background: linear-gradient(180deg, rgb(255, 255, 255, 0), rgb(241, 242, 244, 1) 87%);
         }
 
         .ani_5_1 {
@@ -911,7 +911,7 @@ img {
 
             // 나중에 생기는 위 작은 박스
             .ani_1_3_tit {
-              animation: ani_1_3_tit 1s .7s ease-in-out forwards;
+              animation: ani_1_3_tit 1s .45s ease-in-out forwards;
             }
 
 
@@ -942,7 +942,7 @@ img {
             }
 
             .ani_1_4 {
-              animation: ani_1_4 2s ease-in-out forwards;
+              animation: ani_1_4 1s ease-in-out forwards;
             }
           }
 
@@ -997,7 +997,7 @@ img {
 
           &:global(.step6) {
             .ani_1_1_1 {
-              animation: ani_1_show 1.5s ease-in-out forwards;
+              animation: ani_1_show 1.2s ease-in-out forwards;
             }
 
             .ani_1_2 {
@@ -1058,7 +1058,7 @@ img {
 
           &:global(.step3) {
             .ani_2_2_3 {
-              animation: ani_2_2_hide 2s ease-in-out forwards;
+              animation: ani_2_2_hide 1s ease-in-out forwards;
             }
 
             .ani_2_2_5,
@@ -1088,11 +1088,11 @@ img {
 
           &:global(.step5) {
             .ani_2_2 {
-              animation: ani_2_2_default 2s ease-in-out forwards;
+              animation: ani_2_2_default 3s ease-in-out forwards;
             }
 
             .ani_2_1_1 {
-              animation: ani_2_1_1_show 2s ease-in-out forwards;
+              animation: ani_2_1_1_show 3s ease-in-out forwards;
             }
           }
         }
@@ -1176,11 +1176,11 @@ img {
           // 원복 
           &:global(.step5) {
             .ani_3_2_4 {
-              animation: ani_3_2_4_step5 2s ease-in-out forwards;
+              animation: ani_3_2_4_step5 3s ease-in-out forwards;
             }
 
             .ani_3_2 {
-              animation: ani_3_2_step5 2s ease-in-out forwards;
+              animation: ani_3_2_step5 3s ease-in-out forwards;
 
               &::before,
               &::after {
@@ -1221,77 +1221,77 @@ img {
           // 첫번쨰 변경
           &:global(.step2) {
             .ani_4_2_1 {
-              animation: ani_4_2_1_step2 2s ease-in-out forwards;
+              animation: ani_4_2_1_step2 3s ease-in-out forwards;
             }
 
             .ani_4_2_2 {
-              animation: ani_4_2_2_step2 2s ease-in-out forwards;
+              animation: ani_4_2_2_step2 3s ease-in-out forwards;
             }
 
             .ani_4_2_3 {
-              animation: ani_4_2_3_step2 2s ease-in-out forwards;
+              animation: ani_4_2_3_step2 3s ease-in-out forwards;
             }
 
             .ani_4_2_4 {
-              animation: ani_4_2_4_step2 2s ease-in-out forwards;
+              animation: ani_4_2_4_step2 3s ease-in-out forwards;
             }
 
             .ani_4_2_5 {
-              animation: ani_4_2_4_step2 2s ease-in-out forwards;
+              animation: ani_4_2_4_step2 3s ease-in-out forwards;
             }
 
             .ani_4_2_6 {
-              animation: ani_4_2_4_step2 2s ease-in-out forwards;
+              animation: ani_4_2_4_step2 3s ease-in-out forwards;
             }
           }
 
           // 두번쨰 변경
           &:global(.step3) {
             .ani_4_2_1 {
-              animation: ani_4_2_1_step3 2s ease-in-out forwards;
+              animation: ani_4_2_1_step3 3s ease-in-out forwards;
             }
 
             .ani_4_2_2 {
-              animation: ani_4_2_2_step3 2s ease-in-out forwards;
+              animation: ani_4_2_2_step3 3s ease-in-out forwards;
             }
 
             .ani_4_2_3 {
-              animation: ani_4_2_3_step3 2s ease-in-out forwards;
+              animation: ani_4_2_3_step3 3s ease-in-out forwards;
             }
 
             .ani_4_2_4 {
-              animation: ani_4_2_4_step3 2s ease-in-out forwards;
+              animation: ani_4_2_4_step3 3s ease-in-out forwards;
             }
 
             .ani_4_2_5 {
-              animation: ani_4_2_4_step3 2s ease-in-out forwards;
+              animation: ani_4_2_4_step3 3s ease-in-out forwards;
             }
 
             .ani_4_2_6 {
-              animation: ani_4_2_4_step3 2s ease-in-out forwards;
+              animation: ani_4_2_4_step3 3s ease-in-out forwards;
             }
           }
 
           // 세번쨰 변경
           &:global(.step4) {
             .ani_4_2_1 {
-              animation: ani_4_2_1_step4 2s ease-in-out forwards;
+              animation: ani_4_2_1_step4 3s ease-in-out forwards;
             }
 
             .ani_4_2_2 {
-              animation: ani_4_2_2_step4 2s ease-in-out forwards;
+              animation: ani_4_2_2_step4 3s ease-in-out forwards;
             }
 
             .ani_4_2_3 {
-              animation: ani_4_2_3_step4 2s ease-in-out forwards;
+              animation: ani_4_2_3_step4 3s ease-in-out forwards;
             }
 
             .ani_4_2_4 {
-              animation: ani_4_2_4_step4 2s ease-in-out forwards;
+              animation: ani_4_2_4_step4 3s ease-in-out forwards;
             }
 
             .ani_4_2_5 {
-              animation: ani_4_2_5_step4 2s ease-in-out forwards;
+              animation: ani_4_2_5_step4 3s ease-in-out forwards;
             }
 
           }
@@ -1299,11 +1299,11 @@ img {
           // // 원복 
           &:global(.step5) {
             .ani_4_2_4 {
-              animation: ani_4_2_4_step5 2s ease-in-out forwards;
+              animation: ani_4_2_4_step5 4s ease-in-out forwards;
             }
 
             .ani_4_2 {
-              animation: ani_4_2_step5 2s ease-in-out forwards;
+              animation: ani_4_2_step5 4s ease-in-out forwards;
 
               &::before,
               &::after {
@@ -1467,19 +1467,19 @@ img {
           &:global(.step6) {
 
             .ani_5_2_1 {
-              animation: ani_5_2_1_step6 2.5s ease-in-out forwards;
+              animation: ani_5_2_1_step6 2s ease-in-out forwards;
 
               .ani_5_2_1_1,
               .ani_5_2_1_2,
               .ani_5_2_1_3 {
                 >img {
-                  animation: ani_5_2_1_innerbox_step6 2.5s ease-in-out forwards;
+                  animation: ani_5_2_1_innerbox_step6 2s ease-in-out forwards;
                 }
               }
             }
 
             .ani_5_2 {
-              animation: ani_5_2_step6 2.5s ease-in-out forwards;
+              animation: ani_5_2_step6 4s ease-in-out forwards;
 
               &::before,
               &::after {
@@ -1641,7 +1641,7 @@ img {
 
   0% {
     opacity: 0;
-    transform: translate(0, 30rem);
+    transform: translate(0, 10rem);
   }
 
   100% {
@@ -1992,7 +1992,7 @@ img {
 @keyframes ani_2_2 {
   0% {
     opacity: 1;
-    transform: translate(0rem, 272rem) scale(0.7);
+    transform: translate(0rem, 276rem) scale(0.7);
   }
 
   20% {
@@ -2066,11 +2066,11 @@ img {
     transform: translate(0, 0rem);
   }
 
-  30% {
+  20% {
     transform: translate(0, 0rem);
   }
 
-  45% {
+  40% {
     transform: translate(0, -265rem);
   }
 
@@ -2091,12 +2091,12 @@ img {
 
   30% {
     opacity: 0;
-    transform: scale(0.6);
+    transform: scale(.9);
   }
 
   100% {
     opacity: 0;
-    transform: scale(0.6);
+    transform: scale(0.9);
   }
 }
 
@@ -2216,15 +2216,15 @@ img {
   }
 
   30% {
-    transform: translate(0rem, 460rem) scale(0.7);
+    transform: translate(0rem, 400rem) scale(0.7);
   }
 
   40% {
-    transform: translate(0rem, 330rem) scale(0.7);
+    transform: translate(0rem, 346rem) scale(0.7);
   }
 
   100% {
-    transform: translate(0rem, 330rem) scale(0.7);
+    transform: translate(0rem, 346rem) scale(0.7);
   }
 }
 
@@ -2668,6 +2668,7 @@ img {
 @keyframes ani_3_2_4_step5 {
   0% {
     transform: translate(0, -385rem) scale(1.2);
+    opacity: 1;
   }
 
   30% {
@@ -2676,6 +2677,7 @@ img {
 
   100% {
     transform: translate(0, -385rem) scale(1);
+    opacity: 1;
   }
 }
 
@@ -3261,16 +3263,16 @@ img {
 @keyframes ani_4_2_4_step5 {
   0% {
     transform: translate(0, -607rem) scale(1.2);
+    opacity: 1;
   }
 
   30% {
     transform: translate(0, -607rem) scale(1.2);
-    opacity: .5;
   }
 
   100% {
     transform: translate(0, -607rem) scale(1);
-    opacity: .5;
+    opacity: 1;
   }
 }
 
@@ -3448,15 +3450,17 @@ img {
 @keyframes ani_5_2_2_step2 {
   0% {
     transform: translate(0, 21rem) scale(1);
-    opacity: 1;
+    opacity: .5;
   }
 
   10% {
     transform: translate(0, 36rem) scale(1);
+    opacity: .5;
   }
 
   30% {
     transform: translate(0, -110rem) scale(1);
+    opacity: 1;
   }
 
   45% {
@@ -4113,7 +4117,7 @@ img {
   }
 
   35% {
-    transform: translate(0rem, 770rem) scale(0.7);
+    transform: translate(0rem, 700rem) scale(0.7);
   }
 
   50% {
