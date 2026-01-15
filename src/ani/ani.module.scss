@@ -269,20 +269,6 @@ img {
           }
         }
 
-        // 마지막
-        .ani_1_7 {
-          width: 233rem;
-          height: 129rem;
-          opacity: 0;
-          position: absolute;
-          bottom: 0;
-          left: 6rem;
-          right: 0;
-          margin: auto;
-          z-index: 2;
-          text-align: center;
-          transform: translateY(0);
-        }
       }
 
       // ani 2 기본스타일
@@ -330,7 +316,8 @@ img {
           width: 300rem;
           height: 416rem;
           // transform: translate(0rem, 294rem) scale(0.7);
-          transform: translate(0rem, 272rem) scale(0.7);
+          // transform: translate(0rem, 272rem) scale(0.7);
+          transform: translate(0rem, 260rem) scale(0.7);
 
           &::after {
             // border: 1px solid red;
@@ -385,7 +372,7 @@ img {
           width: 326rem;
           height: 122rem;
           box-shadow: none;
-          opacity: 0.5;
+          opacity: 1;
         }
 
         // 아이콘박스
@@ -1013,9 +1000,23 @@ img {
               animation: ani_1_show 1.5s ease-in-out forwards;
             }
 
-            .ani_1_7 {
-              animation: ani_1_7 1s ease-in-out forwards;
+            .ani_1_2 {
+              animation: ani_1_2_init 1s ease-in-out forwards;
             }
+
+            .ani_1_2_1 {
+              animation: ani_1_2_1_init 0.1s ease-in-out forwards;
+            }
+
+            .ani_1_3 {
+              animation: ani_1_3_init 0.1s ease-in-out forwards;
+            }
+
+            .ani_1_3_tit {
+              animation: ani_1_3_tit_init 0.1s ease-in-out forwards;
+            }
+
+
 
             .ani_1_4 {
               animation: ani_1_4_hide 1s ease-in-out forwards;
@@ -1067,6 +1068,10 @@ img {
           }
 
           &:global(.step4) {
+            .ani_2_2_4 {
+              animation: ani_2_2_4_change 2s ease-in-out forwards;
+            }
+
             .ani_2_2_5 {
               animation: ani_2_2_5_change 2s ease-in-out forwards;
             }
@@ -1076,8 +1081,7 @@ img {
             }
 
             .ani_2_2_1,
-            .ani_2_2_2,
-            .ani_2_2_4 {
+            .ani_2_2_2 {
               animation: ani_2_2_124_change 2s ease-in-out forwards;
             }
           }
@@ -1906,26 +1910,63 @@ img {
   }
 }
 
-@keyframes ani_1_7 {
+@keyframes ani_1_2_init {
   0% {
     opacity: 0;
-    transform: translateY(-500rem);
+    transform: translateY(-500rem) scale(.7);
   }
 
   40% {
     opacity: 0;
   }
 
-  85% {
+  65% {
     opacity: 1;
-    transform: translateY(120rem);
+    transform: translateY(150rem) scale(.7);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(106rem) scale(.7);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(55rem);
+    transform: translateY(106rem) scale(.7);
   }
 }
+
+@keyframes ani_1_2_1_init {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani_1_3_init {
+  0% {
+    transform: translate(0px) scale(.9);
+  }
+
+  100% {
+    transform: translate(0px) scale(.9);
+  }
+}
+
+@keyframes ani_1_3_tit_init {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
 
 // ############################  ani 2
 // ############################  ani 2
@@ -1954,14 +1995,14 @@ img {
     transform: translate(0rem, 272rem) scale(0.7);
   }
 
-  30% {
+  20% {
     opacity: 1;
-    transform: translate(0rem, 340rem) scale(0.7);
+    transform: translate(0rem, 300rem) scale(0.7);
   }
 
   50% {
     opacity: 1;
-    transform: translate(0rem, -200rem) scale(1);
+    transform: translate(0rem, -190rem) scale(1);
   }
 
   80% {
@@ -2059,9 +2100,37 @@ img {
   }
 }
 
+@keyframes ani_2_2_4_change {
+  0% {
+    transform: translate(0, 0rem);
+    opacity: 1;
+  }
+
+  20% {
+    transform: translate(0, 20rem);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translate(0, -100rem);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(0, -100rem);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(0, -100rem);
+    opacity: 0.5;
+  }
+}
+
 @keyframes ani_2_2_5_change {
   0% {
     transform: translate(0, -245rem);
+    opacity: 1;
   }
 
   20% {
@@ -2074,20 +2143,24 @@ img {
 
   45% {
     transform: translate(0, -70rem);
+    opacity: .5;
   }
 
   100% {
     transform: translate(0, -70rem);
+    opacity: .5;
   }
 }
 
 @keyframes ani_2_2_6_change {
   0% {
     transform: translate(0, -245rem);
+    opacity: 0.5;
   }
 
   20% {
     transform: translate(0, -235rem);
+    opacity: 0.5;
   }
 
   40% {
@@ -2096,10 +2169,12 @@ img {
 
   45% {
     transform: translate(0, -535rem);
+    opacity: 1;
   }
 
   100% {
     transform: translate(0, -535rem);
+    opacity: 1;
   }
 }
 
@@ -2145,11 +2220,11 @@ img {
   }
 
   40% {
-    transform: translate(0rem, 342rem) scale(0.7);
+    transform: translate(0rem, 330rem) scale(0.7);
   }
 
   100% {
-    transform: translate(0rem, 342rem) scale(0.7);
+    transform: translate(0rem, 330rem) scale(0.7);
   }
 }
 

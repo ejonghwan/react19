@@ -1,125 +1,89 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-// import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
-// Import Swiper styles;
 import 'swiper/css';
 import style from './ani.module.scss';
-// import { Pagination, Navigation } from 'swiper/modules';
 import clsx from 'clsx';
-// import test1 from '../../public/test1.png';
-// import img_01 from '../../public/img01/img_01.png';
-// import img_02 from '../../public/img01/img_02.png';
-// import img_03 from '../../public/img01/img_03.png';
-// import img_04 from '../../public/img01/img_04.png';
-// import img_05 from '../../public/img01/img_05.png';
-// import img_06 from '../../public/img01/img_06.png';
-// import img_07 from '../../public/img01/img_07.png';
-// import img_08 from '../../public/img01/img_08.png';
-
-// import img_icon1_1 from '../../public/img01/icon_1/1.png';
-// import img_icon1_2 from '../../public/img01/icon_1/2.png';
-// import img_icon1_3 from '../../public/img01/icon_1/3.png';
-// import img_icon1_4 from '../../public/img01/icon_1/4.png';
-// import img_icon1_5 from '../../public/img01/icon_1/5.png';
-// import img_icon1_6 from '../../public/img01/icon_1/6.png';
-
-// import img_icon2_1 from '../../public/img01/icon_2/1.png';
-// import img_icon2_2 from '../../public/img01/icon_2/2.png';
-// import img_icon2_3 from '../../public/img01/icon_2/3.png';
-// import img_icon2_4 from '../../public/img01/icon_2/4.png';
-// import img_icon2_5 from '../../public/img01/icon_2/5.png';
-// import img_icon2_6 from '../../public/img01/icon_2/6.png';
-
-// import img_icon3_1 from '../../public/img01/icon_3/1.png';
-// import img_icon3_2 from '../../public/img01/icon_3/2.png';
-// import img_icon3_3 from '../../public/img01/icon_3/3.png';
-// import img_icon3_4 from '../../public/img01/icon_3/4.png';
-// import img_icon3_5 from '../../public/img01/icon_3/5.png';
-// import img_icon3_6 from '../../public/img01/icon_3/6.png';
-// import img_09 from '../../public/img01_back/img_09.png';
 
 
 
 // 첫번쨰 섹션
-import img_1_1_1 from '../../public/img01/img_1_1_1.png';
-import img_1_1_2 from '../../public/img01/img_1_1_2.png';
-import img_1_1_3 from '../../public/img01/img_1_1_3.png';
+import img_1_1_1 from '../../public/tutorial/main_tuto_1_1_1.png';
+import img_1_1_2 from '../../public/tutorial/main_tuto_1_1_2.png';
+import img_1_1_3 from '../../public/tutorial/main_tuto_1_1_3.png';
 
-import img_1_2 from '../../public/img01/img_1_2.png';
-// import img_1_3_t from '../../public/img01/img_1_3_t.png';  //그림자 포함
-import img_1_3_tit from '../../public/img01/img_1_3_tit.png';
-import img_1_3_1 from '../../public/img01/img_1_3_1.png';
-import img_1_3_2 from '../../public/img01/img_1_3_2.png';
-import img_1_3_3 from '../../public/img01/img_1_3_3.png';
-import img_1_3_4 from '../../public/img01/img_1_3_4.png';
-import img_1_3_5 from '../../public/img01/img_1_3_5.png';
-import img_1_3_6 from '../../public/img01/img_1_3_6.png';
+import img_1_2 from '../../public/tutorial/main_tuto_1_2.png';
+// import img_1_3_t from '../../public/tutorial/main_tuto_1_3_t.png';  //그림자 포함
+import img_1_3_tit from '../../public/tutorial/main_tuto_1_3_tit.png';
+import img_1_3_1 from '../../public/tutorial/main_tuto_1_3_1.png';
+import img_1_3_2 from '../../public/tutorial/main_tuto_1_3_2.png';
+import img_1_3_3 from '../../public/tutorial/main_tuto_1_3_3.png';
+import img_1_3_4 from '../../public/tutorial/main_tuto_1_3_4.png';
+import img_1_3_5 from '../../public/tutorial/main_tuto_1_3_5.png';
+import img_1_3_6 from '../../public/tutorial/main_tuto_1_3_6.png';
 
-import img_1_4_1 from '../../public/img01/img_1_4_1.png';
-import img_1_4_tit from '../../public/img01/img_1_4_tit.png';
-import img_ico_1_4_1_1 from '../../public/img01/img_ico_1_4_1_1.png';
-import img_ico_1_4_1_2 from '../../public/img01/img_ico_1_4_1_2.png';
-import img_ico_1_4_1_3 from '../../public/img01/img_ico_1_4_1_3.png';
-import img_ico_1_4_1_4 from '../../public/img01/img_ico_1_4_1_4.png';
-import img_ico_1_4_1_5 from '../../public/img01/img_ico_1_4_1_5.png';
-import img_ico_1_4_1_6 from '../../public/img01/img_ico_1_4_1_6.png';
+import img_1_4_1 from '../../public/tutorial/main_tuto_1_4_1.png';
+import img_1_4_tit from '../../public/tutorial/main_tuto_1_4_tit.png';
+import img_ico_1_4_1_1 from '../../public/tutorial/main_tuto_ico_1_4_1_1.png';
+import img_ico_1_4_1_2 from '../../public/tutorial/main_tuto_ico_1_4_1_2.png';
+import img_ico_1_4_1_3 from '../../public/tutorial/main_tuto_ico_1_4_1_3.png';
+import img_ico_1_4_1_4 from '../../public/tutorial/main_tuto_ico_1_4_1_4.png';
+import img_ico_1_4_1_5 from '../../public/tutorial/main_tuto_ico_1_4_1_5.png';
+import img_ico_1_4_1_6 from '../../public/tutorial/main_tuto_ico_1_4_1_6.png';
 
-import img_ico_1_4_2_1 from '../../public/img01/img_ico_1_4_2_1.png';
-import img_ico_1_4_2_2 from '../../public/img01/img_ico_1_4_2_2.png';
-import img_ico_1_4_2_3 from '../../public/img01/img_ico_1_4_2_3.png';
-import img_ico_1_4_2_4 from '../../public/img01/img_ico_1_4_2_4.png';
-import img_ico_1_4_2_5 from '../../public/img01/img_ico_1_4_2_5.png';
-import img_ico_1_4_2_6 from '../../public/img01/img_ico_1_4_2_6.png';
+import img_ico_1_4_2_1 from '../../public/tutorial/main_tuto_ico_1_4_2_1.png';
+import img_ico_1_4_2_2 from '../../public/tutorial/main_tuto_ico_1_4_2_2.png';
+import img_ico_1_4_2_3 from '../../public/tutorial/main_tuto_ico_1_4_2_3.png';
+import img_ico_1_4_2_4 from '../../public/tutorial/main_tuto_ico_1_4_2_4.png';
+import img_ico_1_4_2_5 from '../../public/tutorial/main_tuto_ico_1_4_2_5.png';
+import img_ico_1_4_2_6 from '../../public/tutorial/main_tuto_ico_1_4_2_6.png';
 
-import img_ico_1_4_3_1 from '../../public/img01/img_ico_1_4_3_1.png';
-import img_ico_1_4_3_2 from '../../public/img01/img_ico_1_4_3_2.png';
-import img_ico_1_4_3_3 from '../../public/img01/img_ico_1_4_3_3.png';
-import img_ico_1_4_3_4 from '../../public/img01/img_ico_1_4_3_4.png';
-import img_ico_1_4_3_5 from '../../public/img01/img_ico_1_4_3_5.png';
-import img_ico_1_4_3_6 from '../../public/img01/img_ico_1_4_3_6.png';
-import img_1_5 from '../../public/img01/img_1_5.png';
+import img_ico_1_4_3_1 from '../../public/tutorial/main_tuto_ico_1_4_3_1.png';
+import img_ico_1_4_3_2 from '../../public/tutorial/main_tuto_ico_1_4_3_2.png';
+import img_ico_1_4_3_3 from '../../public/tutorial/main_tuto_ico_1_4_3_3.png';
+import img_ico_1_4_3_4 from '../../public/tutorial/main_tuto_ico_1_4_3_4.png';
+import img_ico_1_4_3_5 from '../../public/tutorial/main_tuto_ico_1_4_3_5.png';
+import img_ico_1_4_3_6 from '../../public/tutorial/main_tuto_ico_1_4_3_6.png';
+// import img_1_5 from '../../public/tutorial/main_tuto_1_5.png';
 
 // 두번째 섹션
-import img_2_1_1 from '../../public/img02/img_2_1_1.png';
-import img_2_2_1 from '../../public/img02/img_2_2_1.png';
-import img_2_2_2 from '../../public/img02/img_2_2_2.png';
-import img_2_2_3 from '../../public/img02/img_2_2_3.png';
-import img_2_2_4 from '../../public/img02/img_2_2_4.png';
-import img_2_2_5 from '../../public/img02/img_2_2_5.png';
-import img_2_2_6 from '../../public/img02/img_2_2_6.png';
+import img_2_1_1 from '../../public/tutorial/main_tuto_2_1_1.png';
+import img_2_2_1 from '../../public/tutorial/main_tuto_2_2_1.png';
+import img_2_2_2 from '../../public/tutorial/main_tuto_2_2_2.png';
+import img_2_2_3 from '../../public/tutorial/main_tuto_2_2_3.png';
+import img_2_2_4 from '../../public/tutorial/main_tuto_2_2_4.png';
+import img_2_2_5 from '../../public/tutorial/main_tuto_2_2_5.png';
+import img_2_2_6 from '../../public/tutorial/main_tuto_2_2_6.png';
 
 // 세번째 섹션
-import img_3_1 from '../../public/img03/img_3_1.png';
-import img_3_2_1 from '../../public/img03/img_3_2_1.png';
-import img_3_2_2 from '../../public/img03/img_3_2_2.png';
-import img_3_2_3_1 from '../../public/img03/img_3_2_3_1.png';
-import img_3_2_3_2 from '../../public/img03/img_3_2_3_2.png';
-import img_3_2_3_3 from '../../public/img03/img_3_2_3_3.png';
-import img_3_2_4 from '../../public/img03/img_3_2_4.png';
+import img_3_1 from '../../public/tutorial/main_tuto_3_1.png';
+import img_3_2_1 from '../../public/tutorial/main_tuto_3_2_1.png';
+import img_3_2_2 from '../../public/tutorial/main_tuto_3_2_2.png';
+import img_3_2_3_1 from '../../public/tutorial/main_tuto_3_2_3_1.png';
+import img_3_2_3_2 from '../../public/tutorial/main_tuto_3_2_3_2.png';
+import img_3_2_3_3 from '../../public/tutorial/main_tuto_3_2_3_3.png';
+import img_3_2_4 from '../../public/tutorial/main_tuto_3_2_4.png';
 
 // 네번째 섹션
-import img_4_1 from '../../public/img04/img_4_1.png';
-import img_4_2_1 from '../../public/img04/img_4_2_1.png';
-import img_4_2_2 from '../../public/img04/img_4_2_2.png';
-import img_4_2_3 from '../../public/img04/img_4_2_3.png';
-import img_4_2_4 from '../../public/img04/img_4_2_4.png';
-import img_4_2_5 from '../../public/img04/img_4_2_5.png';
+import img_4_1 from '../../public/tutorial/main_tuto_4_1.png';
+import img_4_2_1 from '../../public/tutorial/main_tuto_4_2_1.png';
+import img_4_2_2 from '../../public/tutorial/main_tuto_4_2_2.png';
+import img_4_2_3 from '../../public/tutorial/main_tuto_4_2_3.png';
+import img_4_2_4 from '../../public/tutorial/main_tuto_4_2_4.png';
+import img_4_2_5 from '../../public/tutorial/main_tuto_4_2_5.png';
 
 
 // 네번째 섹션
-import img_5_1 from '../../public/img05/img_5_1.png';
-import img_5_2_1_1 from '../../public/img05/img_5_2_1_1.png';
-import img_5_2_1_2 from '../../public/img05/img_5_2_1_2.png';
-import img_5_2_1_3 from '../../public/img05/img_5_2_1_3.png';
-import img_5_2_2 from '../../public/img05/img_5_2_2.png';
-import img_5_2_3 from '../../public/img05/img_5_2_3.png';
-import img_5_2_4 from '../../public/img05/img_5_2_4.png';
-import img_5_2_5 from '../../public/img05/img_5_2_5.png';
-import img_5_2_6 from '../../public/img05/img_5_2_6.png';
+import img_5_1 from '../../public/tutorial/main_tuto_5_1.png';
+import img_5_2_1_1 from '../../public/tutorial/main_tuto_5_2_1_1.png';
+import img_5_2_1_2 from '../../public/tutorial/main_tuto_5_2_1_2.png';
+import img_5_2_1_3 from '../../public/tutorial/main_tuto_5_2_1_3.png';
+import img_5_2_2 from '../../public/tutorial/main_tuto_5_2_2.png';
+import img_5_2_3 from '../../public/tutorial/main_tuto_5_2_3.png';
+import img_5_2_4 from '../../public/tutorial/main_tuto_5_2_4.png';
+import img_5_2_5 from '../../public/tutorial/main_tuto_5_2_5.png';
+import img_5_2_6 from '../../public/tutorial/main_tuto_5_2_6.png';
 
 
 
@@ -128,8 +92,8 @@ const aniTime = [
   {
     section: 1,
     delayTime: [500, 2000, 2000, 2000, 3000, 2000, 5000],
-    // loopInterval: 20500,
-    loopInterval: 10000000,
+    loopInterval: 20500,
+    // loopInterval: 10000000,
     resetDelay: 50
   },
   {
@@ -432,10 +396,6 @@ const Ani = () => {
               </div>
             </div>
 
-            {/* 마지막 */}
-            <div className={clsx(style['ani__wrap--item'], style['ani_1_7'])}>
-              <img src={img_1_5} alt="" className={style['img_1_5']} />
-            </div>
           </div>
         </SwiperSlide>
 
