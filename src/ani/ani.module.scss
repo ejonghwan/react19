@@ -884,12 +884,18 @@ img {
           &:global(.step0) {
             .ani_1_1_2 {
               animation: ani_1_show 1.5s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
           }
 
           &:global(.step1) {
             .ani_1_1_3 {
               animation: ani_1_show 1.5s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
           }
 
@@ -899,6 +905,9 @@ img {
             .ani_1_2 {
               // animation: ani_1_2 5s cubic-bezier(0, 0.36, 0.34, 0.97) forwards;
               animation: ani_1_2 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
 
             .ani_1_2_1 {
@@ -1027,87 +1036,105 @@ img {
         }
 
         // ani 2
-        // &.ani_2 {
-        //   &:global(.step0) {
-        //     .ani_2_1_1 {
-        //       animation: ani_2_1_1 2s ease-in-out forwards;
-        //     }
+        &.ani_2 {
+          &:global(.step0) {
+            .ani_2_1_1 {
+              animation: ani_2_1_1 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+            }
 
-        //     .ani_2_1_2 {
-        //       animation: ani_2_1_2 2s ease-in-out forwards;
-        //     }
-        //   }
+            .ani_2_1_2 {
+              animation: ani_2_1_2 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+            }
+          }
 
-        //   &:global(.step1) {
-        //     .ani_2_2 {
-        //       animation: ani_2_2 1.5s ease-in-out forwards;
-        //     }
-        //   }
+          &:global(.step1) {
+            .ani_2_2 {
+              animation: ani_2_2 1.5s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+            }
+          }
 
-        //   &:global(.step2) {
-        //     .ani_2_2_4 {
-        //       animation: ani_2_2_4 2s ease-in-out forwards;
-        //     }
+          &:global(.step2) {
+            .ani_2_2_4 {
+              animation: ani_2_2_4 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+            }
 
-        //     .ani_2_2_3,
-        //     .ani_2_2_5,
-        //     .ani_2_2_6 {
-        //       animation: ani_2_2_down1 2s ease-in-out forwards;
-        //     }
-        //   }
+            .ani_2_2_3,
+            .ani_2_2_5,
+            .ani_2_2_6 {
+              animation: ani_2_2_down1 2s ease-in-out forwards;
+            }
+          }
 
-        //   &:global(.step3) {
-        //     .ani_2_2_3 {
-        //       animation: ani_2_2_hide 1s ease-in-out forwards;
-        //     }
+          &:global(.step3) {
+            .ani_2_2_3 {
+              animation: ani_2_2_hide 1s ease-in-out forwards;
+            }
 
-        //     .ani_2_2_5,
-        //     .ani_2_2_6 {
-        //       animation: ani_2_2_up1 2s ease-in-out forwards;
-        //     }
-        //   }
+            .ani_2_2_5,
+            .ani_2_2_6 {
+              animation: ani_2_2_up1 2s ease-in-out forwards;
+            }
+          }
 
-        //   &:global(.step4) {
-        //     .ani_2_2_4 {
-        //       animation: ani_2_2_4_change 2s ease-in-out forwards;
-        //     }
+          &:global(.step4) {
+            .ani_2_2_4 {
+              animation: ani_2_2_4_change 2s ease-in-out forwards;
+            }
 
-        //     .ani_2_2_5 {
-        //       animation: ani_2_2_5_change 2s ease-in-out forwards;
-        //     }
+            .ani_2_2_5 {
+              animation: ani_2_2_5_change 2s ease-in-out forwards;
+            }
 
-        //     .ani_2_2_6 {
-        //       animation: ani_2_2_6_change 2s ease-in-out forwards;
-        //     }
+            .ani_2_2_6 {
+              animation: ani_2_2_6_change 2s ease-in-out forwards;
+            }
 
-        //     .ani_2_2_1,
-        //     .ani_2_2_2 {
-        //       animation: ani_2_2_124_change 2s ease-in-out forwards;
-        //     }
-        //   }
+            .ani_2_2_1,
+            .ani_2_2_2 {
+              animation: ani_2_2_124_change 2s ease-in-out forwards;
+            }
+          }
 
-        //   &:global(.step5) {
-        //     .ani_2_2 {
-        //       animation: ani_2_2_default 3s ease-in-out forwards;
-        //     }
+          &:global(.step5) {
+            .ani_2_2 {
+              animation: ani_2_2_default 3s ease-in-out forwards;
+            }
 
-        //     .ani_2_1_1 {
-        //       animation: ani_2_1_1_show 3s ease-in-out forwards;
-        //     }
-        //   }
-        // }
+            .ani_2_1_1 {
+              animation: ani_2_1_1_show 3s ease-in-out forwards;
+            }
+          }
+        }
 
         // ani 3
         &.ani_3 {
           &:global(.step0) {
             .ani_3_1 {
               animation: ani_3_1_hide 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
           }
 
           &:global(.step1) {
             .ani_3_2 {
               animation: ani_3_2 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
 
               &::before,
               &::after {
