@@ -1231,12 +1231,18 @@ img {
           &:global(.step0) {
             .ani_4_1 {
               animation: ani_4_1_hide 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
           }
 
           &:global(.step1) {
             .ani_4_2 {
               animation: ani_4_2 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
 
               &::before,
               &::after {
@@ -1354,12 +1360,18 @@ img {
           &:global(.step0) {
             .ani_5_1 {
               animation: ani_5_1_hide 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
             }
           }
 
           &:global(.step1) {
             .ani_5_2 {
               animation: ani_5_2 2s ease-in-out forwards;
+              transform: translate3d(0, 0, 0);
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
 
               &::before,
               &::after {
