@@ -68,7 +68,7 @@ const Calc = () => {
             <section></section>
             <section></section>
             <section>
-               <input type="text" ref={targetRef} />
+               <input type="text" ref={targetRef} inputMode='none' />
             </section>
             <section></section>
             <section></section>
