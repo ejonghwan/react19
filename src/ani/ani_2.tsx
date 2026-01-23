@@ -1,3 +1,76 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+
+
+console.log('컴포넌트외부')
+const Ani_2 = () => {
+
+
+
+
+
+
+    useEffect(() => {
+        const btm = getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')
+        const top = getComputedStyle(document.documentElement).getPropertyValue('--safe-top')
+
+        console.log(
+            'btm :', typeof parseInt(btm),
+            'top :', typeof parseInt(top)
+        )
+
+        console.log(parseInt(typeof btm.replace('px', '')))
+
+        // alert(parseInt(typeof btm.replace('px', '') + 20))
+        // alert(parseInt(typeof top.replace('px', '') + 20))
+
+        window.addEventListener('click', () => {
+            console.log('???')
+            // 현재 스크롤 위치 + 화면 높이
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+
+            // 스크롤이 끝에 도달했는지 확인
+            if (scrollTop + windowHeight >= documentHeight) {
+                console.log('페이지 끝에 도달!');
+            }
+        });
+
+
+    }, [])
+
+
+    // const obj = useMemo(() => ({a:1}), [])
+
+    console.log('컴포넌트내부')
+
+
+
+
+    return (<>
+        <div style={{ fontSize: '20px', border: "1px solid red" }}>
+
+            {/* <div className='testaa' style={{ height: "100%" }}>aa</div> */}
+            {/* ref ? {numberRef.current}<br />
+            n? {n} <br />
+            state ? {test} */}
+
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+            <div style={{ height: "500px", background: "#ddd" }}></div><br />
+
+        </div>
+    </>)
+}
+
+export default Ani_2
+
+
 // import { useCallback, useEffect, useRef, useState } from 'react';
 // // import React, { useState } from 'react'
 // import { Swiper, SwiperSlide } from 'swiper/react';

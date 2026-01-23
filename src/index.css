@@ -1,3 +1,18 @@
+:root {
+  /* --safe-top: constant(safe-area-inset-top); */
+  --safe-top: env(safe-area-inset-top);
+  /* --safe-bottom: constant(safe-area-inset-bottom); */
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+.testaa {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  margin-top: calc(10px + var(--safe-bottom))
+}
+
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
