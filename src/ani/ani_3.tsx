@@ -264,6 +264,11 @@ const Ani = () => {
 
   return (
     <>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
       <Swiper
         pagination={{ type: 'fraction' }}
         navigation={true}
@@ -271,7 +276,12 @@ const Ani = () => {
         onSlideChange={swi => setSwiperIdx(swi.activeIndex)}
         onSwiper={swi => { swiperRef.current = swi; }}
         className={style['swiper__wrap']}
+        touchStartPreventDefault={false}
+        touchMoveStopPropagation={false}
       >
+
+
+
         {/* Slide 1 */}
         <SwiperSlide className={style['swiper__wrap--item']}>
           <div className={clsx(style['ani__wrap'], style['ani_1'])} ref={ani1ElRef}>
@@ -523,6 +533,23 @@ const Ani = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div><div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div><div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div><div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
+      <div className='ho'>ho</div>
     </>
   );
 };
