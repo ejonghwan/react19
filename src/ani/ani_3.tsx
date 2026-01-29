@@ -262,6 +262,8 @@ const Ani = () => {
   }, [swiperIdx, resetAllAnimations, createLoopAnimation]);
 
 
+  // pnpm view @oqf/shared-biz
+
   return (
     <>
       <div className='ho'>ho</div>
@@ -269,6 +271,10 @@ const Ani = () => {
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
+
+      <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} >svg</svg>
+      <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} className={style["hoho11"]}>svg</svg>
+
       <Swiper
         pagination={{ type: 'fraction' }}
         navigation={true}
