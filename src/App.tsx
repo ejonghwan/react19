@@ -13,16 +13,16 @@ import Ani_2 from './ani/ani_2';
 import Ani_3 from './ani/ani_3';
 import Calc from './ani/calc';
 // import Compo from './pages/compo'
-import { useContext } from 'react';
-import { TestCon } from './context/TestContext';
+// import { useContext } from 'react';
+// import { TestCon } from './context/TestContext';
 
 function App() {
   // const [count, setCount] = useState(0)
 
-  const ctx = useContext(TestCon);
-  if (!ctx) {
-    throw new Error('asdasd');
-  }
+  // const ctx = useContext(TestCon);
+  // if (!ctx) {
+  //   throw new Error('asdasd');
+  // }
   // const { testC } = ctx;
 
   return (

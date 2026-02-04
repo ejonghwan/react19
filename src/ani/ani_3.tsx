@@ -84,6 +84,11 @@ import img_5_2_3 from '../../public/tutorial/main_tuto_5_2_3.png';
 import img_5_2_4 from '../../public/tutorial/main_tuto_5_2_4.png';
 import img_5_2_5 from '../../public/tutorial/main_tuto_5_2_5.png';
 import img_5_2_6 from '../../public/tutorial/main_tuto_5_2_6.png';
+import { TestContextProvider } from '../context/TestContext';
+import Ani_3_compo from './ani_3_compo';
+import Ani_4_compo from './ani_4_compo';
+import Excompo_1 from './excompo_1';
+import { Navigation } from 'swiper/modules';
 
 
 const testMode = true
@@ -264,19 +269,58 @@ const Ani = () => {
 
   // pnpm view @oqf/shared-biz
 
+  const handleResize = () => {
+    alert(window.visualViewport?.height)
+    console.log('how')
+  }
+
+  useEffect(() => {
+
+    console.log('/???')
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+
+
   return (
     <>
+
+
+      <button type='button' disabled aria-label="어케읽어 ?">hoho btn ?</button>
+      <Excompo_1 as="span">
+        <strong style={{ fontSize: "20px" }}>
+          aaa
+        </strong>
+      </Excompo_1>
+
+      <TestContextProvider>
+        <Ani_3_compo />
+        <Ani_4_compo />
+      </TestContextProvider>
+
+
+      {/* <TestContextProvider>
+        <Ani_4_compo />
+      </TestContextProvider> */}
+
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
       <div className='ho'>ho</div>
 
+      <input type="text" style={{ width: "300px", height: "100px" }} />
       <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} >svg</svg>
       <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} className={style["hoho11"]}>svg</svg>
 
       <Swiper
-        pagination={{ type: 'fraction' }}
+        pagination={{
+          type:
+
+
+            'fraction'
+        }}
         navigation={true}
         slidesPerView={1}
         onSlideChange={swi => setSwiperIdx(swi.activeIndex)}
@@ -284,6 +328,7 @@ const Ani = () => {
         className={style['swiper__wrap']}
         touchStartPreventDefault={false}
         touchMoveStopPropagation={false}
+        modules={[Navigation]}
       >
 
 

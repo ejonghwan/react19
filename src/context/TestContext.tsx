@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 
 type ButtonContextType = {
@@ -6,8 +6,20 @@ type ButtonContextType = {
    setTestC: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const TestCon = createContext<ButtonContextType | null>(null);
-export const TestContext = ({ children }: { children: React.ReactNode }) => {
+
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const useTestConProvider = () => {
+   const context = useContext(TestCon)
+   console.log('bb??', context)
+   if (!context) throw new Error('is not context');
+
+   return context;
+}
+
+export const TestContextProvider = ({ children }: { children: React.ReactNode }) => {
 
    const [testC, setTestC] = useState<boolean>(false)
 
