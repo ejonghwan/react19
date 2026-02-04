@@ -1,27 +1,11 @@
 import React, { createContext, useContext, useState } from 'react'
 
-// 워크에서 수정 
-// 데브에서 수정
-// 데브에서 수정
-// 데브에서 수정
-// 데브에서 수정2
-// 데브에서 수정2
-
 
 type ButtonContextType = {
    testC: boolean;
    setTestC: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-
-// work-1 에서 수정
-// work-1 에서 수정
-// work-1 에서 수정
-// work-1 에서 수정
-// work 에서 수정
-// work 에서 수정
-// work 에서 수정
-// work 에서 수정
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const TestCon = createContext<ButtonContextType | null>(null);
