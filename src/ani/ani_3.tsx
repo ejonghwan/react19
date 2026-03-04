@@ -6,8 +6,6 @@ import 'swiper/css';
 import style from './ani.module.scss';
 import clsx from 'clsx';
 
-
-
 // 첫번쨰 섹션
 import img_1_1_1 from '../../public/tutorial/main_tuto_1_1_1.png';
 import img_1_1_2 from '../../public/tutorial/main_tuto_1_1_2.png';
@@ -73,7 +71,6 @@ import img_4_2_3 from '../../public/tutorial/main_tuto_4_2_3.png';
 import img_4_2_4 from '../../public/tutorial/main_tuto_4_2_4.png';
 import img_4_2_5 from '../../public/tutorial/main_tuto_4_2_5.png';
 
-
 // 네번째 섹션
 import img_5_1 from '../../public/tutorial/main_tuto_5_1.png';
 import img_5_2_1_1 from '../../public/tutorial/main_tuto_5_2_1_1.png';
@@ -90,45 +87,50 @@ import Ani_4_compo from './ani_4_compo';
 import Excompo_1 from './excompo_1';
 import { Navigation } from 'swiper/modules';
 
-
-const testMode = true
+const testMode = true;
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
 const aniTime = [
   {
     section: 1,
     delayTime: [500, 2000, 2000, 1300, 2000, 2000, 4000],
     loopInterval: testMode ? 10000000 : 19000,
-    resetDelay: 50
+    resetDelay: 50,
   },
   {
     section: 2,
     delayTime: [500, 1000, 2000, 2000, 2000, 2000], //step 5
     loopInterval: testMode ? 10000000 : 11000,
-    resetDelay: 50
+    resetDelay: 50,
   },
   {
     section: 3,
     delayTime: [500, 1000, 2000, 2000, 2000, 3000],
     loopInterval: testMode ? 10000000 : 13000,
-    resetDelay: 50
+    resetDelay: 50,
   },
   {
     section: 4,
     delayTime: [500, 1000, 2000, 2500, 2500, 3500],
     loopInterval: testMode ? 10000000 : 15000,
-    resetDelay: 50
+    resetDelay: 50,
   },
   {
     section: 5,
     delayTime: [500, 1000, 2000, 2000, 2000, 2000, 3000],
     loopInterval: testMode ? 10000000 : 15000,
-    resetDelay: 50
+    resetDelay: 50,
   },
 ];
 
-
-
 const Ani = () => {
+  const aa = import.meta.env.VITE_TEST;
+
+  console.log('aa1??', aa);
+
+  useEffect(() => {
+    console.log('aa2??', aa);
+  }, []);
+
   const [swiperIdx, setSwiperIdx] = useState<number>(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -143,11 +145,15 @@ const Ani = () => {
   const ani4ElRef = useRef<HTMLDivElement | null>(null);
   const ani5ElRef = useRef<HTMLDivElement | null>(null);
 
-
-
   // 모든 애니메이션 초기화
   const resetAllAnimations = useCallback(() => {
-    const aniArr = [ani1ElRef.current, ani2ElRef.current, ani3ElRef.current, ani4ElRef.current, ani5ElRef.current]
+    const aniArr = [
+      ani1ElRef.current,
+      ani2ElRef.current,
+      ani3ElRef.current,
+      ani4ElRef.current,
+      ani5ElRef.current,
+    ];
     timeoutsRef.current.forEach(clearTimeout);
     intervalsRef.current.forEach(clearInterval);
     timeoutsRef.current = [];
@@ -172,41 +178,42 @@ const Ani = () => {
   }, []);
 
   // 공통 루프 애니메이션 함수
-  const createLoopAnimation = useCallback((
-    el: HTMLDivElement | null,
-    delays: number[],
-    loopInterval: number,
-    resetDelay: number = 50
-  ) => {
-    const runLoop = () => {
-      // Timeout만 정리 (Interval은 유지)
-      timeoutsRef.current.forEach(clearTimeout);
-      timeoutsRef.current = [];
+  const createLoopAnimation = useCallback(
+    (
+      el: HTMLDivElement | null,
+      delays: number[],
+      loopInterval: number,
+      resetDelay: number = 50
+    ) => {
+      const runLoop = () => {
+        // Timeout만 정리 (Interval은 유지)
+        timeoutsRef.current.forEach(clearTimeout);
+        timeoutsRef.current = [];
 
-      // 클래스 초기화
-      if (el) {
-        el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
-        // el.classList.forEach(c => {
-        //   if (c.startsWith("step")) el.classList.remove(c);
-        // });
-      }
+        // 클래스 초기화
+        if (el) {
+          el.className = el.className.replace(/\bstep\d+\b/g, '').trim();
+          // el.classList.forEach(c => {
+          //   if (c.startsWith("step")) el.classList.remove(c);
+          // });
+        }
 
+        // resetDelay ms 후 재시작
+        const wait = setTimeout(() => {
+          startAnimation(el, delays);
+        }, resetDelay);
+        timeoutsRef.current.push(wait);
+      };
 
-      // resetDelay ms 후 재시작
-      const wait = setTimeout(() => {
-        startAnimation(el, delays);
-      }, resetDelay);
-      timeoutsRef.current.push(wait);
-    };
+      // 첫 실행
+      runLoop();
 
-    // 첫 실행
-    runLoop();
-
-    // 루프 설정
-    const loop = setInterval(runLoop, loopInterval);
-    intervalsRef.current.push(loop);
-  }, [startAnimation]);
-
+      // 루프 설정
+      const loop = setInterval(runLoop, loopInterval);
+      intervalsRef.current.push(loop);
+    },
+    [startAnimation]
+  );
 
   // 슬라이드 체인지 시
   useEffect(() => {
@@ -214,7 +221,7 @@ const Ani = () => {
 
     // 슬라이드 1: css로  처리
     if (swiperIdx === 0) {
-      const config = aniTime[0]
+      const config = aniTime[0];
       createLoopAnimation(
         ani1ElRef.current,
         config.delayTime,
@@ -224,7 +231,7 @@ const Ani = () => {
     }
     // 슬라이드 2
     if (swiperIdx === 1) {
-      const config = aniTime[1]
+      const config = aniTime[1];
       createLoopAnimation(
         ani2ElRef.current,
         config.delayTime,
@@ -234,7 +241,7 @@ const Ani = () => {
     }
     // 슬라이드 3
     if (swiperIdx === 2) {
-      const config = aniTime[2]
+      const config = aniTime[2];
       createLoopAnimation(
         ani3ElRef.current,
         config.delayTime,
@@ -244,7 +251,7 @@ const Ani = () => {
     }
     // 슬라이드 4
     if (swiperIdx === 3) {
-      const config = aniTime[3]
+      const config = aniTime[3];
       createLoopAnimation(
         ani4ElRef.current,
         config.delayTime,
@@ -254,7 +261,7 @@ const Ani = () => {
     }
     // 슬라이드 5
     if (swiperIdx === 4) {
-      const config = aniTime[4]
+      const config = aniTime[4];
       createLoopAnimation(
         ani5ElRef.current,
         config.delayTime,
@@ -266,32 +273,26 @@ const Ani = () => {
     return () => resetAllAnimations();
   }, [swiperIdx, resetAllAnimations, createLoopAnimation]);
 
-
   // pnpm view @oqf/shared-biz
 
   const handleResize = () => {
-    alert(window.visualViewport?.height)
-    console.log('how')
-  }
+    alert(window.visualViewport?.height);
+    console.log('how');
+  };
 
   useEffect(() => {
-
-    console.log('/???')
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-
+    console.log('/???');
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
-
-
-      <button type='button' disabled aria-label="어케읽어 ?">hoho btn ?</button>
+      <button type="button" disabled aria-label="어케읽어 ?">
+        hoho btn ? {aa}
+      </button>
       <Excompo_1 as="span">
-        <strong style={{ fontSize: "20px" }}>
-          aaa
-        </strong>
+        <strong style={{ fontSize: '20px' }}>aaa</strong>
       </Excompo_1>
 
       <TestContextProvider>
@@ -299,40 +300,44 @@ const Ani = () => {
         <Ani_4_compo />
       </TestContextProvider>
 
-
       {/* <TestContextProvider>
         <Ani_4_compo />
       </TestContextProvider> */}
 
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
 
-      <input type="text" style={{ width: "300px", height: "100px" }} />
-      <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} >svg</svg>
-      <svg width={"20px"} height={"20px"} style={{ border: "1px solid red" }} className={style["hoho11"]}>svg</svg>
+      <input type="text" style={{ width: '300px', height: '100px' }} />
+      <svg width={'20px'} height={'20px'} style={{ border: '1px solid red' }}>
+        svg
+      </svg>
+      <svg
+        width={'20px'}
+        height={'20px'}
+        style={{ border: '1px solid red' }}
+        className={style['hoho11']}
+      >
+        svg
+      </svg>
 
       <Swiper
         pagination={{
-          type:
-
-
-            'fraction'
+          type: 'fraction',
         }}
         navigation={true}
         slidesPerView={1}
         onSlideChange={swi => setSwiperIdx(swi.activeIndex)}
-        onSwiper={swi => { swiperRef.current = swi; }}
+        onSwiper={swi => {
+          swiperRef.current = swi;
+        }}
         className={style['swiper__wrap']}
         touchStartPreventDefault={false}
         touchMoveStopPropagation={false}
         modules={[Navigation]}
       >
-
-
-
         {/* Slide 1 */}
         <SwiperSlide className={style['swiper__wrap--item']}>
           <div className={clsx(style['ani__wrap'], style['ani_1'])} ref={ani1ElRef}>
@@ -345,7 +350,6 @@ const Ani = () => {
             <div className={clsx(style['ani__wrap--item'], style['ani_1_1_3'])}>
               <img src={img_1_1_3} alt="" />
             </div>
-
 
             <div className={clsx(style['ani__wrap--item'], style['ani_1_2'])}>
               {/* <img src={img_1_3_t} alt="" className={style['img_02']} /> */}
@@ -442,7 +446,6 @@ const Ani = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </SwiperSlide>
 
@@ -548,7 +551,6 @@ const Ani = () => {
               <div className={clsx(style['ani__wrap--item'], style['ani_4_2_5'])}>
                 <img src={img_4_2_5} alt="" />
               </div>
-
             </div>
           </div>
         </SwiperSlide>
@@ -561,9 +563,15 @@ const Ani = () => {
             </div>
             <div className={clsx(style['ani__wrap--item'], style['ani_5_2'])}>
               <div className={clsx(style['ani__wrap--item'], style['ani_5_2_1'])}>
-                <div className={style['ani_5_2_1_1']}><img src={img_5_2_1_1} alt="" /></div>
-                <div className={style['ani_5_2_1_2']}><img src={img_5_2_1_2} alt="" /></div>
-                <div className={style['ani_5_2_1_3']}><img src={img_5_2_1_3} alt="" /></div>
+                <div className={style['ani_5_2_1_1']}>
+                  <img src={img_5_2_1_1} alt="" />
+                </div>
+                <div className={style['ani_5_2_1_2']}>
+                  <img src={img_5_2_1_2} alt="" />
+                </div>
+                <div className={style['ani_5_2_1_3']}>
+                  <img src={img_5_2_1_3} alt="" />
+                </div>
               </div>
               <div className={clsx(style['ani__wrap--item'], style['ani_5_2_2'])}>
                 <img src={img_5_2_2} alt="" />
@@ -584,23 +592,26 @@ const Ani = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div><div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div><div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div><div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
-      <div className='ho'>ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
+      <div className="ho">ho</div>
     </>
   );
 };
