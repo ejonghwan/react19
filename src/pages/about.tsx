@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useLoaderData } from 'react-router';
+
+export const Meta = `
+  hoho: hohohooh
+`;
 
 const About = () => {
+  const { routesMeta: hehe } = useLoaderData();
 
+  console.log('routesMeta??', hehe);
 
-  const [data, setData] = useState<{ a: string | boolean, b: string | boolean }>({ a: "aa", b: "bb" })
-  const [data11, setData11] = useState([{ id: "aa", name: "aaa" }, { id: "bb", name: "bbb" }, { id: "cc", name: "ccc" }])
-
-
+  const [data, setData] = useState<{ a: string | boolean; b: string | boolean }>({
+    a: 'aa',
+    b: 'bb',
+  });
+  const [data11, setData11] = useState([
+    { id: 'aa', name: 'aaa' },
+    { id: 'bb', name: 'bbb' },
+    { id: 'cc', name: 'ccc' },
+  ]);
 
   const handleClick = () => {
-    console.log(123)
+    console.log(123);
     // setData(prev => {
     //   console.log('prev?', prev)
     //   for (const a in prev) {
@@ -20,33 +32,36 @@ const About = () => {
     // })
 
     setData(prev => {
+      console.log(Object.keys(prev));
 
-      console.log(Object.keys(prev))
-
-      const newState = Object.keys(prev).reduce((acc, key) => {
-        // key를 prev의 키 타입으로 단언하거나 index signature 처리
-        acc[key as keyof typeof prev] = "true";
-        console.log('acc?', acc)
-        return acc;
-      }, { ...prev });
-      console.log('newState??', newState)
+      const newState = Object.keys(prev).reduce(
+        (acc, key) => {
+          // key를 prev의 키 타입으로 단언하거나 index signature 처리
+          acc[key as keyof typeof prev] = 'true';
+          console.log('acc?', acc);
+          return acc;
+        },
+        { ...prev }
+      );
+      console.log('newState??', newState);
 
       return newState;
     });
 
     setData11(prev => {
-      return prev.filter(item => item.id !== 'aa') // 빼고
-    })
-  }
-
+      return prev.filter(item => item.id !== 'aa'); // 빼고
+    });
+  };
 
   return (
     <div>
-
-      <div style={{ fontSize: "20px" }}>{data11.map(item => item.id)}</div>
-      <div style={{ fontSize: "20px" }}>{data.a} || {data.b}</div>
-      <div onClick={handleClick} style={{ fontSize: "20px" }}>click me</div>
-
+      <div style={{ fontSize: '20px' }}>{data11.map(item => item.id)}</div>
+      <div style={{ fontSize: '20px' }}>
+        {data.a} || {data.b}
+      </div>
+      <div onClick={handleClick} style={{ fontSize: '20px' }}>
+        click me
+      </div>
       About
       <h2>아토믹 패턴 테스트</h2>
       <br />

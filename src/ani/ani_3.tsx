@@ -86,6 +86,7 @@ import Ani_3_compo from './ani_3_compo';
 import Ani_4_compo from './ani_4_compo';
 import Excompo_1 from './excompo_1';
 import { Navigation } from 'swiper/modules';
+import TooltipSlider from './Slider';
 
 const testMode = true;
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
@@ -122,7 +123,13 @@ const aniTime = [
   },
 ];
 
+console.log('scope0', document.readyState);
 const Ani = () => {
+  console.log('scope1', document.readyState);
+  useEffect(() => {
+    console.log('scope2', document.readyState);
+  }, []);
+
   const aa = import.meta.env.VITE_TEST;
 
   console.log('aa1??', aa);
@@ -276,7 +283,7 @@ const Ani = () => {
   // pnpm view @oqf/shared-biz
 
   const handleResize = () => {
-    alert(window.visualViewport?.height);
+    // alert(window.visualViewport?.height);
     console.log('how');
   };
 
@@ -299,6 +306,8 @@ const Ani = () => {
         <Ani_3_compo />
         <Ani_4_compo />
       </TestContextProvider>
+
+      <TooltipSlider />
 
       {/* <TestContextProvider>
         <Ani_4_compo />
