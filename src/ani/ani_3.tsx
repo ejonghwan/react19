@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 
@@ -87,6 +87,7 @@ import Ani_4_compo from './ani_4_compo';
 import Excompo_1 from './excompo_1';
 import { Navigation } from 'swiper/modules';
 import TooltipSlider from './Slider';
+import Input from '../components/atoms/Input';
 
 const testMode = true;
 // ani 2 ~ 마지막까지는 클래스 추가방식 아래 배열로 딜레이만 관리
@@ -284,17 +285,102 @@ const Ani = () => {
 
   const handleResize = () => {
     // alert(window.visualViewport?.height);
-    console.log('how');
+    // console.log('how');
   };
 
   useEffect(() => {
-    console.log('/???');
+    // console.log('/???');
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const [input, setInput] = useState('')
+
+
+  // const [allCheck, setAllCheck] = useState(false)
+
+
+
+  // 예시 데이터 (서버에서 받아온다고 가정)
+  const initialData = [
+    { id: 1, title: '첫 번째 항목' },
+    { id: 2, title: '두 번째 항목' },
+    { id: 3, title: '세 번째 항목' },
+  ];
+
+  // 선택된 항목의 ID만 담는 배열
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  // 1. 상태 계산 (파생된 상태)
+  const isAllChecked = initialData.length > 0 && selectedIds.length === initialData.length;
+
+  // 2. 전체 선택/해제 핸들러
+  const handleAllCheck = (checked: boolean) => {
+    if (checked) {
+      // 모두 선택: 모든 ID를 배열에 넣음
+      const allIds = initialData.map(item => item.id);
+      setSelectedIds(allIds);
+    } else {
+      // 모두 해제: 빈 배열로 만듦
+      setSelectedIds([]);
+    }
+  };
+
+  // 3. 개별 선택 핸들러
+  const handleCheckChange = (id: number, checked: boolean) => {
+    if (checked) {
+      // 체크됨: 기존 배열에 ID 추가
+      setSelectedIds(prev => [...prev, id]);
+    } else {
+      // 체크 해제: 해당 ID만 필터링해서 제거
+      setSelectedIds(prev => prev.filter(selectedId => selectedId !== id));
+    }
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <>
+
+      <div style={{ marginTop: "40px", fontSize: "20px" }}>
+        동동이 {selectedIds.length}/{initialData.length}<br />
+        <input type="checkbox"
+
+          checked={isAllChecked}
+          onChange={(e) => handleAllCheck(e.target.checked)} />
+
+      </div>
+      <div style={{ marginTop: '20px' }}>
+
+        {initialData.map((item) => (
+          <div key={item.id}>
+            <label>
+              <input
+                type="checkbox"
+                // 현재 내 ID가 선택된 배열에 있는지 확인
+                checked={selectedIds.includes(item.id)}
+                onChange={(e) => handleCheckChange(item.id, e.target.checked)}
+              />
+              {item.title}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      <br /><br /><hr /><br /><br />
+
+
+      <div style={{ fontSize: '20px' }}>{input}</div>
+      <Input type='text' name='hoho' value={input} onChange={(e) => setInput(e.target.value)} />
+
+
       <button type="button" disabled aria-label="어케읽어 ?">
         hoho btn ? {aa}
       </button>
