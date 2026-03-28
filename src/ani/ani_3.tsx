@@ -89,6 +89,7 @@ import Ani_3_compo from './ani_3_compo';
 import Ani_4_compo from './ani_4_compo';
 import Excompo_1 from './excompo_1';
 import { Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 
 const testMode = true
@@ -274,6 +275,9 @@ const Ani = () => {
     console.log('how')
   }
 
+
+
+
   useEffect(() => {
 
     console.log('/???')
@@ -283,16 +287,36 @@ const Ani = () => {
 
 
 
+  console.log('asdasd1', document.readyState)
+  useEffect(() => {
+    console.log('asdasd2', document.readyState)
+  }, [])
+
+
+
+  // window.addEventListener("visibilitychange", () => {
+  //   if (document.hidden) {
+  //     alert("사용자가 탭을 나갔습니다. (일시정지/보안 처리)");
+  //     // 예: 민감한 정보 숨기기, 실시간 차트 업데이트 중지
+  //   } else {
+  //     alert("사용자가 다시 돌아왔습니다. (데이터 갱신)");
+  //     // 예: 최신 금리 정보 다시 불러오기
+  //   }
+  // });
+
+
   return (
     <>
 
-
+      <Link to={'/about'} style={{ fontSize: '20px' }}>about</Link>
       <button type='button' disabled aria-label="어케읽어 ?">hoho btn ?</button>
       <Excompo_1 as="span">
         <strong style={{ fontSize: "20px" }}>
           aaa
         </strong>
       </Excompo_1>
+
+
 
       <TestContextProvider>
         <Ani_3_compo />
