@@ -1,0 +1,48 @@
+.container {
+  position: relative;
+  width: 100%;
+  padding: 60px 0 20px;
+  box-sizing: border-box;
+}
+
+.tooltipWrapper {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%); // 중심점 맞춤
+  will-change: left;
+  pointer-events: none;
+}
+
+.tooltipBody {
+  width: 137px; // 고정 너비
+  background: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.tooltipTail {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #333;
+  margin-top: -2px;
+  position: relative;
+  will-change: left;
+  position: relative;
+  transition: left 0.15s ease-out; // 핸들을 따라올 때 약간의 탄성을 줌
+  will-change: left;
+}
+
+.sliderInput {
+  width: 100%;
+  cursor: pointer;
+  margin: 0;
+}
