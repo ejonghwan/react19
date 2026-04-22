@@ -367,7 +367,22 @@ const Ani = () => {
   // });
 
 
+const shareSMS = () => {
+  const message = "안녕하세요, 자산 정보 공유드립니다.";
+  const encodedBody = encodeURIComponent(message);
+  
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isIos = /iphone|ipad|ipod/.test(userAgent);
 
+  // 핵심: 번호를 비우고 OS에 맞는 구분자(& 또는 ?) 사용
+  // iOS: sms:&body=...
+  // Android: sms:?body=...
+  const smsUrl = isIos 
+    ? `sms:&body=${encodedBody}` 
+    : `sms:?body=${encodedBody}`;
+
+  window.location.href = smsUrl;
+};
 
   return (
     <>
@@ -377,8 +392,12 @@ const Ani = () => {
       <button type='button'>btn2</button>
     </div>
 
-    <a style={{ fontSize: "20px" }} href="sms:01012345678&body=안녕하세요, 자산 정보 공유드립니다.">문자 보내기 (iOS)</a>
-
+    <a 
+  style={{ fontSize: "20px", cursor: "pointer" }} 
+  onClick={shareSMS}
+>
+  문자 보내기
+</a>
 
       <div style={{ marginTop: "40px", fontSize: "20px" }}>
         동동이 v2 {selectedIds.length}/{initialData.length}<br />
