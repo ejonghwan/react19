@@ -367,11 +367,21 @@ const Ani = () => {
   // });
 
 
+
+
   return (
     <>
 
+    <div className={style["bottom-button"]}>
+      <button type='button'>btn1</button>
+      <button type='button'>btn2</button>
+    </div>
+
+    <a style={{ fontSize: "20px" }} href="sms:01012345678&body=안녕하세요, 자산 정보 공유드립니다.">문자 보내기 (iOS)</a>
+
+
       <div style={{ marginTop: "40px", fontSize: "20px" }}>
-        동동이 {selectedIds.length}/{initialData.length}<br />
+        동동이 v2 {selectedIds.length}/{initialData.length}<br />
         <input type="checkbox"
 
           checked={isAllChecked}
@@ -730,6 +740,9 @@ const Ani = () => {
       <div className="ho">ho</div>
       <div className="ho">ho</div>
       <div className="ho">ho</div>
+
+
+
     </>
   );
 };

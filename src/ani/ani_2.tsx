@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+
+import style from './ani_2.module.scss'
+import { useEffect, useRef } from 'react'
 
 
 console.log('컴포넌트외부')
@@ -45,24 +47,36 @@ const Ani_2 = () => {
     console.log('컴포넌트내부')
 
 
+    const testRef = useRef<HTMLDivElement | null>(null)
+    useEffect(() => {
+        if(testRef.current) {
+            setTimeout(() => {
+                testRef.current?.scrollTo({ top: 500, behavior: 'smooth' })
+            }, 1000)
+        }
+    }, [])
 
 
     return (<>
-        <div style={{ fontSize: '20px', border: "1px solid red" }}>
+        <div className={style["wrap__"]} style={{ fontSize: '20px', border: "1px solid red"}}>
 
             {/* <div className='testaa' style={{ height: "100%" }}>aa</div> */}
             {/* ref ? {numberRef.current}<br />
             n? {n} <br />
             state ? {test} */}
+            <div className={style["wrap__conts"]}>
+                <div className={style["container-scroll"]} ref={testRef}>
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                    <div style={{ height: "500px", background: "#ddd" }}></div><br />
+                </div>
+            </div>
 
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
-            <div style={{ height: "500px", background: "#ddd" }}></div><br />
 
         </div>
     </>)

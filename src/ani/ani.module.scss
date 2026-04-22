@@ -1,3 +1,20 @@
+
+
+
+.bottom-button {
+  position: fixed;
+  // bottom: 0; 
+  width: 100%;
+  height :50px;
+  // background-color: black;
+  border: 1px solid red;
+  
+
+  /* env값이 없으면(로컬) 20px을 기본으로 사용, 있으면 env값 사용 */
+  bottom: 0; /* 폴백 */
+  // bottom: calc(env(safe-area-inset-bottom));
+}
+
 html {
   font-size: 1px;
 }
