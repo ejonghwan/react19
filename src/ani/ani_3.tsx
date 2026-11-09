@@ -376,7 +376,7 @@ const Ani = () => {
       </a>
 
       <div style={{ marginTop: '40px', fontSize: '20px' }}>
-        동동이 v2 {selectedIds.length}/{initialData.length}
+        동동이 v3 {selectedIds.length}/{initialData.length}
         <br />
         <input
           type="checkbox"
