@@ -736,7 +736,7 @@ const Ani = () => {
       <div className="ho">ho</div>
       <div>
         <p>input test</p>
-        <input type="text" placeholder="v2" />
+        <input type="text" placeholder="v3" />
       </div>
       <div className="ho">ho</div>
     </>
