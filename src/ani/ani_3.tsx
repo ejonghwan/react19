@@ -734,6 +734,10 @@ const Ani = () => {
       <div className="ho">ho</div>
       <div className="ho">ho</div>
       <div className="ho">ho</div>
+      <div>
+        <p>input test</p>
+        <input type="text" />
+      </div>
       <div className="ho">ho</div>
     </>
   );
