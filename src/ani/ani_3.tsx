@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 
@@ -288,21 +288,15 @@ const Ani = () => {
     // console.log('how');
   };
 
-
-
-
   useEffect(() => {
     // console.log('/???');
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const [input, setInput] = useState('')
-
+  const [input, setInput] = useState('');
 
   // const [allCheck, setAllCheck] = useState(false)
-
-
 
   // 예시 데이터 (서버에서 받아온다고 가정)
   const initialData = [
@@ -340,21 +334,10 @@ const Ani = () => {
     }
   };
 
-
-
-
-
-
-
-
-
-
-  console.log('asdasd1', document.readyState)
+  console.log('asdasd1', document.readyState);
   useEffect(() => {
-    console.log('asdasd2', document.readyState)
-  }, [])
-
-
+    console.log('asdasd2', document.readyState);
+  }, []);
 
   // window.addEventListener("visibilitychange", () => {
   //   if (document.hidden) {
@@ -366,57 +349,50 @@ const Ani = () => {
   //   }
   // });
 
+  const shareSMS = () => {
+    const message = '안녕하세요, 자산 정보 공유드립니다.';
+    const encodedBody = encodeURIComponent(message);
 
-const shareSMS = () => {
-  const message = "안녕하세요, 자산 정보 공유드립니다.";
-  const encodedBody = encodeURIComponent(message);
-  
-  const userAgent = navigator.userAgent.toLowerCase();
-  const isIos = /iphone|ipad|ipod/.test(userAgent);
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isIos = /iphone|ipad|ipod/.test(userAgent);
 
-  // 핵심: 번호를 비우고 OS에 맞는 구분자(& 또는 ?) 사용
-  // iOS: sms:&body=...
-  // Android: sms:?body=...
-  const smsUrl = isIos 
-    ? `sms:&body=${encodedBody}` 
-    : `sms:?body=${encodedBody}`;
+    // 핵심: 번호를 비우고 OS에 맞는 구분자(& 또는 ?) 사용
+    // iOS: sms:&body=...
+    // Android: sms:?body=...
+    const smsUrl = isIos ? `sms:&body=${encodedBody}` : `sms:?body=${encodedBody}`;
 
-  window.location.href = smsUrl;
-};
+    window.location.href = smsUrl;
+  };
 
   return (
     <>
+      <div className={style['bottom-button']}>
+        <button type="button">btn1</button>
+        <button type="button">btn2</button>
+      </div>
 
-    <div className={style["bottom-button"]}>
-      <button type='button'>btn1</button>
-      <button type='button'>btn2</button>
-    </div>
+      <a style={{ fontSize: '20px', cursor: 'pointer' }} onClick={shareSMS}>
+        문자 보내기
+      </a>
 
-    <a 
-  style={{ fontSize: "20px", cursor: "pointer" }} 
-  onClick={shareSMS}
->
-  문자 보내기
-</a>
-
-      <div style={{ marginTop: "40px", fontSize: "20px" }}>
-        동동이 v2 {selectedIds.length}/{initialData.length}<br />
-        <input type="checkbox"
-
+      <div style={{ marginTop: '40px', fontSize: '20px' }}>
+        동동이 v2 {selectedIds.length}/{initialData.length}
+        <br />
+        <input
+          type="checkbox"
           checked={isAllChecked}
-          onChange={(e) => handleAllCheck(e.target.checked)} />
-
+          onChange={e => handleAllCheck(e.target.checked)}
+        />
       </div>
       <div style={{ marginTop: '20px' }}>
-
-        {initialData.map((item) => (
+        {initialData.map(item => (
           <div key={item.id}>
             <label>
               <input
                 type="checkbox"
                 // 현재 내 ID가 선택된 배열에 있는지 확인
                 checked={selectedIds.includes(item.id)}
-                onChange={(e) => handleCheckChange(item.id, e.target.checked)}
+                onChange={e => handleCheckChange(item.id, e.target.checked)}
               />
               {item.title}
             </label>
@@ -424,12 +400,14 @@ const shareSMS = () => {
         ))}
       </div>
 
-      <br /><br /><hr /><br /><br />
-
+      <br />
+      <br />
+      <hr />
+      <br />
+      <br />
 
       <div style={{ fontSize: '20px' }}>{input}</div>
-      <Input type='text' name='hoho' value={input} onChange={(e) => setInput(e.target.value)} />
-
+      <Input type="text" name="hoho" value={input} onChange={e => setInput(e.target.value)} />
 
       <button type="button" disabled aria-label="어케읽어 ?">
         hoho btn ? {aa}
@@ -437,8 +415,6 @@ const shareSMS = () => {
       <Excompo_1 as="span">
         <strong style={{ fontSize: '20px' }}>aaa</strong>
       </Excompo_1>
-
-
 
       <TestContextProvider>
         <Ani_3_compo />
@@ -759,9 +735,6 @@ const shareSMS = () => {
       <div className="ho">ho</div>
       <div className="ho">ho</div>
       <div className="ho">ho</div>
-
-
-
     </>
   );
 };
